@@ -19,7 +19,7 @@ function _taggedTemplateLiteral(strings, raw) {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\tbackground: blue;\n\tcolor: #ccc;\n"]);
+  var data = _taggedTemplateLiteral(["\n  display          : inline-block;\n  padding          : .5rem 1rem;\n  background-color : #007BDF;\n  color            : #FFF;\n  cursor           : pointer;\n  text-decoration  : none;\n  line-height      : inherit;\n  border-radius    : .25rem;\n  transition       : transform .05s;\n  border           : 1px solid #007BDF;\n  text-align       : center;\n  user-select      : none;\n"]);
 
   _templateObject = function _templateObject() {
     return data;

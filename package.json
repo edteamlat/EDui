@@ -9,16 +9,24 @@
 		"dev": "rollup --config rollup.dev.js --watch",
 		"test": "jest --watch",
 		"lint": "eslint src --cache",
-		"quality": "npm run lint && npm run test"
+		"quality": "npm run lint && npm run test",
+		"storybook": "start-storybook"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.5.0",
 		"@babel/preset-env": "^7.4.5",
 		"@babel/preset-react": "^7.0.0",
+		"@storybook/react": "^5.1.9",
+		"babel-eslint": "^10.0.2",
+		"babel-jest": "^24.8.0",
+		"babel-loader": "^8.0.6",
 		"enzyme": "^3.10.0",
+		"enzyme-adapter-react-16": "^1.14.0",
 		"eslint": "^5.16.0",
 		"eslint-config-airbnb": "^17.1.0",
 		"eslint-plugin-import": "^2.17.3",
 		"eslint-plugin-jest": "^22.6.4",
+		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.13.0",
 		"jest": "^24.8.0",
 		"react": "^16.6.3",
@@ -38,6 +46,20 @@
 		"react": "^16.6.3"
 	},
 	"dependencies": {
+		"prop-types": "^15.7.2",
 		"styled-components": "^4.3.1"
+	},
+	"jest": {
+		"setupFilesAfterEnv": [
+			"<rootDir>/jest.setup.js"
+		],
+		"testPathIgnorePatterns": [
+			"<rootDir>/.next/",
+			"<rootDir>/dist/"
+		],
+		"transform": {
+			".*": "babel-jest",
+			"^.+\\.js?$": "babel-jest"
+		}
 	}
 }
