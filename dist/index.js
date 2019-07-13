@@ -1170,6 +1170,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
+var sizes = {
+  small: '13px'
+};
+
 var colors = {
   'first-color': '#007BDF',
   'first-color-alt': '#006DC6',
@@ -1186,12 +1190,37 @@ var colors = {
   'body-bg': '#FAFDFF'
 };
 
-var sizes = {
-  small: '13px'
-};
+function getColorWithAlt(_ref) {
+  var color = _ref.color;
+  return colors["".concat(color, "-alt")] || colors[color] || colors['first-color'];
+}
+function getColor(_ref2) {
+  var color = _ref2.color;
+  return colors[color] || colors['first-color'];
+}
+
+function _templateObject5() {
+  var data = _taggedTemplateLiteral(["\n\t\tmargin-right : 0;\n  \tmargin-left  : 0;\n  \twidth        : 100%;\n\t"]);
+
+  _templateObject5 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4() {
+  var data = _taggedTemplateLiteral(["\n\t\tcolor      : ", ";\n  \tbackground : none;\n  \tborder     : 1px solid;\n\n  \t&:hover {\n    \tbackground   : ", ";\n    \tcolor        : #FFF;\n    \tborder-color : transparent;\n  \t}\n\t"]);
+
+  _templateObject4 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n\t\tpadding: 0 .25rem;\n  \tfont-size: ", ";\n  \tline-height: 1.3;\n  \tborder-radius: 0;\n\t"]);
+  var data = _taggedTemplateLiteral(["\n    padding: 0 .25rem;\n    font-size: ", ";\n    line-height: 1.3;\n    /* border-radius: 0; */\n  "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -1201,7 +1230,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n\t\tpadding   : .25rem .5rem;\n  \tfont-size : ", ";\n\t"]);
+  var data = _taggedTemplateLiteral(["\n    padding   : .25rem .5rem;\n    font-size : ", ";\n  "]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -1211,7 +1240,7 @@ function _templateObject2() {
 }
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display          : inline-block;\n  padding          : .5rem 1rem;\n  background-color : ", ";\n  color            : #FFF;\n  cursor           : pointer;\n  text-decoration  : none;\n  line-height      : inherit;\n  border-radius    : .25rem;\n  transition       : transform .05s;\n  border           : 1px solid ", ";\n  text-align       : center;\n  user-select      : none;\n\n\t:hover {\n\t\tbackground-color :   ", ";\n    text-decoration  : inherit;\n\t}\n\n\t:active {\n\t\ttransform : scale(.99);\n\t}\n\n\t/* Tiny buttons */\n\t", "\n\n\t/* Micro buttons */\n\t", "\n"]);
+  var data = _taggedTemplateLiteral(["\n  display          : inline-block;\n  padding          : .5rem 1rem;\n  background-color : ", ";\n  color            : #FFF;\n  cursor           : pointer;\n  text-decoration  : none;\n  line-height      : inherit;\n  border-radius    : .25rem;\n  transition       : transform .05s;\n  border           : 1px solid ", ";\n  text-align       : center;\n  user-select      : none;\n\n  :hover {\n    background-color :   ", ";\n    text-decoration  : inherit;\n  }\n\n  :active {\n    transform : scale(.99);\n  }\n\n  /* Tiny buttons */\n  ", "\n\n  /* Micro buttons */\n  ", "\n\n\t", "\n\n\t", "\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -1219,29 +1248,48 @@ function _templateObject() {
 
   return data;
 }
-var Button = styled__default.button(_templateObject(), function (_ref) {
-  var color = _ref.color;
-  return colors[color] || colors['first-color'];
-}, function (_ref2) {
-  var color = _ref2.color;
-  return colors[color] || colors['first-color'];
-}, function (_ref3) {
-  var color = _ref3.color;
-  return colors["".concat(color, "-alt")] || colors[color] || colors['first-color'];
-}, function (props) {
+var Button = styled__default.button(_templateObject(), getColor, getColor, getColorWithAlt, function (props) {
   return props.tiny && styled.css(_templateObject2(), sizes.small);
 }, function (props) {
   return props.micro && styled.css(_templateObject3(), sizes.small);
+}, function (props) {
+  return props.ghost && styled.css(_templateObject4(), getColorWithAlt, getColorWithAlt);
+}, function (props) {
+  return props.full && styled.css(_templateObject5());
 });
 Button.propTypes = {
   color: propTypes.string,
   tiny: propTypes.bool,
-  micro: propTypes.bool
+  micro: propTypes.bool,
+  full: propTypes.bool
 };
 Button.propTypes = {
   color: 'first-color',
   tiny: false,
-  micro: false
+  micro: false,
+  full: false
+};
+
+function _templateObject$1() {
+  var data = _taggedTemplateLiteral(["\n\tbackground: ", ";\n\tcolor: #fff;\n\tpadding: .5rem 0;\n\tdisplay: ", ";\n\n\t.ed-grid {\n    height      : 100%;\n    align-items : center;\n  }\n\n\tinput {\n\t\tborder: none;\n\t}\n"]);
+
+  _templateObject$1 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Topbar = styled__default.div(_templateObject$1(), getColor, function (props) {
+  return props.visible ? 'block' : 'none';
+});
+Topbar.propTypes = {
+  color: propTypes.string,
+  visible: propTypes.bool
+};
+Topbar.defaultProps = {
+  color: 'first-color',
+  visible: true
 };
 
 exports.Button = Button;
+exports.Topbar = Topbar;
