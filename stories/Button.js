@@ -1,6 +1,4 @@
-/* eslint-disable react/jsx-filename-extension */
 /* eslint-disable react/jsx-indent */
-/* eslint-disable no-tabs */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from '../src';

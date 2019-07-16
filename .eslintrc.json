@@ -14,6 +14,8 @@
 		"import/prefer-default-export": "off",
 		"comma-dangle": "off",
 		"import/no-extraneous-dependencies": "off",
-		"indent": [2, "tab"]
+		"indent": [2, "tab"],
+		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+		"no-tabs": ["error", { "allowIndentationTabs": true }]
   }
 }

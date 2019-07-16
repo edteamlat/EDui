@@ -4,7 +4,7 @@ import { Button } from '../src';
 
 describe('Tests for button component', () => {
   it('Render a Button without errors', () => {
-		const button = mount(<Button />);
+		const button = mount(<Button color='dark-color' />);
 		expect(button.find('button')).toHaveLength(1)
   });
 });

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { sizes } from '../font-sizes';
+import { sizes } from '../utils/font-sizes';
 import { getColor, getColorWithAlt } from '../utils/colors-helpers';
 
 const Button = styled.button`

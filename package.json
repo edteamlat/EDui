@@ -29,6 +29,7 @@
 		"eslint-plugin-jsx-a11y": "^6.2.3",
 		"eslint-plugin-react": "^7.13.0",
 		"jest": "^24.8.0",
+		"jest-svg-transformer": "^1.0.0",
 		"prettier": "1.18.2",
 		"react": "^16.6.3",
 		"react-dom": "^16.6.3",
@@ -37,6 +38,7 @@
 		"rollup-plugin-commonjs": "^10.0.0",
 		"rollup-plugin-node-resolve": "^5.0.2",
 		"rollup-plugin-replace": "^2.2.0",
+		"rollup-plugin-svg": "^2.0.0",
 		"rollup-plugin-uglify": "^6.0.2",
 		"rollup-watch": "^4.3.1"
 	},
@@ -60,7 +62,8 @@
 		],
 		"transform": {
 			".*": "babel-jest",
-			"^.+\\.js?$": "babel-jest"
+			"^.+\\.js?$": "babel-jest",
+			"^.+\\.svg$": "jest-svg-transformer"
 		}
 	}
 }

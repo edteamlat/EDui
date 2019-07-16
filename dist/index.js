@@ -6,6 +6,77 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var styled = require('styled-components');
 var styled__default = _interopDefault(styled);
+var React = require('react');
+var React__default = _interopDefault(React);
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+
+function _getPrototypeOf(o) {
+  _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof call === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
 
 function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
@@ -1291,5 +1362,83 @@ Topbar.defaultProps = {
   visible: true
 };
 
+var Z_INDEX_MODAL = 1000;
+
+var cancel = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"8777 -1063 16 16\">\n  <defs>\n    <style>\n      .cls-1 {\n        opacity: 0.8;\n      }\n\n      .cls-2 {\n        fill: #ff3c32;\n      }\n    </style>\n  </defs>\n  <g id=\"icon-cancel\" class=\"cls-1\" transform=\"translate(7486 -1272)\">\n    <rect id=\"Rectangle_141\" data-name=\"Rectangle 141\" class=\"cls-2\" width=\"3.771\" height=\"18.856\" rx=\"1.886\" transform=\"translate(1304.333 209) rotate(45)\"/>\n    <rect id=\"Rectangle_142\" data-name=\"Rectangle 142\" class=\"cls-2\" width=\"3.771\" height=\"18.856\" rx=\"1.886\" transform=\"translate(1307 222.333) rotate(135)\"/>\n  </g>\n</svg>";
+
+function _templateObject$2() {
+  var data = _taggedTemplateLiteral(["\n\tposition   : fixed;\n  width      : 100%;\n  height     : 100%;\n  left       : 0;\n  top        : 0;\n  background : rgba(250, 253, 255, .9);\n  display    : flex;\n  z-index : ", ";\n\n\t&::before {\n  \tcontent    : \"\";\n    width      : 3rem;\n    height     : 3rem;\n    background : url(", ");\n    position   : absolute;\n    top        : 2rem;\n    right      : 2rem;\n    cursor     : pointer;\n\t}\n"]);
+
+  _templateObject$2 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var ModalContainer = styled__default.div(_templateObject$2(), Z_INDEX_MODAL, cancel);
+
+var widget = function widget() {
+  return "\n\tbox-shadow: 0 2px 16px -2px rgba(0,0,0,.15);\n\tborder : none;\n\tbackground : #fff;\n";
+};
+
+function _templateObject$3() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
+
+  _templateObject$3 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var ModalContent = styled__default.div(_templateObject$3(), widget);
+
+var Modal =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(Modal, _Component);
+
+  function Modal() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    _classCallCheck(this, Modal);
+
+    for (var _len = arguments.length, props = new Array(_len), _key = 0; _key < _len; _key++) {
+      props[_key] = arguments[_key];
+    }
+
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Modal)).call.apply(_getPrototypeOf2, [this].concat(props)));
+    _this.close = _this.close.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Modal, [{
+    key: "close",
+    value: function close(e) {// console.log(e)
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          children = _this$props.children,
+          open = _this$props.open;
+      return open && React__default.createElement(ModalContainer, {
+        onClick: this.close
+      }, React__default.createElement(ModalContent, null, children));
+    }
+  }]);
+
+  return Modal;
+}(React.Component);
+Modal.propTypes = {
+  children: propTypes.node,
+  open: propTypes.bool
+};
+Modal.defaultProps = {
+  open: false
+};
+
 exports.Button = Button;
+exports.Modal = Modal;
 exports.Topbar = Topbar;

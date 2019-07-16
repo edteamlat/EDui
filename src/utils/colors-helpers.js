@@ -1,4 +1,4 @@
-import { colors } from '../colors';
+import { colors } from './colors';
 
 export function getColorWithAlt({ color }) {
 	return colors[`${color}-alt`] || colors[color] || colors['first-color'];
