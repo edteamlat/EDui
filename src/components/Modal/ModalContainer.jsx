@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Z_INDEX_MODAL } from '../../utils/variables';
 import cancel from '../../assets/cancel.svg';
 
 export const ModalContainer = styled.div`
@@ -8,9 +7,9 @@ export const ModalContainer = styled.div`
   height     : 100%;
   left       : 0;
   top        : 0;
-  background : rgba(250, 253, 255, .9);
+  background : var(--body-bg-modal);
   display    : flex;
-  z-index : ${Z_INDEX_MODAL};
+  z-index : var(--z-index-modal);
 
 	&::before {
   	content    : "";

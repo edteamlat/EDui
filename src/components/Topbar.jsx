@@ -1,9 +1,8 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { getColor } from '../utils/colors-helpers';
 
 export const Topbar = styled.div`
-	background: ${getColor};
+	background: var(--${props => props.color});
 	color: #fff;
 	padding: .5rem 0;
 	display: ${props => (props.visible ? 'block' : 'none')};
@@ -20,7 +19,7 @@ export const Topbar = styled.div`
 
 
 Topbar.propTypes = {
-	color: PropTypes.string,
+	color: PropTypes.oneOf(['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color']),
 	visible: PropTypes.bool
 };
 

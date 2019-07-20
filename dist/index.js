@@ -90,6 +90,367 @@ function _taggedTemplateLiteral(strings, raw) {
   }));
 }
 
+function _assertThisInitialized$1(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+function _inheritsLoose(subClass, superClass) {
+  subClass.prototype = Object.create(superClass.prototype);
+  subClass.prototype.constructor = subClass;
+  subClass.__proto__ = superClass;
+}
+
+function _getPrototypeOf$1(o) {
+  _getPrototypeOf$1 = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf$1(o);
+}
+
+function _setPrototypeOf$1(o, p) {
+  _setPrototypeOf$1 = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf$1(o, p);
+}
+
+function _isNativeFunction(fn) {
+  return Function.toString.call(fn).indexOf("[native code]") !== -1;
+}
+
+function isNativeReflectConstruct() {
+  if (typeof Reflect === "undefined" || !Reflect.construct) return false;
+  if (Reflect.construct.sham) return false;
+  if (typeof Proxy === "function") return true;
+
+  try {
+    Date.prototype.toString.call(Reflect.construct(Date, [], function () {}));
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function _construct(Parent, args, Class) {
+  if (isNativeReflectConstruct()) {
+    _construct = Reflect.construct;
+  } else {
+    _construct = function _construct(Parent, args, Class) {
+      var a = [null];
+      a.push.apply(a, args);
+      var Constructor = Function.bind.apply(Parent, a);
+      var instance = new Constructor();
+      if (Class) _setPrototypeOf$1(instance, Class.prototype);
+      return instance;
+    };
+  }
+
+  return _construct.apply(null, arguments);
+}
+
+function _wrapNativeSuper(Class) {
+  var _cache = typeof Map === "function" ? new Map() : undefined;
+
+  _wrapNativeSuper = function _wrapNativeSuper(Class) {
+    if (Class === null || !_isNativeFunction(Class)) return Class;
+
+    if (typeof Class !== "function") {
+      throw new TypeError("Super expression must either be null or a function");
+    }
+
+    if (typeof _cache !== "undefined") {
+      if (_cache.has(Class)) return _cache.get(Class);
+
+      _cache.set(Class, Wrapper);
+    }
+
+    function Wrapper() {
+      return _construct(Class, arguments, _getPrototypeOf$1(this).constructor);
+    }
+
+    Wrapper.prototype = Object.create(Class.prototype, {
+      constructor: {
+        value: Wrapper,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+    return _setPrototypeOf$1(Wrapper, Class);
+  };
+
+  return _wrapNativeSuper(Class);
+}
+
+// based on https://github.com/styled-components/styled-components/blob/fcf6f3804c57a14dd7984dfab7bc06ee2edca044/src/utils/error.js
+
+/**
+ * Parse errors.md and turn it into a simple hash of code: message
+ * @private
+ */
+var ERRORS = {
+  "1": "Passed invalid arguments to hsl, please pass multiple numbers e.g. hsl(360, 0.75, 0.4) or an object e.g. rgb({ hue: 255, saturation: 0.4, lightness: 0.75 }).\n\n",
+  "2": "Passed invalid arguments to hsla, please pass multiple numbers e.g. hsla(360, 0.75, 0.4, 0.7) or an object e.g. rgb({ hue: 255, saturation: 0.4, lightness: 0.75, alpha: 0.7 }).\n\n",
+  "3": "Passed an incorrect argument to a color function, please pass a string representation of a color.\n\n",
+  "4": "Couldn't generate valid rgb string from %s, it returned %s.\n\n",
+  "5": "Couldn't parse the color string. Please provide the color as a string in hex, rgb, rgba, hsl or hsla notation.\n\n",
+  "6": "Passed invalid arguments to rgb, please pass multiple numbers e.g. rgb(255, 205, 100) or an object e.g. rgb({ red: 255, green: 205, blue: 100 }).\n\n",
+  "7": "Passed invalid arguments to rgba, please pass multiple numbers e.g. rgb(255, 205, 100, 0.75) or an object e.g. rgb({ red: 255, green: 205, blue: 100, alpha: 0.75 }).\n\n",
+  "8": "Passed invalid argument to toColorString, please pass a RgbColor, RgbaColor, HslColor or HslaColor object.\n\n",
+  "9": "Please provide a number of steps to the modularScale helper.\n\n",
+  "10": "Please pass a number or one of the predefined scales to the modularScale helper as the ratio.\n\n",
+  "11": "Invalid value passed as base to modularScale, expected number or em string but got \"%s\"\n\n",
+  "12": "Expected a string ending in \"px\" or a number passed as the first argument to %s(), got \"%s\" instead.\n\n",
+  "13": "Expected a string ending in \"px\" or a number passed as the second argument to %s(), got \"%s\" instead.\n\n",
+  "14": "Passed invalid pixel value (\"%s\") to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "15": "Passed invalid base value (\"%s\") to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "16": "You must provide a template to this method.\n\n",
+  "17": "You passed an unsupported selector state to this method.\n\n",
+  "18": "minScreen and maxScreen must be provided as stringified numbers with the same units.\n\n",
+  "19": "fromSize and toSize must be provided as stringified numbers with the same units.\n\n",
+  "20": "expects either an array of objects or a single object with the properties prop, fromSize, and toSize.\n\n",
+  "21": "expects the objects in the first argument array to have the properties `prop`, `fromSize`, and `toSize`.\n\n",
+  "22": "expects the first argument object to have the properties `prop`, `fromSize`, and `toSize`.\n\n",
+  "23": "fontFace expects a name of a font-family.\n\n",
+  "24": "fontFace expects either the path to the font file(s) or a name of a local copy.\n\n",
+  "25": "fontFace expects localFonts to be an array.\n\n",
+  "26": "fontFace expects fileFormats to be an array.\n\n",
+  "27": "radialGradient requries at least 2 color-stops to properly render.\n\n",
+  "28": "Please supply a filename to retinaImage() as the first argument.\n\n",
+  "29": "Passed invalid argument to triangle, please pass correct pointingDirection e.g. 'right'.\n\n",
+  "30": "Passed an invalid value to `height` or `width`. Please provide a pixel based unit.\n\n",
+  "31": "The animation shorthand only takes 8 arguments. See the specification for more information: http://mdn.io/animation\n\n",
+  "32": "To pass multiple animations please supply them in arrays, e.g. animation(['rotate', '2s'], ['move', '1s'])\nTo pass a single animation please supply them in simple values, e.g. animation('rotate', '2s')\n\n",
+  "33": "The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation\n\n",
+  "34": "borderRadius expects a radius value as a string or number as the second argument.\n\n",
+  "35": "borderRadius expects one of \"top\", \"bottom\", \"left\" or \"right\" as the first argument.\n\n",
+  "36": "Property must be a string value.\n\n",
+  "37": "Syntax Error at %s.\n\n",
+  "38": "Formula contains a function that needs parentheses at %s.\n\n",
+  "39": "Formula is missing closing parenthesis at %s.\n\n",
+  "40": "Formula has too many closing parentheses at %s.\n\n",
+  "41": "All values in a formula must have the same unit or be unitless.\n\n",
+  "42": "Please provide a number of steps to the modularScale helper.\n\n",
+  "43": "Please pass a number or one of the predefined scales to the modularScale helper as the ratio.\n\n",
+  "44": "Invalid value passed as base to modularScale, expected number or em/rem string but got %s.\n\n",
+  "45": "Passed invalid argument to hslToColorString, please pass a HslColor or HslaColor object.\n\n",
+  "46": "Passed invalid argument to rgbToColorString, please pass a RgbColor or RgbaColor object.\n\n",
+  "47": "minScreen and maxScreen must be provided as stringified numbers with the same units.\n\n",
+  "48": "fromSize and toSize must be provided as stringified numbers with the same units.\n\n",
+  "49": "Expects either an array of objects or a single object with the properties prop, fromSize, and toSize.\n\n",
+  "50": "Expects the objects in the first argument array to have the properties prop, fromSize, and toSize.\n\n",
+  "51": "Expects the first argument object to have the properties prop, fromSize, and toSize.\n\n",
+  "52": "fontFace expects either the path to the font file(s) or a name of a local copy.\n\n",
+  "53": "fontFace expects localFonts to be an array.\n\n",
+  "54": "fontFace expects fileFormats to be an array.\n\n",
+  "55": "fontFace expects a name of a font-family.\n\n",
+  "56": "linearGradient requries at least 2 color-stops to properly render.\n\n",
+  "57": "radialGradient requries at least 2 color-stops to properly render.\n\n",
+  "58": "Please supply a filename to retinaImage() as the first argument.\n\n",
+  "59": "Passed invalid argument to triangle, please pass correct pointingDirection e.g. 'right'.\n\n",
+  "60": "Passed an invalid value to `height` or `width`. Please provide a pixel based unit.\n\n",
+  "61": "Property must be a string value.\n\n",
+  "62": "borderRadius expects a radius value as a string or number as the second argument.\n\n",
+  "63": "borderRadius expects one of \"top\", \"bottom\", \"left\" or \"right\" as the first argument.\n\n",
+  "64": "The animation shorthand only takes 8 arguments. See the specification for more information: http://mdn.io/animation.\n\n",
+  "65": "To pass multiple animations please supply them in arrays, e.g. animation(['rotate', '2s'], ['move', '1s'])\\nTo pass a single animation please supply them in simple values, e.g. animation('rotate', '2s').\n\n",
+  "66": "The animation shorthand arrays can only have 8 elements. See the specification for more information: http://mdn.io/animation.\n\n",
+  "67": "You must provide a template to this method.\n\n",
+  "68": "You passed an unsupported selector state to this method.\n\n",
+  "69": "Expected a string ending in \"px\" or a number passed as the first argument to %s(), got %s instead.\n\n",
+  "70": "Expected a string ending in \"px\" or a number passed as the second argument to %s(), got %s instead.\n\n",
+  "71": "Passed invalid pixel value %s to %s(), please pass a value like \"12px\" or 12.\n\n",
+  "72": "Passed invalid base value %s to %s(), please pass a value like \"12px\" or 12.\n"
+};
+/**
+ * super basic version of sprintf
+ * @private
+ */
+
+function format() {
+  for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+    args[_key] = arguments[_key];
+  }
+
+  var a = args[0];
+  var b = [];
+  var c;
+
+  for (c = 1; c < args.length; c += 1) {
+    b.push(args[c]);
+  }
+
+  b.forEach(function (d) {
+    a = a.replace(/%[a-z]/, d);
+  });
+  return a;
+}
+/**
+ * Create an error file out of errors.md for development and a simple web link to the full errors
+ * in production mode.
+ * @private
+ */
+
+
+var PolishedError =
+/*#__PURE__*/
+function (_Error) {
+  _inheritsLoose(PolishedError, _Error);
+
+  function PolishedError(code) {
+    var _this;
+
+    if (process.env.NODE_ENV === 'production') {
+      _this = _Error.call(this, "An error occurred. See https://github.com/styled-components/polished/blob/master/src/internalHelpers/errors.md#" + code + " for more information.") || this;
+    } else {
+      for (var _len2 = arguments.length, args = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
+        args[_key2 - 1] = arguments[_key2];
+      }
+
+      _this = _Error.call(this, format.apply(void 0, [ERRORS[code]].concat(args))) || this;
+    }
+
+    return _assertThisInitialized$1(_this);
+  }
+
+  return PolishedError;
+}(
+/*#__PURE__*/
+_wrapNativeSuper(Error));
+
+/**
+ * Check if a string ends with something
+ * @private
+ */
+function endsWith (string, suffix) {
+  return string.substr(-suffix.length) === suffix;
+}
+
+var cssRegex = /^([+-]?(?:\d+|\d*\.\d+))([a-z]*|%)$/;
+/**
+ * Returns a given CSS value minus its unit (or the original value if an invalid string is passed). Optionally returns an array containing the stripped value and the original unit of measure.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   '--dimension': stripUnit('100px'),
+ *   '--unit': stripUnit('100px')[1],
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   --dimension: ${stripUnit('100px')};
+ *   --unit: ${stripUnit('100px')[1]};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   '--dimension': 100,
+ *   '--unit': 'px',
+ * }
+ */
+
+function stripUnit(value, unitReturn) {
+  if (typeof value !== 'string') return unitReturn ? [value, undefined] : value;
+  var matchedValue = value.match(cssRegex);
+
+  if (unitReturn) {
+    if (matchedValue) return [parseFloat(value), matchedValue[2]];
+    return [value, undefined];
+  }
+
+  if (matchedValue) return parseFloat(value);
+  return value;
+}
+
+/**
+ * Factory function that creates pixel-to-x converters
+ * @private
+ */
+
+var pxtoFactory = function pxtoFactory(to) {
+  return function (pxval, base) {
+    if (base === void 0) {
+      base = '16px';
+    }
+
+    var newPxval = pxval;
+    var newBase = base;
+
+    if (typeof pxval === 'string') {
+      if (!endsWith(pxval, 'px')) {
+        throw new PolishedError(69, to, pxval);
+      }
+
+      newPxval = stripUnit(pxval);
+    }
+
+    if (typeof base === 'string') {
+      if (!endsWith(base, 'px')) {
+        throw new PolishedError(70, to, base);
+      }
+
+      newBase = stripUnit(base);
+    }
+
+    if (typeof newPxval === 'string') {
+      throw new PolishedError(71, pxval, to);
+    }
+
+    if (typeof newBase === 'string') {
+      throw new PolishedError(72, base, to);
+    }
+
+    return "" + newPxval / newBase + to;
+  };
+};
+
+/**
+ * Convert pixel value to rems. The default base value is 16px, but can be changed by passing a
+ * second argument to the function.
+ * @function
+ * @param {string|number} pxval
+ * @param {string|number} [base='16px']
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   'height': rem('16px')
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   height: ${rem('16px')}
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   'height': '1rem'
+ * }
+ */
+
+var rem =
+/*#__PURE__*/
+pxtoFactory('rem');
+
+function _templateObject() {
+  var data = _taggedTemplateLiteral(["\n\t/* Colors */\n\t:root {\n\t\t--first-color: #007BDF;\n\t\t--second-color: #00CBFF;\n\t\t--third-color: #FF3C32;\n\t\t--accent-color: #FBA905;\n\t\t--dark-color: #282D31;\n\t\t--border-color: #DFE0E0;\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: Lato, 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0,\n  \t--m : 640px,\n  \t--l : 1024px,\n  \t--lg : 1024px,\n  \t--xl : 1440px\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: var(--lg)) {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n"]);
+
+  _templateObject = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var GlobalStyles = styled.createGlobalStyle(_templateObject(), rem('24px'), rem('20px'), rem('16px'), rem('15px'), rem('13px'), rem('12px'), rem('36px'), rem('28px'), rem('20px'), rem('16px'), rem('14px'), rem('13px'));
+
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
@@ -1241,35 +1602,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 });
 
-var sizes = {
-  small: '13px'
-};
-
-var colors = {
-  'first-color': '#007BDF',
-  'first-color-alt': '#006DC6',
-  'second-color': '#00CBFF',
-  'second-color-alt': '#00BFF0',
-  'third-color': '#FF3C32',
-  'third-color-alt': '#FF2419',
-  'accent-color': '#FBA905',
-  'accent-color-alt': '#F1A000',
-  'dark-color': '#282D31',
-  'dark-color-alt': '#141618',
-  'border-color': '#DFE0E0',
-  'text-color': '#53575A',
-  'body-bg': '#FAFDFF'
-};
-
-function getColorWithAlt(_ref) {
-  var color = _ref.color;
-  return colors["".concat(color, "-alt")] || colors[color] || colors['first-color'];
-}
-function getColor(_ref2) {
-  var color = _ref2.color;
-  return colors[color] || colors['first-color'];
-}
-
 function _templateObject5() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-right : 0;\n  \tmargin-left  : 0;\n  \twidth        : 100%;\n\t"]);
 
@@ -1281,7 +1613,7 @@ function _templateObject5() {
 }
 
 function _templateObject4() {
-  var data = _taggedTemplateLiteral(["\n\t\tcolor      : ", ";\n  \tbackground : none;\n  \tborder     : 1px solid;\n\n  \t&:hover {\n    \tbackground   : ", ";\n    \tcolor        : #FFF;\n    \tborder-color : transparent;\n  \t}\n\t"]);
+  var data = _taggedTemplateLiteral(["\n\t\tcolor      : var(--", "-alt);\n  \tbackground : none;\n  \tborder     : 1px solid;\n\n  \t&:hover {\n    \tbackground   : var(--", "-alt);\n    \tcolor        : #FFF;\n    \tborder-color : transparent;\n  \t}\n\t"]);
 
   _templateObject4 = function _templateObject4() {
     return data;
@@ -1291,7 +1623,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n    padding: 0 .25rem;\n    font-size: ", ";\n    line-height: 1.3;\n    /* border-radius: 0; */\n  "]);
+  var data = _taggedTemplateLiteral(["\n    padding: 0 .25rem;\n    font-size: var(--small-font-size);\n    line-height: 1.3;\n    /* border-radius: 0; */\n  "]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -1301,7 +1633,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n    padding   : .25rem .5rem;\n    font-size : ", ";\n  "]);
+  var data = _taggedTemplateLiteral(["\n    padding   : .25rem .5rem;\n    font-size : var(--small-font-size);\n  "]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -1310,39 +1642,8 @@ function _templateObject2() {
   return data;
 }
 
-function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n  display          : inline-block;\n  padding          : .5rem 1rem;\n  background-color : ", ";\n  color            : #FFF;\n  cursor           : pointer;\n  text-decoration  : none;\n  line-height      : inherit;\n  border-radius    : .25rem;\n  transition       : transform .05s;\n  border           : 1px solid ", ";\n  text-align       : center;\n  user-select      : none;\n\n  :hover {\n    background-color :   ", ";\n    text-decoration  : inherit;\n  }\n\n  :active {\n    transform : scale(.99);\n  }\n\n  /* Tiny buttons */\n  ", "\n\n  /* Micro buttons */\n  ", "\n\n\t", "\n\n\t", "\n"]);
-
-  _templateObject = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var Button = styled__default.button(_templateObject(), getColor, getColor, getColorWithAlt, function (props) {
-  return props.tiny && styled.css(_templateObject2(), sizes.small);
-}, function (props) {
-  return props.micro && styled.css(_templateObject3(), sizes.small);
-}, function (props) {
-  return props.ghost && styled.css(_templateObject4(), getColorWithAlt, getColorWithAlt);
-}, function (props) {
-  return props.full && styled.css(_templateObject5());
-});
-Button.propTypes = {
-  color: propTypes.string,
-  tiny: propTypes.bool,
-  micro: propTypes.bool,
-  full: propTypes.bool
-};
-Button.propTypes = {
-  color: 'first-color',
-  tiny: false,
-  micro: false,
-  full: false
-};
-
 function _templateObject$1() {
-  var data = _taggedTemplateLiteral(["\n\tbackground: ", ";\n\tcolor: #fff;\n\tpadding: .5rem 0;\n\tdisplay: ", ";\n\n\t.ed-grid {\n    height      : 100%;\n    align-items : center;\n  }\n\n\tinput {\n\t\tborder: none;\n\t}\n"]);
+  var data = _taggedTemplateLiteral(["\n  display          : inline-block;\n  padding          : .5rem 1rem;\n  background-color : var(--", ");\n  color            : #FFF;\n  cursor           : pointer;\n  text-decoration  : none;\n  line-height      : inherit;\n  border-radius    : .25rem;\n  transition       : transform .05s;\n  border           : 1px solid var(--", ");\n  text-align       : center;\n  user-select      : none;\n\n  :hover {\n    background-color :   var(--", "-alt);\n    text-decoration  : inherit;\n  }\n\n  :active {\n    transform : scale(.99);\n  }\n\n  /* Tiny buttons */\n  ", "\n\n  /* Micro buttons */\n  ", "\n\n\t", "\n\n\t", "\n"]);
 
   _templateObject$1 = function _templateObject() {
     return data;
@@ -1350,24 +1651,36 @@ function _templateObject$1() {
 
   return data;
 }
-var Topbar = styled__default.div(_templateObject$1(), getColor, function (props) {
-  return props.visible ? 'block' : 'none';
+var Button = styled__default.button(_templateObject$1(), function (props) {
+  return props.color;
+}, function (props) {
+  return props.color;
+}, function (props) {
+  return props.color;
+}, function (props) {
+  return props.tiny && styled.css(_templateObject2());
+}, function (props) {
+  return props.micro && styled.css(_templateObject3());
+}, function (props) {
+  return props.ghost && styled.css(_templateObject4(), props.color, props.color);
+}, function (props) {
+  return props.full && styled.css(_templateObject5());
 });
-Topbar.propTypes = {
-  color: propTypes.string,
-  visible: propTypes.bool
+Button.propTypes = {
+  color: propTypes.oneOf(['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color']),
+  tiny: propTypes.bool,
+  micro: propTypes.bool,
+  full: propTypes.bool
 };
-Topbar.defaultProps = {
+Button.defaultProps = {
   color: 'first-color',
-  visible: true
+  tiny: false,
+  micro: false,
+  full: false
 };
-
-var Z_INDEX_MODAL = 1000;
-
-var cancel = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"8777 -1063 16 16\">\n  <defs>\n    <style>\n      .cls-1 {\n        opacity: 0.8;\n      }\n\n      .cls-2 {\n        fill: #ff3c32;\n      }\n    </style>\n  </defs>\n  <g id=\"icon-cancel\" class=\"cls-1\" transform=\"translate(7486 -1272)\">\n    <rect id=\"Rectangle_141\" data-name=\"Rectangle 141\" class=\"cls-2\" width=\"3.771\" height=\"18.856\" rx=\"1.886\" transform=\"translate(1304.333 209) rotate(45)\"/>\n    <rect id=\"Rectangle_142\" data-name=\"Rectangle 142\" class=\"cls-2\" width=\"3.771\" height=\"18.856\" rx=\"1.886\" transform=\"translate(1307 222.333) rotate(135)\"/>\n  </g>\n</svg>";
 
 function _templateObject$2() {
-  var data = _taggedTemplateLiteral(["\n\tposition   : fixed;\n  width      : 100%;\n  height     : 100%;\n  left       : 0;\n  top        : 0;\n  background : rgba(250, 253, 255, .9);\n  display    : flex;\n  z-index : ", ";\n\n\t&::before {\n  \tcontent    : \"\";\n    width      : 3rem;\n    height     : 3rem;\n    background : url(", ");\n    position   : absolute;\n    top        : 2rem;\n    right      : 2rem;\n    cursor     : pointer;\n\t}\n"]);
+  var data = _taggedTemplateLiteral(["\n\tbackground: var(--", ");\n\tcolor: #fff;\n\tpadding: .5rem 0;\n\tdisplay: ", ";\n\n\t.ed-grid {\n    height      : 100%;\n    align-items : center;\n  }\n\n\tinput {\n\t\tborder: none;\n\t}\n"]);
 
   _templateObject$2 = function _templateObject() {
     return data;
@@ -1375,10 +1688,35 @@ function _templateObject$2() {
 
   return data;
 }
-var ModalContainer = styled__default.div(_templateObject$2(), Z_INDEX_MODAL, cancel);
+var Topbar = styled__default.div(_templateObject$2(), function (props) {
+  return props.color;
+}, function (props) {
+  return props.visible ? 'block' : 'none';
+});
+Topbar.propTypes = {
+  color: propTypes.oneOf(['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color']),
+  visible: propTypes.bool
+};
+Topbar.defaultProps = {
+  color: 'first-color',
+  visible: true
+};
+
+var cancel = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"8777 -1063 16 16\">\n  <defs>\n    <style>\n      .cls-1 {\n        opacity: 0.8;\n      }\n\n      .cls-2 {\n        fill: #ff3c32;\n      }\n    </style>\n  </defs>\n  <g id=\"icon-cancel\" class=\"cls-1\" transform=\"translate(7486 -1272)\">\n    <rect id=\"Rectangle_141\" data-name=\"Rectangle 141\" class=\"cls-2\" width=\"3.771\" height=\"18.856\" rx=\"1.886\" transform=\"translate(1304.333 209) rotate(45)\"/>\n    <rect id=\"Rectangle_142\" data-name=\"Rectangle 142\" class=\"cls-2\" width=\"3.771\" height=\"18.856\" rx=\"1.886\" transform=\"translate(1307 222.333) rotate(135)\"/>\n  </g>\n</svg>";
+
+function _templateObject$3() {
+  var data = _taggedTemplateLiteral(["\n\tposition   : fixed;\n  width      : 100%;\n  height     : 100%;\n  left       : 0;\n  top        : 0;\n  background : var(--body-bg-modal);\n  display    : flex;\n  z-index : var(--z-index-modal);\n\n\t&::before {\n  \tcontent    : \"\";\n    width      : 3rem;\n    height     : 3rem;\n    background : url(", ");\n    position   : absolute;\n    top        : 2rem;\n    right      : 2rem;\n    cursor     : pointer;\n\t}\n"]);
+
+  _templateObject$3 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var ModalContainer = styled__default.div(_templateObject$3(), cancel);
 
 function _templateObject2$1() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(", ");\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : Lato, 'sans-serif'; /* Fuerza a tomar la fuente por defecto */\n\tfont-size     : ", ";\n\tcolor         : var(", ");\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : rgba(83,87,90, .75);\n  }\n\n  &:disabled {\n    background :var(", ");\n    cursor: default;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
 
   _templateObject2$1 = function _templateObject2() {
     return data;
@@ -1387,20 +1725,8 @@ function _templateObject2$1() {
   return data;
 }
 
-function _templateObject$3() {
-  var data = _taggedTemplateLiteral(["\n\tbox-shadow: 0 2px 16px -2px rgba(0,0,0,.15);\n\tborder : none;\n\tbackground : #fff;\n"]);
-
-  _templateObject$3 = function _templateObject() {
-    return data;
-  };
-
-  return data;
-}
-var widget = styled.css(_templateObject$3());
-var InputForm = styled.css(_templateObject2$1(), colors['border-color'], sizes.small, colors['text-color'], colors['border-color']);
-
 function _templateObject$4() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
+  var data = _taggedTemplateLiteral(["\n\tbox-shadow: 0 2px 16px -2px rgba(0,0,0,.15);\n\tborder : none;\n\tbackground : #fff;\n"]);
 
   _templateObject$4 = function _templateObject() {
     return data;
@@ -1408,7 +1734,19 @@ function _templateObject$4() {
 
   return data;
 }
-var ModalContent = styled__default.div(_templateObject$4(), widget);
+var widget = styled.css(_templateObject$4());
+var InputForm = styled.css(_templateObject2$1());
+
+function _templateObject$5() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
+
+  _templateObject$5 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var ModalContent = styled__default.div(_templateObject$5(), widget);
 
 function stopModalContentPropagation(e) {
   e.stopPropagation();
@@ -1467,6 +1805,57 @@ Modal.defaultProps = {
   close: Function.prototype
 };
 
+function _templateObject$6() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n"]);
+
+  _templateObject$6 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Input = styled__default.input(_templateObject$6(), InputForm);
+
+var arrows = "<svg version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 28\">\n<polyline\n  fill=\"none\"\n  stroke=\"#007BDF\"\n  stroke-width=\"10\"\n  stroke-linejoin=\"round\"\n  stroke-linecap=\"round\"\n  points=\"5,5 25,22 45,5\"\n\t/>\n</svg>";
+
+function _templateObject$7() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\tappearance: none;\n  background: #fff url(", ") center right 1rem/1rem no-repeat !important;\n"]);
+
+  _templateObject$7 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Select = styled__default.select(_templateObject$7(), InputForm, arrows);
+
+function _templateObject$8() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\tmin-height : 6em;\n  max-height : 6em;\n  min-width  : 100%;\n  max-width  : 100%;\n"]);
+
+  _templateObject$8 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var TextArea = styled__default.textarea(_templateObject$8(), InputForm);
+
+function _templateObject$9() {
+  var data = _taggedTemplateLiteral(["\n\tposition      : relative;\n  display       : block;\n  font-size     : var(--small-font-size);\n  margin-bottom : .2em;\n  & + input::placeholder {\n    color: transparent;\n  }\n"]);
+
+  _templateObject$9 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Label = styled__default.label(_templateObject$9());
+
 exports.Button = Button;
+exports.GlobalStyles = GlobalStyles;
+exports.Input = Input;
+exports.Label = Label;
 exports.Modal = Modal;
+exports.Select = Select;
+exports.TextArea = TextArea;
 exports.Topbar = Topbar;

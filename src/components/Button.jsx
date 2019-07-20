@@ -1,24 +1,22 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { sizes } from '../utils/font-sizes';
-import { getColor, getColorWithAlt } from '../utils/colors-helpers';
 
 const Button = styled.button`
   display          : inline-block;
   padding          : .5rem 1rem;
-  background-color : ${getColor};
+  background-color : var(--${props => props.color});
   color            : #FFF;
   cursor           : pointer;
   text-decoration  : none;
   line-height      : inherit;
   border-radius    : .25rem;
   transition       : transform .05s;
-  border           : 1px solid ${getColor};
+  border           : 1px solid var(--${props => props.color});
   text-align       : center;
   user-select      : none;
 
   :hover {
-    background-color :   ${getColorWithAlt};
+    background-color :   var(--${props => props.color}-alt);
     text-decoration  : inherit;
   }
 
@@ -29,24 +27,24 @@ const Button = styled.button`
   /* Tiny buttons */
   ${props => props.tiny && css`
     padding   : .25rem .5rem;
-    font-size : ${sizes.small};
+    font-size : var(--small-font-size);
   `}
 
   /* Micro buttons */
   ${props => props.micro && css`
     padding: 0 .25rem;
-    font-size: ${sizes.small};
+    font-size: var(--small-font-size);
     line-height: 1.3;
     /* border-radius: 0; */
   `}
 
 	${props => props.ghost && css`
-		color      : ${getColorWithAlt};
+		color      : var(--${props.color}-alt);
   	background : none;
   	border     : 1px solid;
 
   	&:hover {
-    	background   : ${getColorWithAlt};
+    	background   : var(--${props.color}-alt);
     	color        : #FFF;
     	border-color : transparent;
   	}
