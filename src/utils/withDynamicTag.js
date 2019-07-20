@@ -1,4 +1,4 @@
-import { createElement as h } from 'react';
+import { createElement } from 'react';
 import styled from 'styled-components';
 
 export const withDynamicTag = (Component) => {
@@ -8,14 +8,14 @@ export const withDynamicTag = (Component) => {
     const { tag } = props;
 
     if (typeof tag !== 'string' || !styled.hasOwnProperty(tag)) {
-      return h(Component, props);
+      return createElement(Component, props);
     }
 
     if (bucket[tag] === undefined) {
       bucket[tag] = Component.withComponent(tag);
     }
 
-    return h(bucket[tag], props);
+    return createElement(bucket[tag], props);
   };
 
   const name = Component.displayName || Component.constructor.name;
