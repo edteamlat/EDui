@@ -60,13 +60,13 @@ const Button = styled.button`
 `;
 
 Button.propTypes = {
-	color: PropTypes.string,
+	color: PropTypes.oneOf(['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color']),
 	tiny: PropTypes.bool,
 	micro: PropTypes.bool,
 	full: PropTypes.bool
 };
 
-Button.propTypes = {
+Button.defaultProps = {
 	color: 'first-color',
 	tiny: false,
 	micro: false,

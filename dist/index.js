@@ -1377,12 +1377,18 @@ function _templateObject$2() {
 }
 var ModalContainer = styled__default.div(_templateObject$2(), Z_INDEX_MODAL, cancel);
 
-var widget = function widget() {
-  return "\n\tbox-shadow: 0 2px 16px -2px rgba(0,0,0,.15);\n\tborder : none;\n\tbackground : #fff;\n";
-};
+function _templateObject2$1() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(", ");\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : Lato, 'sans-serif'; /* Fuerza a tomar la fuente por defecto */\n\tfont-size     : ", ";\n\tcolor         : var(", ");\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : rgba(83,87,90, .75);\n  }\n\n  &:disabled {\n    background :var(", ");\n    cursor: default;\n  }\n"]);
+
+  _templateObject2$1 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
 
 function _templateObject$3() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
+  var data = _taggedTemplateLiteral(["\n\tbox-shadow: 0 2px 16px -2px rgba(0,0,0,.15);\n\tborder : none;\n\tbackground : #fff;\n"]);
 
   _templateObject$3 = function _templateObject() {
     return data;
@@ -1390,7 +1396,23 @@ function _templateObject$3() {
 
   return data;
 }
-var ModalContent = styled__default.div(_templateObject$3(), widget);
+var widget = styled.css(_templateObject$3());
+var InputForm = styled.css(_templateObject2$1(), colors['border-color'], sizes.small, colors['text-color'], colors['border-color']);
+
+function _templateObject$4() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
+
+  _templateObject$4 = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var ModalContent = styled__default.div(_templateObject$4(), widget);
+
+function stopModalContentPropagation(e) {
+  e.stopPropagation();
+}
 
 var Modal =
 /*#__PURE__*/
@@ -1415,7 +1437,9 @@ function (_Component) {
 
   _createClass(Modal, [{
     key: "close",
-    value: function close(e) {// console.log(e)
+    value: function close() {
+      var close = this.props.close;
+      close();
     }
   }, {
     key: "render",
@@ -1425,7 +1449,9 @@ function (_Component) {
           open = _this$props.open;
       return open && React__default.createElement(ModalContainer, {
         onClick: this.close
-      }, React__default.createElement(ModalContent, null, children));
+      }, React__default.createElement(ModalContent, {
+        onClick: stopModalContentPropagation
+      }, children));
     }
   }]);
 
@@ -1433,10 +1459,12 @@ function (_Component) {
 }(React.Component);
 Modal.propTypes = {
   children: propTypes.node,
-  open: propTypes.bool
+  open: propTypes.bool,
+  close: propTypes.func
 };
 Modal.defaultProps = {
-  open: false
+  open: false,
+  close: Function.prototype
 };
 
 exports.Button = Button;

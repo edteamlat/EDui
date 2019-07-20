@@ -2,11 +2,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Button } from '../src';
+import { action } from '@storybook/addon-actions';
 
 storiesOf('Button', module)
 	.add('All buttons', () => (
 		<>
-			<Button>Test button for EDui</Button>
+			<Button onClick={action('click')}>Test button for EDui</Button>
 			<Button color="first-color">Main color</Button>
 			<Button color="accent-color">Accent color</Button>
 			<Button color="second-color">Second color</Button>

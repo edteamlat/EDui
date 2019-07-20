@@ -4,15 +4,19 @@ import PropTypes from 'prop-types';
 import { ModalContainer } from './ModalContainer';
 import { ModalContent } from './ModalContent';
 
+function stopModalContentPropagation(e) {
+	e.stopPropagation();
+}
+
 export class Modal extends Component {
 	constructor(...props) {
 		super(...props);
-
 		this.close = this.close.bind(this);
 	}
 
-	close(e) {
-		// console.log(e)
+	close() {
+		const { close } = this.props;
+		close();
 	}
 
 	render() {
@@ -20,7 +24,7 @@ export class Modal extends Component {
 
 		return open && (
 			<ModalContainer onClick={this.close}>
-				<ModalContent>
+				<ModalContent onClick={stopModalContentPropagation}>
 					{children}
 				</ModalContent>
 			</ModalContainer>
@@ -30,9 +34,11 @@ export class Modal extends Component {
 
 Modal.propTypes = {
 	children: PropTypes.node,
-	open: PropTypes.bool
+	open: PropTypes.bool,
+	close: PropTypes.func
 };
 
 Modal.defaultProps = {
-	open: false
+	open: false,
+	close: Function.prototype
 };

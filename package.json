@@ -16,6 +16,8 @@
 		"@babel/core": "^7.5.0",
 		"@babel/preset-env": "^7.4.5",
 		"@babel/preset-react": "^7.0.0",
+		"@storybook/addon-actions": "^5.1.9",
+		"@storybook/addon-notes": "^5.1.9",
 		"@storybook/react": "^5.1.9",
 		"babel-eslint": "^10.0.2",
 		"babel-jest": "^24.8.0",
