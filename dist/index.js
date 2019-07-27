@@ -90,6 +90,24 @@ function _taggedTemplateLiteral(strings, raw) {
   }));
 }
 
+function _extends() {
+  _extends = Object.assign || function (target) {
+    for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];
+
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          target[key] = source[key];
+        }
+      }
+    }
+
+    return target;
+  };
+
+  return _extends.apply(this, arguments);
+}
+
 function _assertThisInitialized$1(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -440,8 +458,534 @@ var rem =
 /*#__PURE__*/
 pxtoFactory('rem');
 
+function colorToInt(color) {
+  return Math.round(color * 255);
+}
+
+function convertToInt(red, green, blue) {
+  return colorToInt(red) + "," + colorToInt(green) + "," + colorToInt(blue);
+}
+
+function hslToRgb(hue, saturation, lightness, convert) {
+  if (convert === void 0) {
+    convert = convertToInt;
+  }
+
+  if (saturation === 0) {
+    // achromatic
+    return convert(lightness, lightness, lightness);
+  } // formulae from https://en.wikipedia.org/wiki/HSL_and_HSV
+
+
+  var huePrime = (hue % 360 + 360) % 360 / 60;
+  var chroma = (1 - Math.abs(2 * lightness - 1)) * saturation;
+  var secondComponent = chroma * (1 - Math.abs(huePrime % 2 - 1));
+  var red = 0;
+  var green = 0;
+  var blue = 0;
+
+  if (huePrime >= 0 && huePrime < 1) {
+    red = chroma;
+    green = secondComponent;
+  } else if (huePrime >= 1 && huePrime < 2) {
+    red = secondComponent;
+    green = chroma;
+  } else if (huePrime >= 2 && huePrime < 3) {
+    green = chroma;
+    blue = secondComponent;
+  } else if (huePrime >= 3 && huePrime < 4) {
+    green = secondComponent;
+    blue = chroma;
+  } else if (huePrime >= 4 && huePrime < 5) {
+    red = secondComponent;
+    blue = chroma;
+  } else if (huePrime >= 5 && huePrime < 6) {
+    red = chroma;
+    blue = secondComponent;
+  }
+
+  var lightnessModification = lightness - chroma / 2;
+  var finalRed = red + lightnessModification;
+  var finalGreen = green + lightnessModification;
+  var finalBlue = blue + lightnessModification;
+  return convert(finalRed, finalGreen, finalBlue);
+}
+
+var namedColorMap = {
+  aliceblue: 'f0f8ff',
+  antiquewhite: 'faebd7',
+  aqua: '00ffff',
+  aquamarine: '7fffd4',
+  azure: 'f0ffff',
+  beige: 'f5f5dc',
+  bisque: 'ffe4c4',
+  black: '000',
+  blanchedalmond: 'ffebcd',
+  blue: '0000ff',
+  blueviolet: '8a2be2',
+  brown: 'a52a2a',
+  burlywood: 'deb887',
+  cadetblue: '5f9ea0',
+  chartreuse: '7fff00',
+  chocolate: 'd2691e',
+  coral: 'ff7f50',
+  cornflowerblue: '6495ed',
+  cornsilk: 'fff8dc',
+  crimson: 'dc143c',
+  cyan: '00ffff',
+  darkblue: '00008b',
+  darkcyan: '008b8b',
+  darkgoldenrod: 'b8860b',
+  darkgray: 'a9a9a9',
+  darkgreen: '006400',
+  darkgrey: 'a9a9a9',
+  darkkhaki: 'bdb76b',
+  darkmagenta: '8b008b',
+  darkolivegreen: '556b2f',
+  darkorange: 'ff8c00',
+  darkorchid: '9932cc',
+  darkred: '8b0000',
+  darksalmon: 'e9967a',
+  darkseagreen: '8fbc8f',
+  darkslateblue: '483d8b',
+  darkslategray: '2f4f4f',
+  darkslategrey: '2f4f4f',
+  darkturquoise: '00ced1',
+  darkviolet: '9400d3',
+  deeppink: 'ff1493',
+  deepskyblue: '00bfff',
+  dimgray: '696969',
+  dimgrey: '696969',
+  dodgerblue: '1e90ff',
+  firebrick: 'b22222',
+  floralwhite: 'fffaf0',
+  forestgreen: '228b22',
+  fuchsia: 'ff00ff',
+  gainsboro: 'dcdcdc',
+  ghostwhite: 'f8f8ff',
+  gold: 'ffd700',
+  goldenrod: 'daa520',
+  gray: '808080',
+  green: '008000',
+  greenyellow: 'adff2f',
+  grey: '808080',
+  honeydew: 'f0fff0',
+  hotpink: 'ff69b4',
+  indianred: 'cd5c5c',
+  indigo: '4b0082',
+  ivory: 'fffff0',
+  khaki: 'f0e68c',
+  lavender: 'e6e6fa',
+  lavenderblush: 'fff0f5',
+  lawngreen: '7cfc00',
+  lemonchiffon: 'fffacd',
+  lightblue: 'add8e6',
+  lightcoral: 'f08080',
+  lightcyan: 'e0ffff',
+  lightgoldenrodyellow: 'fafad2',
+  lightgray: 'd3d3d3',
+  lightgreen: '90ee90',
+  lightgrey: 'd3d3d3',
+  lightpink: 'ffb6c1',
+  lightsalmon: 'ffa07a',
+  lightseagreen: '20b2aa',
+  lightskyblue: '87cefa',
+  lightslategray: '789',
+  lightslategrey: '789',
+  lightsteelblue: 'b0c4de',
+  lightyellow: 'ffffe0',
+  lime: '0f0',
+  limegreen: '32cd32',
+  linen: 'faf0e6',
+  magenta: 'f0f',
+  maroon: '800000',
+  mediumaquamarine: '66cdaa',
+  mediumblue: '0000cd',
+  mediumorchid: 'ba55d3',
+  mediumpurple: '9370db',
+  mediumseagreen: '3cb371',
+  mediumslateblue: '7b68ee',
+  mediumspringgreen: '00fa9a',
+  mediumturquoise: '48d1cc',
+  mediumvioletred: 'c71585',
+  midnightblue: '191970',
+  mintcream: 'f5fffa',
+  mistyrose: 'ffe4e1',
+  moccasin: 'ffe4b5',
+  navajowhite: 'ffdead',
+  navy: '000080',
+  oldlace: 'fdf5e6',
+  olive: '808000',
+  olivedrab: '6b8e23',
+  orange: 'ffa500',
+  orangered: 'ff4500',
+  orchid: 'da70d6',
+  palegoldenrod: 'eee8aa',
+  palegreen: '98fb98',
+  paleturquoise: 'afeeee',
+  palevioletred: 'db7093',
+  papayawhip: 'ffefd5',
+  peachpuff: 'ffdab9',
+  peru: 'cd853f',
+  pink: 'ffc0cb',
+  plum: 'dda0dd',
+  powderblue: 'b0e0e6',
+  purple: '800080',
+  rebeccapurple: '639',
+  red: 'f00',
+  rosybrown: 'bc8f8f',
+  royalblue: '4169e1',
+  saddlebrown: '8b4513',
+  salmon: 'fa8072',
+  sandybrown: 'f4a460',
+  seagreen: '2e8b57',
+  seashell: 'fff5ee',
+  sienna: 'a0522d',
+  silver: 'c0c0c0',
+  skyblue: '87ceeb',
+  slateblue: '6a5acd',
+  slategray: '708090',
+  slategrey: '708090',
+  snow: 'fffafa',
+  springgreen: '00ff7f',
+  steelblue: '4682b4',
+  tan: 'd2b48c',
+  teal: '008080',
+  thistle: 'd8bfd8',
+  tomato: 'ff6347',
+  turquoise: '40e0d0',
+  violet: 'ee82ee',
+  wheat: 'f5deb3',
+  white: 'fff',
+  whitesmoke: 'f5f5f5',
+  yellow: 'ff0',
+  yellowgreen: '9acd32'
+  /**
+   * Checks if a string is a CSS named color and returns its equivalent hex value, otherwise returns the original color.
+   * @private
+   */
+
+};
+
+function nameToHex(color) {
+  if (typeof color !== 'string') return color;
+  var normalizedColorName = color.toLowerCase();
+  return namedColorMap[normalizedColorName] ? "#" + namedColorMap[normalizedColorName] : color;
+}
+
+var hexRegex = /^#[a-fA-F0-9]{6}$/;
+var hexRgbaRegex = /^#[a-fA-F0-9]{8}$/;
+var reducedHexRegex = /^#[a-fA-F0-9]{3}$/;
+var reducedRgbaHexRegex = /^#[a-fA-F0-9]{4}$/;
+var rgbRegex = /^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i;
+var rgbaRegex = /^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*([-+]?[0-9]*[.]?[0-9]+)\s*\)$/i;
+var hslRegex = /^hsl\(\s*(\d{0,3}[.]?[0-9]+)\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*\)$/i;
+var hslaRegex = /^hsla\(\s*(\d{0,3}[.]?[0-9]+)\s*,\s*(\d{1,3})%\s*,\s*(\d{1,3})%\s*,\s*([-+]?[0-9]*[.]?[0-9]+)\s*\)$/i;
+/**
+ * Returns an RgbColor or RgbaColor object. This utility function is only useful
+ * if want to extract a color component. With the color util `toColorString` you
+ * can convert a RgbColor or RgbaColor object back to a string.
+ *
+ * @example
+ * // Assigns `{ red: 255, green: 0, blue: 0 }` to color1
+ * const color1 = parseToRgb('rgb(255, 0, 0)');
+ * // Assigns `{ red: 92, green: 102, blue: 112, alpha: 0.75 }` to color2
+ * const color2 = parseToRgb('hsla(210, 10%, 40%, 0.75)');
+ */
+
+function parseToRgb(color) {
+  if (typeof color !== 'string') {
+    throw new PolishedError(3);
+  }
+
+  var normalizedColor = nameToHex(color);
+
+  if (normalizedColor.match(hexRegex)) {
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[2], 16),
+      green: parseInt("" + normalizedColor[3] + normalizedColor[4], 16),
+      blue: parseInt("" + normalizedColor[5] + normalizedColor[6], 16)
+    };
+  }
+
+  if (normalizedColor.match(hexRgbaRegex)) {
+    var alpha = parseFloat((parseInt("" + normalizedColor[7] + normalizedColor[8], 16) / 255).toFixed(2));
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[2], 16),
+      green: parseInt("" + normalizedColor[3] + normalizedColor[4], 16),
+      blue: parseInt("" + normalizedColor[5] + normalizedColor[6], 16),
+      alpha: alpha
+    };
+  }
+
+  if (normalizedColor.match(reducedHexRegex)) {
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[1], 16),
+      green: parseInt("" + normalizedColor[2] + normalizedColor[2], 16),
+      blue: parseInt("" + normalizedColor[3] + normalizedColor[3], 16)
+    };
+  }
+
+  if (normalizedColor.match(reducedRgbaHexRegex)) {
+    var _alpha = parseFloat((parseInt("" + normalizedColor[4] + normalizedColor[4], 16) / 255).toFixed(2));
+
+    return {
+      red: parseInt("" + normalizedColor[1] + normalizedColor[1], 16),
+      green: parseInt("" + normalizedColor[2] + normalizedColor[2], 16),
+      blue: parseInt("" + normalizedColor[3] + normalizedColor[3], 16),
+      alpha: _alpha
+    };
+  }
+
+  var rgbMatched = rgbRegex.exec(normalizedColor);
+
+  if (rgbMatched) {
+    return {
+      red: parseInt("" + rgbMatched[1], 10),
+      green: parseInt("" + rgbMatched[2], 10),
+      blue: parseInt("" + rgbMatched[3], 10)
+    };
+  }
+
+  var rgbaMatched = rgbaRegex.exec(normalizedColor);
+
+  if (rgbaMatched) {
+    return {
+      red: parseInt("" + rgbaMatched[1], 10),
+      green: parseInt("" + rgbaMatched[2], 10),
+      blue: parseInt("" + rgbaMatched[3], 10),
+      alpha: parseFloat("" + rgbaMatched[4])
+    };
+  }
+
+  var hslMatched = hslRegex.exec(normalizedColor);
+
+  if (hslMatched) {
+    var hue = parseInt("" + hslMatched[1], 10);
+    var saturation = parseInt("" + hslMatched[2], 10) / 100;
+    var lightness = parseInt("" + hslMatched[3], 10) / 100;
+    var rgbColorString = "rgb(" + hslToRgb(hue, saturation, lightness) + ")";
+    var hslRgbMatched = rgbRegex.exec(rgbColorString);
+
+    if (!hslRgbMatched) {
+      throw new PolishedError(4, normalizedColor, rgbColorString);
+    }
+
+    return {
+      red: parseInt("" + hslRgbMatched[1], 10),
+      green: parseInt("" + hslRgbMatched[2], 10),
+      blue: parseInt("" + hslRgbMatched[3], 10)
+    };
+  }
+
+  var hslaMatched = hslaRegex.exec(normalizedColor);
+
+  if (hslaMatched) {
+    var _hue = parseInt("" + hslaMatched[1], 10);
+
+    var _saturation = parseInt("" + hslaMatched[2], 10) / 100;
+
+    var _lightness = parseInt("" + hslaMatched[3], 10) / 100;
+
+    var _rgbColorString = "rgb(" + hslToRgb(_hue, _saturation, _lightness) + ")";
+
+    var _hslRgbMatched = rgbRegex.exec(_rgbColorString);
+
+    if (!_hslRgbMatched) {
+      throw new PolishedError(4, normalizedColor, _rgbColorString);
+    }
+
+    return {
+      red: parseInt("" + _hslRgbMatched[1], 10),
+      green: parseInt("" + _hslRgbMatched[2], 10),
+      blue: parseInt("" + _hslRgbMatched[3], 10),
+      alpha: parseFloat("" + hslaMatched[4])
+    };
+  }
+
+  throw new PolishedError(5);
+}
+
+/**
+ * Reduces hex values if possible e.g. #ff8866 to #f86
+ * @private
+ */
+var reduceHexValue = function reduceHexValue(value) {
+  if (value.length === 7 && value[1] === value[2] && value[3] === value[4] && value[5] === value[6]) {
+    return "#" + value[1] + value[3] + value[5];
+  }
+
+  return value;
+};
+
+function numberToHex(value) {
+  var hex = value.toString(16);
+  return hex.length === 1 ? "0" + hex : hex;
+}
+
+/**
+ * Returns a string value for the color. The returned result is the smallest possible hex notation.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: rgb(255, 205, 100),
+ *   background: rgb({ red: 255, green: 205, blue: 100 }),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${rgb(255, 205, 100)};
+ *   background: ${rgb({ red: 255, green: 205, blue: 100 })};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "#ffcd64";
+ *   background: "#ffcd64";
+ * }
+ */
+function rgb(value, green, blue) {
+  if (typeof value === 'number' && typeof green === 'number' && typeof blue === 'number') {
+    return reduceHexValue("#" + numberToHex(value) + numberToHex(green) + numberToHex(blue));
+  } else if (typeof value === 'object' && green === undefined && blue === undefined) {
+    return reduceHexValue("#" + numberToHex(value.red) + numberToHex(value.green) + numberToHex(value.blue));
+  }
+
+  throw new PolishedError(6);
+}
+
+/**
+ * Returns a string value for the color. The returned result is the smallest possible rgba or hex notation.
+ *
+ * Can also be used to fade a color by passing a hex value or named CSS color along with an alpha value.
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: rgba(255, 205, 100, 0.7),
+ *   background: rgba({ red: 255, green: 205, blue: 100, alpha: 0.7 }),
+ *   background: rgba(255, 205, 100, 1),
+ *   background: rgba('#ffffff', 0.4),
+ *   background: rgba('black', 0.7),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${rgba(255, 205, 100, 0.7)};
+ *   background: ${rgba({ red: 255, green: 205, blue: 100, alpha: 0.7 })};
+ *   background: ${rgba(255, 205, 100, 1)};
+ *   background: ${rgba('#ffffff', 0.4)};
+ *   background: ${rgba('black', 0.7)};
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "rgba(255,205,100,0.7)";
+ *   background: "rgba(255,205,100,0.7)";
+ *   background: "#ffcd64";
+ *   background: "rgba(255,255,255,0.4)";
+ *   background: "rgba(0,0,0,0.7)";
+ * }
+ */
+function rgba(firstValue, secondValue, thirdValue, fourthValue) {
+  if (typeof firstValue === 'string' && typeof secondValue === 'number') {
+    var rgbValue = parseToRgb(firstValue);
+    return "rgba(" + rgbValue.red + "," + rgbValue.green + "," + rgbValue.blue + "," + secondValue + ")";
+  } else if (typeof firstValue === 'number' && typeof secondValue === 'number' && typeof thirdValue === 'number' && typeof fourthValue === 'number') {
+    return fourthValue >= 1 ? rgb(firstValue, secondValue, thirdValue) : "rgba(" + firstValue + "," + secondValue + "," + thirdValue + "," + fourthValue + ")";
+  } else if (typeof firstValue === 'object' && secondValue === undefined && thirdValue === undefined && fourthValue === undefined) {
+    return firstValue.alpha >= 1 ? rgb(firstValue.red, firstValue.green, firstValue.blue) : "rgba(" + firstValue.red + "," + firstValue.green + "," + firstValue.blue + "," + firstValue.alpha + ")";
+  }
+
+  throw new PolishedError(7);
+}
+
+// Type definitions taken from https://github.com/gcanti/flow-static-land/blob/master/src/Fun.js
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line no-redeclare
+function curried(f, length, acc) {
+  return function fn() {
+    // eslint-disable-next-line prefer-rest-params
+    var combined = acc.concat(Array.prototype.slice.call(arguments));
+    return combined.length >= length ? f.apply(this, combined) : curried(f, length, combined);
+  };
+} // eslint-disable-next-line no-redeclare
+
+
+function curry(f) {
+  // eslint-disable-line no-redeclare
+  return curried(f, f.length, []);
+}
+
+function guard(lowerBoundary, upperBoundary, value) {
+  return Math.max(lowerBoundary, Math.min(upperBoundary, value));
+}
+
+/**
+ * Decreases the opacity of a color. Its range for the amount is between 0 to 1.
+ *
+ *
+ * @example
+ * // Styles as object usage
+ * const styles = {
+ *   background: transparentize(0.1, '#fff');
+ *   background: transparentize(0.2, 'hsl(0, 0%, 100%)'),
+ *   background: transparentize('0.5', 'rgba(255, 0, 0, 0.8)'),
+ * }
+ *
+ * // styled-components usage
+ * const div = styled.div`
+ *   background: ${transparentize(0.1, '#fff')};
+ *   background: ${transparentize(0.2, 'hsl(0, 0%, 100%)')},
+ *   background: ${transparentize('0.5', 'rgba(255, 0, 0, 0.8)')},
+ * `
+ *
+ * // CSS in JS Output
+ *
+ * element {
+ *   background: "rgba(255,255,255,0.9)";
+ *   background: "rgba(255,255,255,0.8)";
+ *   background: "rgba(255,0,0,0.3)";
+ * }
+ */
+
+function transparentize(amount, color) {
+  if (color === 'transparent') return color;
+  var parsedColor = parseToRgb(color);
+  var alpha = typeof parsedColor.alpha === 'number' ? parsedColor.alpha : 1;
+
+  var colorWithAlpha = _extends({}, parsedColor, {
+    alpha: guard(0, 1, (alpha * 100 - parseFloat(amount) * 100) / 100)
+  });
+
+  return rgba(colorWithAlpha);
+} // prettier-ignore
+
+
+var curriedTransparentize =
+/*#__PURE__*/
+curry
+/* ::<number | string, string, string> */
+(transparentize);
+
+var FIRST_COLOR = '#007BDF';
+var SECONDARY_COLOR = '#00CBFF';
+var THIRD_COLOR = '#FF3C32';
+var ACCENT_COLOR = '#FBA905';
+var DARK_COLOR = '#282D31';
+var BORDER_COLOR = '#DFE0E0'; // Breakpoints
+
+var LARGE_BREAKPOINT = '1024px'; // Grid
+
+var L_UNIT = '.5rem';
+var MAX_WIDTH = '1200px';
+
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\t/* Colors */\n\t:root {\n\t\t--first-color: #007BDF;\n\t\t--second-color: #00CBFF;\n\t\t--third-color: #FF3C32;\n\t\t--accent-color: #FBA905;\n\t\t--dark-color: #282D31;\n\t\t--border-color: #DFE0E0;\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: Lato, 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0,\n  \t--m : 640px,\n  \t--l : 1024px,\n  \t--lg : 1024px,\n  \t--xl : 1440px\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: var(--lg)) {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n"]);
+  var data = _taggedTemplateLiteral(["\n\t/* Colors */\n\t@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap');\n\t:root {\n\t\t--first-color: ", ";\n\t\t--second-color: ", ";\n\t\t--third-color: ", ";\n\t\t--accent-color: ", ";\n\t\t--dark-color: ", ";\n\t\t--border-color: ", ";\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: 'Lato', 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0,\n  \t--m : 640px,\n  \t--l : 1024px,\n  \t--lg : ", ",\n  \t--xl : 1440px\n\t}\n\t/* Grid */\n\t:root {\n\t\t--l-unit: ", ";\n\t\t--max-width: ", ";\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: ", ") {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n\t:root {\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t\t/* --table-color-01: rgba() */\n\t}\n\n\tbody {\n\t\tfont-family: var(--body-font);\n\t}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -449,7 +993,7 @@ function _templateObject() {
 
   return data;
 }
-var GlobalStyles = styled.createGlobalStyle(_templateObject(), rem('24px'), rem('20px'), rem('16px'), rem('15px'), rem('13px'), rem('12px'), rem('36px'), rem('28px'), rem('20px'), rem('16px'), rem('14px'), rem('13px'));
+var GlobalStyles = styled.createGlobalStyle(_templateObject(), FIRST_COLOR, SECONDARY_COLOR, THIRD_COLOR, ACCENT_COLOR, DARK_COLOR, BORDER_COLOR, rem('24px'), rem('20px'), rem('16px'), rem('15px'), rem('13px'), rem('12px'), LARGE_BREAKPOINT, L_UNIT, MAX_WIDTH, LARGE_BREAKPOINT, rem('36px'), rem('28px'), rem('20px'), rem('16px'), rem('14px'), rem('13px'));
 
 function unwrapExports (x) {
 	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
@@ -1715,6 +2259,26 @@ function _templateObject$3() {
 }
 var ModalContainer = styled__default.div(_templateObject$3(), cancel);
 
+function _templateObject4$1() {
+  var data = _taggedTemplateLiteral(["\n\twidth: 100%;\n  max-width: 100%;\n  margin-right: 0;\n  margin-left: 0;\n"]);
+
+  _templateObject4$1 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$1() {
+  var data = _taggedTemplateLiteral(["\n\tth {\n\t\tbackground: ", ";\n\t}\n\n\ttr {\n\t\t\tborder-bottom: 1px solid ", ";\n\t}\n\ttr:hover {\n\t\t\tbackground : ", ";\n\t}\n\n\t&.first-column {\n    td:first-child {\n\t\t\tbackground : ", ";\n      color: #fff;\n    }\n  }\n\n\t&.center-content {\n    text-align: center;\n\n    th {\n      text-align: inherit;\n    }\n  }\n"]);
+
+  _templateObject3$1 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject2$1() {
   var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
 
@@ -1736,6 +2300,10 @@ function _templateObject$4() {
 }
 var widget = styled.css(_templateObject$4());
 var InputForm = styled.css(_templateObject2$1());
+var tableStyle = function tableStyle(color) {
+  return styled.css(_templateObject3$1(), color, curriedTransparentize(0.9, color), curriedTransparentize(0.9, color), curriedTransparentize(0.75, color));
+};
+var GridFullContainer = styled.css(_templateObject4$1());
 
 function _templateObject$5() {
   var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
@@ -1851,11 +2419,77 @@ function _templateObject$9() {
 }
 var Label = styled__default.label(_templateObject$9());
 
+function _templateObject$a() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\ttable-layout    : fixed;\n  border-collapse : collapse;\n  font-size       : var(--small-font-size);\n  background      : #FFF;\n  min-width       : 100%;\n\tth {\n    font-family  : 'Open Sans', sans-serif;\n    text-align   : left;\n    color        : #FFF;\n    font-weight  : 700;\n    border-right : 1px solid ", ";\n  }\n\n\ttd {\n    min-width     : 100px;\n  }\n\ttd:nth-child(even) {\n      background : ", ";\n    }\n\n\ttd, th {\n    padding : 1em 1.5em;\n  }\n"]);
+
+  _templateObject$a = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var types = {
+  secondary: SECONDARY_COLOR,
+  tertiary: THIRD_COLOR,
+  accent: ACCENT_COLOR,
+  dark: DARK_COLOR,
+  "default": FIRST_COLOR
+};
+var Table = styled__default.table(_templateObject$a(), function (props) {
+  return tableStyle(types[props.type] || types["default"]);
+}, curriedTransparentize(0.2, '#fff'), curriedTransparentize(0.8, BORDER_COLOR));
+Table.propTypes = {
+  type: propTypes.oneOf(['secondary', 'tertiary', 'accent', 'dark'])
+};
+
+function _templateObject$b() {
+  var data = _taggedTemplateLiteral(["\n\toverflow-x : auto;\n  border     : 1px solid var(--border-color);\n  margin-bottom : 2em;\n  min-width      : 100%;\n  position : relative;\n  table-layout: fixed;\n"]);
+
+  _templateObject$b = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var TableContainer = styled__default.div(_templateObject$b());
+
+function _templateObject2$2() {
+  var data = _taggedTemplateLiteral(["\n\t\tclip-path : polygon(0 0, 100% 0, 100% 100%, 0 94%);\n\t"]);
+
+  _templateObject2$2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$c() {
+  var data = _taggedTemplateLiteral(["\n\t--color: var(--first-color);\n\t--color-alt: var(--accent-color);\n\t--padding: 2rem;\n\tbackground: var(--color);\n\tcolor: #fff;\n\n\t", "\n\t/* Content space */\n\tpadding-top    : var(--padding);\n  padding-bottom : calc(var(--padding) * 1.25);\n\t@media (min-width: ", ") {\n\t\t--padding: 4rem;\n\t}\n\n\t& .main-banner__img {\n  \topacity : .1;\n\t}\n\t& .main-banner__data {\n  \tposition : relative;\n\t}\n"]);
+
+  _templateObject$c = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Banner = styled__default.div(_templateObject$c(), function (props) {
+  return props.diagonal && styled.css(_templateObject2$2());
+}, LARGE_BREAKPOINT);
+Banner.propTypes = {
+  diagonal: propTypes.bool
+};
+Banner.defaultProps = {
+  diagonal: false
+};
+
+exports.Banner = Banner;
 exports.Button = Button;
 exports.GlobalStyles = GlobalStyles;
 exports.Input = Input;
 exports.Label = Label;
 exports.Modal = Modal;
 exports.Select = Select;
+exports.Table = Table;
+exports.TableContainer = TableContainer;
 exports.TextArea = TextArea;
 exports.Topbar = Topbar;

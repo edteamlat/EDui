@@ -7,7 +7,10 @@ function loadStories() {
 	require('../stories/Topbar.js');
 	require('../stories/Modal.js');
 	require('../stories/Form.js');
+	require('../stories/Table.js');
+	require('../stories/Banner.js');
 }
+
 
 const withGlobal = (cb) => (
   <>

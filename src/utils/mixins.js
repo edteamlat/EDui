@@ -1,4 +1,5 @@
 import { css } from 'styled-components';
+import { transparentize } from 'polished'
 
 export const widget = css`
 	box-shadow: 0 2px 16px -2px rgba(0,0,0,.15);
@@ -26,4 +27,41 @@ export const InputForm = css`
     background : var(--border-color);
     cursor: default;
   }
+`;
+
+
+export const tableStyle = color => css`
+	th {
+		background: ${color};
+	}
+
+	tr {
+			border-bottom: 1px solid ${transparentize(0.9, color)};
+	}
+	tr:hover {
+			background : ${transparentize(0.9, color)};
+	}
+
+	&.first-column {
+    td:first-child {
+			background : ${transparentize(0.75, color)};
+      color: #fff;
+    }
+  }
+
+	&.center-content {
+    text-align: center;
+
+    th {
+      text-align: inherit;
+    }
+  }
+`;
+
+
+export const GridFullContainer = css`
+	width: 100%;
+  max-width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 `;
