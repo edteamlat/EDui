@@ -2282,46 +2282,6 @@ function _templateObject$3() {
 }
 var ModalContainer = styled__default.div(_templateObject$3(), cancel);
 
-function _templateObject5$1() {
-  var data = _taggedTemplateLiteral(["\n\t\tgrid-template-columns: repeat(", ", 1fr);\n\t"]);
-
-  _templateObject5$1 = function _templateObject5() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject4$1() {
-  var data = _taggedTemplateLiteral(["\n\twidth: 100%;\n  max-width: 100%;\n  margin-right: 0;\n  margin-left: 0;\n"]);
-
-  _templateObject4$1 = function _templateObject4() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject3$1() {
-  var data = _taggedTemplateLiteral(["\n\tth {\n\t\tbackground: ", ";\n\t}\n\n\ttr {\n\t\t\tborder-bottom: 1px solid ", ";\n\t}\n\ttr:hover {\n\t\t\tbackground : ", ";\n\t}\n\n\t&.first-column {\n    td:first-child {\n\t\t\tbackground : ", ";\n      color: #fff;\n    }\n  }\n\n\t&.center-content {\n    text-align: center;\n\n    th {\n      text-align: inherit;\n    }\n  }\n"]);
-
-  _templateObject3$1 = function _templateObject3() {
-    return data;
-  };
-
-  return data;
-}
-
-function _templateObject2$1() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
-
-  _templateObject2$1 = function _templateObject2() {
-    return data;
-  };
-
-  return data;
-}
-
 function _templateObject$4() {
   var data = _taggedTemplateLiteral(["\n\tbox-shadow: 0 2px 16px -2px rgba(0,0,0,.15);\n\tborder : none;\n\tbackground : #fff;\n"]);
 
@@ -2332,16 +2292,6 @@ function _templateObject$4() {
   return data;
 }
 var widget = styled.css(_templateObject$4());
-var InputForm = styled.css(_templateObject2$1());
-var tableStyle = function tableStyle(color) {
-  return styled.css(_templateObject3$1(), color, curriedTransparentize(0.9, color), curriedTransparentize(0.9, color), curriedTransparentize(0.75, color));
-};
-var GridFullContainer = styled.css(_templateObject4$1());
-var getGridColumnWidth = function getGridColumnWidth(columns) {
-  // const amountOfGaps = columns - 1;
-  var columnWidth = styled.css(_templateObject5$1(), columns);
-  return columnWidth;
-};
 
 function _templateObject$5() {
   var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
@@ -2412,7 +2362,7 @@ Modal.defaultProps = {
 };
 
 function _templateObject$6() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
 
   _templateObject$6 = function _templateObject() {
     return data;
@@ -2420,12 +2370,10 @@ function _templateObject$6() {
 
   return data;
 }
-var Input = styled__default.input(_templateObject$6(), InputForm);
-
-var arrows = "<svg version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 28\">\n<polyline\n  fill=\"none\"\n  stroke=\"#007BDF\"\n  stroke-width=\"10\"\n  stroke-linejoin=\"round\"\n  stroke-linecap=\"round\"\n  points=\"5,5 25,22 45,5\"\n\t/>\n</svg>";
+var InputForm = styled.css(_templateObject$6());
 
 function _templateObject$7() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\tappearance: none;\n  background: #fff url(", ") center right 1rem/1rem no-repeat !important;\n"]);
+  var data = _taggedTemplateLiteral(["\n\t", ";\n"]);
 
   _templateObject$7 = function _templateObject() {
     return data;
@@ -2433,10 +2381,12 @@ function _templateObject$7() {
 
   return data;
 }
-var Select = styled__default.select(_templateObject$7(), InputForm, arrows);
+var Input = styled__default.input(_templateObject$7(), InputForm);
+
+var arrows = "<svg version=\"1.1\" id=\"Capa_1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50 28\">\n<polyline\n  fill=\"none\"\n  stroke=\"#007BDF\"\n  stroke-width=\"10\"\n  stroke-linejoin=\"round\"\n  stroke-linecap=\"round\"\n  points=\"5,5 25,22 45,5\"\n\t/>\n</svg>";
 
 function _templateObject$8() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\tmin-height : 6em;\n  max-height : 6em;\n  min-width  : 100%;\n  max-width  : 100%;\n"]);
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\tappearance: none;\n  background: #fff url(", ") center right 1rem/1rem no-repeat !important;\n"]);
 
   _templateObject$8 = function _templateObject() {
     return data;
@@ -2444,10 +2394,10 @@ function _templateObject$8() {
 
   return data;
 }
-var TextArea = styled__default.textarea(_templateObject$8(), InputForm);
+var Select = styled__default.select(_templateObject$8(), InputForm, arrows);
 
 function _templateObject$9() {
-  var data = _taggedTemplateLiteral(["\n\tposition      : relative;\n  display       : block;\n  font-size     : var(--small-font-size);\n  margin-bottom : .2em;\n  & + input::placeholder {\n    color: transparent;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\tmin-height : 6em;\n  max-height : 6em;\n  min-width  : 100%;\n  max-width  : 100%;\n"]);
 
   _templateObject$9 = function _templateObject() {
     return data;
@@ -2455,12 +2405,36 @@ function _templateObject$9() {
 
   return data;
 }
-var Label = styled__default.label(_templateObject$9());
+var TextArea = styled__default.textarea(_templateObject$9(), InputForm);
 
 function _templateObject$a() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\ttable-layout    : fixed;\n  border-collapse : collapse;\n  font-size       : var(--small-font-size);\n  background      : #FFF;\n  min-width       : 100%;\n\tth {\n    font-family  : 'Open Sans', sans-serif;\n    text-align   : left;\n    color        : #FFF;\n    font-weight  : 700;\n    border-right : 1px solid ", ";\n  }\n\n\ttd {\n    min-width     : 100px;\n  }\n\ttd:nth-child(even) {\n      background : ", ";\n    }\n\n\ttd, th {\n    padding : 1em 1.5em;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n\tposition      : relative;\n  display       : block;\n  font-size     : var(--small-font-size);\n  margin-bottom : .2em;\n  & + input::placeholder {\n    color: transparent;\n  }\n"]);
 
   _templateObject$a = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Label = styled__default.label(_templateObject$a());
+
+function _templateObject$b() {
+  var data = _taggedTemplateLiteral(["\n\tth {\n\t\tbackground: ", ";\n\t}\n\n\ttr {\n\t\t\tborder-bottom: 1px solid ", ";\n\t}\n\ttr:hover {\n\t\t\tbackground : ", ";\n\t}\n\n\t&.first-column {\n    td:first-child {\n\t\t\tbackground : ", ";\n      color: #fff;\n    }\n  }\n\n\t&.center-content {\n    text-align: center;\n\n    th {\n      text-align: inherit;\n    }\n  }\n"]);
+
+  _templateObject$b = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var tableStyle = function tableStyle(color) {
+  return styled.css(_templateObject$b(), color, curriedTransparentize(0.9, color), curriedTransparentize(0.9, color), curriedTransparentize(0.75, color));
+};
+
+function _templateObject$c() {
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\ttable-layout    : fixed;\n  border-collapse : collapse;\n  font-size       : var(--small-font-size);\n  background      : #FFF;\n  min-width       : 100%;\n\tth {\n    font-family  : 'Open Sans', sans-serif;\n    text-align   : left;\n    color        : #FFF;\n    font-weight  : 700;\n    border-right : 1px solid ", ";\n  }\n\n\ttd {\n    min-width     : 100px;\n  }\n\ttd:nth-child(even) {\n      background : ", ";\n    }\n\n\ttd, th {\n    padding : 1em 1.5em;\n  }\n"]);
+
+  _templateObject$c = function _templateObject() {
     return data;
   };
 
@@ -2473,45 +2447,45 @@ var types = {
   dark: DARK_COLOR,
   "default": FIRST_COLOR
 };
-var Table = styled__default.table(_templateObject$a(), function (props) {
+var Table = styled__default.table(_templateObject$c(), function (props) {
   return tableStyle(types[props.type] || types["default"]);
 }, curriedTransparentize(0.2, '#fff'), curriedTransparentize(0.8, BORDER_COLOR));
 Table.propTypes = {
   type: propTypes.oneOf(['secondary', 'tertiary', 'accent', 'dark'])
 };
 
-function _templateObject$b() {
+function _templateObject$d() {
   var data = _taggedTemplateLiteral(["\n\toverflow-x : auto;\n  border     : 1px solid var(--border-color);\n  margin-bottom : 2em;\n  min-width      : 100%;\n  position : relative;\n  table-layout: fixed;\n"]);
 
-  _templateObject$b = function _templateObject() {
+  _templateObject$d = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var TableContainer = styled__default.div(_templateObject$b());
+var TableContainer = styled__default.div(_templateObject$d());
 
-function _templateObject2$2() {
+function _templateObject2$1() {
   var data = _taggedTemplateLiteral(["\n\t\tclip-path : polygon(0 0, 100% 0, 100% 100%, 0 94%);\n\t"]);
 
-  _templateObject2$2 = function _templateObject2() {
+  _templateObject2$1 = function _templateObject2() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject$c() {
+function _templateObject$e() {
   var data = _taggedTemplateLiteral(["\n\t--color: var(--first-color);\n\t--color-alt: var(--accent-color);\n\t--padding: 2rem;\n\tbackground: var(--color);\n\tcolor: #fff;\n\n\t", "\n\t/* Content space */\n\tpadding-top    : var(--padding);\n  padding-bottom : calc(var(--padding) * 1.25);\n\t@media (min-width: ", ") {\n\t\t--padding: 4rem;\n\t}\n\n\t& .main-banner__img {\n  \topacity : .1;\n\t}\n\t& .main-banner__data {\n  \tposition : relative;\n\t}\n"]);
 
-  _templateObject$c = function _templateObject() {
+  _templateObject$e = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Banner = styled__default.div(_templateObject$c(), function (props) {
-  return props.diagonal && styled.css(_templateObject2$2());
+var Banner = styled__default.div(_templateObject$e(), function (props) {
+  return props.diagonal && styled.css(_templateObject2$1());
 }, LARGE_BREAKPOINT);
 Banner.propTypes = {
   diagonal: propTypes.bool
@@ -2546,10 +2520,10 @@ var withDynamicTag = function withDynamicTag(Component) {
   return DynamicTag;
 };
 
-function _templateObject$d() {
+function _templateObject$f() {
   var data = _taggedTemplateLiteral(["", ""]);
 
-  _templateObject$d = function _templateObject() {
+  _templateObject$f = function _templateObject() {
     return data;
   };
 
@@ -2558,7 +2532,34 @@ function _templateObject$d() {
 var gridGap = function gridGap(gap) {
   if (!gap || typeof gap !== 'number' || gap < 0 || gap > 4) return '';
   var styles = "--gap: calc(var(--l-unit) * ".concat(gap, ")");
-  return styled.css(_templateObject$d(), styles);
+  return styled.css(_templateObject$f(), styles);
+};
+
+function _templateObject2$2() {
+  var data = _taggedTemplateLiteral(["\n\t\tgrid-template-columns: repeat(", ", 1fr);\n\t"]);
+
+  _templateObject2$2 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$g() {
+  var data = _taggedTemplateLiteral(["\n\twidth: 100%;\n  max-width: 100%;\n  margin-right: 0;\n  margin-left: 0;\n"]);
+
+  _templateObject$g = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+
+var GridFullContainer = styled.css(_templateObject$g());
+var getGridColumnWidth = function getGridColumnWidth(columns) {
+  // const amountOfGaps = columns - 1;
+  var columnWidth = styled.css(_templateObject2$2(), columns);
+  return columnWidth;
 };
 
 function _templateObject6() {
@@ -2571,30 +2572,30 @@ function _templateObject6() {
   return data;
 }
 
-function _templateObject5$2() {
+function _templateObject5$1() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: 0;\n\t\tmargin-right: auto;\n\t"]);
 
-  _templateObject5$2 = function _templateObject5() {
+  _templateObject5$1 = function _templateObject5() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject4$2() {
+function _templateObject4$1() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n    margin-right: 0;\n\t"]);
 
-  _templateObject4$2 = function _templateObject4() {
+  _templateObject4$1 = function _templateObject4() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject3$2() {
+function _templateObject3$1() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t"]);
 
-  _templateObject3$2 = function _templateObject3() {
+  _templateObject3$1 = function _templateObject3() {
     return data;
   };
 
@@ -2611,27 +2612,27 @@ function _templateObject2$3() {
   return data;
 }
 
-function _templateObject$e() {
+function _templateObject$h() {
   var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n"]);
 
-  _templateObject$e = function _templateObject() {
+  _templateObject$h = function _templateObject() {
     return data;
   };
 
   return data;
 }
-var Grid = styled__default.div(_templateObject$e(), function (props) {
+var Grid = styled__default.div(_templateObject$h(), function (props) {
   return gridGap(props.gap);
 }, MAX_WIDTH, function (props) {
   return props.rowGap && styled.css(_templateObject2$3());
 }, GridFullContainer, function (props) {
   return props.full && GridFullContainer;
 }, function (props) {
-  return props.center && styled.css(_templateObject3$2());
+  return props.center && styled.css(_templateObject3$1());
 }, function (props) {
-  return props.right && styled.css(_templateObject4$2());
+  return props.right && styled.css(_templateObject4$1());
 }, function (props) {
-  return props.left && styled.css(_templateObject5$2());
+  return props.left && styled.css(_templateObject5$1());
 }, function (_ref) {
   var s = _ref.s,
       _ref$m = _ref.m,

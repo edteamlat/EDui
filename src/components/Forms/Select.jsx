@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { InputForm } from '../../utils/mixins';
+import { InputForm } from '../../utils/mixins/input';
 import arrows from '../../assets/arrows.svg';
 
 export const Select = styled.select`

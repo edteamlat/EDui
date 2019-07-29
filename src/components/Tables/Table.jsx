@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { transparentize } from 'polished';
-import { tableStyle } from '../../utils/mixins';
+import { tableStyle } from '../../utils/mixins/table';
 import {
 	FIRST_COLOR,
 	BORDER_COLOR,

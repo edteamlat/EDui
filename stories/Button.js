@@ -2,16 +2,26 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Button } from '../src';
+import { Button, Grid } from '../src';
 
 storiesOf('Button', module)
 	.add('First buttons', () => (
 		<>
-			<Button color="first-color" onClick={action('click')}>Normal button</Button>
-			<Button color="first-color" tiny onClick={action('click')}>Tiny button</Button>
-			<Button color="first-color" micro onClick={action('click')}>Micro button</Button>
-			<Button color="first-color" ghost onClick={action('click')}>Ghost button</Button>
-			<Button color="first-color" full onClick={action('click')}>Full button</Button>
+			<Grid s={4} gap={2}>
+				<article>
+					<Button color="first-color" onClick={action('click')}>Normal button</Button>
+				</article>
+				<article>
+					<Button color="first-color" tiny onClick={action('click')}>Tiny button</Button>
+				</article>
+				<article>
+					<Button color="first-color" micro onClick={action('click')}>Micro button</Button>
+				</article>
+				<article>
+					<Button color="first-color" ghost onClick={action('click')}>Ghost button</Button>
+				</article>
+			</Grid>
+			{/* <Button color="first-color" full onClick={action('click')}>Full button</Button> */}
 		</>
 	))
 	.add('Second buttons', () => (

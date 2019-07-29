@@ -12,7 +12,7 @@ import {
 import {
 	GridFullContainer,
 	getGridColumnWidth
-} from '../../utils/mixins';
+} from '../../utils/mixins/grid';
 
 export const Grid = styled.div`
 	display: grid;
