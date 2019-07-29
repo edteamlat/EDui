@@ -9,3 +9,4 @@ export { Label } from './components/Forms/Label';
 export { Table } from './components/Tables/Table';
 export { TableContainer } from './components/Tables/TableContainer';
 export { Banner } from './components/Banner/Banner';
+export { Grid, DynamicGrid } from './components/Grid/Grid';

@@ -19,6 +19,7 @@
 		"@storybook/addon-actions": "^5.1.9",
 		"@storybook/addon-info": "^5.1.9",
 		"@storybook/addon-notes": "^5.1.9",
+		"@storybook/addon-viewport": "^5.1.9",
 		"@storybook/react": "^5.1.9",
 		"babel-eslint": "^10.0.2",
 		"babel-jest": "^24.8.0",

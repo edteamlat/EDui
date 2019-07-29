@@ -46,11 +46,11 @@ export const GlobalStyles = createGlobalStyle`
 	}
 	/* Media query */
 	:root {
-		--s : 0,
-  	--m : 640px,
-  	--l : 1024px,
-  	--lg : ${LARGE_BREAKPOINT},
-  	--xl : 1440px
+		--s : 0;
+  	--m : 640px;
+  	--l : 1024px;
+  	--lg : ${LARGE_BREAKPOINT};
+  	--xl : 1440px;
 	}
 	/* Grid */
 	:root {

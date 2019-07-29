@@ -1,6 +1,8 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
+import { configure, addDecorator, addParameters } from '@storybook/react';
 import { GlobalStyles } from '../src/index.js';
+
+addParameters({ viewport: { defaultViewport: 'desktop' } });
 
 function loadStories() {
 	require('../stories/Button.js');
@@ -9,6 +11,7 @@ function loadStories() {
 	require('../stories/Form.js');
 	require('../stories/Table.js');
 	require('../stories/Banner.js');
+	require('../stories/Grid.js');
 }
 
 

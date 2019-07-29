@@ -65,3 +65,12 @@ export const GridFullContainer = css`
   margin-right: 0;
   margin-left: 0;
 `;
+
+
+export const getGridColumnWidth = (columns) => {
+	// const amountOfGaps = columns - 1;
+	const columnWidth = css`
+		grid-template-columns: repeat(${columns}, 1fr);
+	`;
+	return columnWidth;
+}

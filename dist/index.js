@@ -90,6 +90,26 @@ function _taggedTemplateLiteral(strings, raw) {
   }));
 }
 
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
 function _extends() {
   _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
@@ -979,13 +999,16 @@ var ACCENT_COLOR = '#FBA905';
 var DARK_COLOR = '#282D31';
 var BORDER_COLOR = '#DFE0E0'; // Breakpoints
 
-var LARGE_BREAKPOINT = '1024px'; // Grid
+var SMALL_BREAKPOINT = 0;
+var MEDIUM_BREAKPOINT = '640px';
+var LARGE_BREAKPOINT = '1024px';
+var EXTRA_LARGE_BREAKPOINT = '1440px'; // Grid
 
 var L_UNIT = '.5rem';
 var MAX_WIDTH = '1200px';
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\t/* Colors */\n\t@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap');\n\t:root {\n\t\t--first-color: ", ";\n\t\t--second-color: ", ";\n\t\t--third-color: ", ";\n\t\t--accent-color: ", ";\n\t\t--dark-color: ", ";\n\t\t--border-color: ", ";\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: 'Lato', 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0,\n  \t--m : 640px,\n  \t--l : 1024px,\n  \t--lg : ", ",\n  \t--xl : 1440px\n\t}\n\t/* Grid */\n\t:root {\n\t\t--l-unit: ", ";\n\t\t--max-width: ", ";\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: ", ") {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n\t:root {\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t\t/* --table-color-01: rgba() */\n\t}\n\n\tbody {\n\t\tfont-family: var(--body-font);\n\t}\n"]);
+  var data = _taggedTemplateLiteral(["\n\t/* Colors */\n\t@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap');\n\t:root {\n\t\t--first-color: ", ";\n\t\t--second-color: ", ";\n\t\t--third-color: ", ";\n\t\t--accent-color: ", ";\n\t\t--dark-color: ", ";\n\t\t--border-color: ", ";\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: 'Lato', 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0;\n  \t--m : 640px;\n  \t--l : 1024px;\n  \t--lg : ", ";\n  \t--xl : 1440px;\n\t}\n\t/* Grid */\n\t:root {\n\t\t--l-unit: ", ";\n\t\t--max-width: ", ";\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: ", ") {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n\t:root {\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t\t/* --table-color-01: rgba() */\n\t}\n\n\tbody {\n\t\tfont-family: var(--body-font);\n\t}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -2259,6 +2282,16 @@ function _templateObject$3() {
 }
 var ModalContainer = styled__default.div(_templateObject$3(), cancel);
 
+function _templateObject5$1() {
+  var data = _taggedTemplateLiteral(["\n\t\tgrid-template-columns: repeat(", ", 1fr);\n\t"]);
+
+  _templateObject5$1 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject4$1() {
   var data = _taggedTemplateLiteral(["\n\twidth: 100%;\n  max-width: 100%;\n  margin-right: 0;\n  margin-left: 0;\n"]);
 
@@ -2304,6 +2337,11 @@ var tableStyle = function tableStyle(color) {
   return styled.css(_templateObject3$1(), color, curriedTransparentize(0.9, color), curriedTransparentize(0.9, color), curriedTransparentize(0.75, color));
 };
 var GridFullContainer = styled.css(_templateObject4$1());
+var getGridColumnWidth = function getGridColumnWidth(columns) {
+  // const amountOfGaps = columns - 1;
+  var columnWidth = styled.css(_templateObject5$1(), columns);
+  return columnWidth;
+};
 
 function _templateObject$5() {
   var data = _taggedTemplateLiteral(["\n\t", ";\n\twidth         : 90%;\n  max-width     : 1000px;\n  max-height    : 90vh;\n  margin        : auto;\n  padding       : 2rem;\n  border-radius : .25rem;\n  overflow-y    : auto;\n"]);
@@ -2482,9 +2520,162 @@ Banner.defaultProps = {
   diagonal: false
 };
 
+var withDynamicTag = function withDynamicTag(Component) {
+  var bucket = Object.create(null);
+
+  var DynamicTag = function DynamicTag(props) {
+    var tag = props.tag;
+
+    if (typeof tag !== 'string' || !styled__default.tag) {
+      return React.createElement(Component, props);
+    }
+
+    if (bucket[tag] === undefined) {
+      bucket[tag] = Component.withComponent(tag);
+    }
+
+    return React.createElement(bucket[tag], props);
+  };
+
+  var name = Component.displayName || Component.constructor.name;
+
+  if (name) {
+    DynamicTag.displayName = "DynamicTag(".concat(name, ")");
+  }
+
+  return DynamicTag;
+};
+
+function _templateObject$d() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject$d = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var gridGap = function gridGap(gap) {
+  if (!gap || typeof gap !== 'number' || gap < 0 || gap > 4) return '';
+  var styles = "--gap: calc(var(--l-unit) * ".concat(gap, ")");
+  return styled.css(_templateObject$d(), styles);
+};
+
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\t"]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$2() {
+  var data = _taggedTemplateLiteral(["\n\t\tmargin-left: 0;\n\t\tmargin-right: auto;\n\t"]);
+
+  _templateObject5$2 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$2() {
+  var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n    margin-right: 0;\n\t"]);
+
+  _templateObject4$2 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject3$2() {
+  var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t"]);
+
+  _templateObject3$2 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$3() {
+  var data = _taggedTemplateLiteral(["\n\t\tgrid-row-gap: var(--gap);\n\t"]);
+
+  _templateObject2$3 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$e() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n"]);
+
+  _templateObject$e = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var Grid = styled__default.div(_templateObject$e(), function (props) {
+  return gridGap(props.gap);
+}, MAX_WIDTH, function (props) {
+  return props.rowGap && styled.css(_templateObject2$3());
+}, GridFullContainer, function (props) {
+  return props.full && GridFullContainer;
+}, function (props) {
+  return props.center && styled.css(_templateObject3$2());
+}, function (props) {
+  return props.right && styled.css(_templateObject4$2());
+}, function (props) {
+  return props.left && styled.css(_templateObject5$2());
+}, function (_ref) {
+  var s = _ref.s,
+      _ref$m = _ref.m,
+      m = _ref$m === void 0 ? s : _ref$m,
+      _ref$l = _ref.l,
+      l = _ref$l === void 0 ? m : _ref$l,
+      _ref$lg = _ref.lg,
+      lg = _ref$lg === void 0 ? l : _ref$lg;
+  return styled.css(_templateObject6(), SMALL_BREAKPOINT, getGridColumnWidth(s), MEDIUM_BREAKPOINT, getGridColumnWidth(m), LARGE_BREAKPOINT, getGridColumnWidth(l), EXTRA_LARGE_BREAKPOINT, getGridColumnWidth(lg));
+});
+
+var gridValues = _toConsumableArray(new Array(12)).map(function (_, i) {
+  return i + 1;
+});
+
+Grid.propTypes = {
+  gap: propTypes.oneOf([0, 1, 2, 3, 4]),
+  rowGap: propTypes.bool,
+  full: propTypes.bool,
+  center: propTypes.bool,
+  right: propTypes.bool,
+  s: propTypes.oneOf(gridValues),
+  m: propTypes.oneOf(gridValues),
+  l: propTypes.oneOf(gridValues),
+  lg: propTypes.oneOf(gridValues)
+};
+Grid.defaultProps = {
+  gap: 0,
+  rowGap: false,
+  full: false,
+  center: false,
+  right: false,
+  s: 1,
+  m: null,
+  l: null,
+  lg: null
+};
+var DynamicGrid = withDynamicTag(Grid);
+
 exports.Banner = Banner;
 exports.Button = Button;
+exports.DynamicGrid = DynamicGrid;
 exports.GlobalStyles = GlobalStyles;
+exports.Grid = Grid;
 exports.Input = Input;
 exports.Label = Label;
 exports.Modal = Modal;
