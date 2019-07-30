@@ -11,7 +11,11 @@ import {
 } from '../../utils/constants';
 import {
 	GridFullContainer,
-	getGridColumnWidth
+	getGridColumnWidth,
+	setColumnSpace,
+	SMALL_BREAKPOINT_STRING,
+	MEDIUM_BREAKPOINT_STRING,
+	EXTRA_LARGE_BREAKPOINT_STRING
 } from '../../utils/mixins/grid';
 
 export const Grid = styled.div`
@@ -65,21 +69,28 @@ export const Grid = styled.div`
 	}) => css`
 		@media (min-width: ${SMALL_BREAKPOINT}) {
 			${getGridColumnWidth(s)}
+			${setColumnSpace(SMALL_BREAKPOINT_STRING)}
 		}
 
 		@media (min-width: ${MEDIUM_BREAKPOINT}) {
 			${getGridColumnWidth(m)}
+			${setColumnSpace(MEDIUM_BREAKPOINT_STRING)}
 		}
 
 		@media (min-width: ${LARGE_BREAKPOINT}) {
 			${getGridColumnWidth(l)}
+			${setColumnSpace(LARGE_BREAKPOINT)}
 		}
 
 		@media (min-width: ${EXTRA_LARGE_BREAKPOINT}) {
 			${getGridColumnWidth(lg)}
+			${setColumnSpace(EXTRA_LARGE_BREAKPOINT_STRING)}
 		}
 	`
 	}
+	/* Cols */
+
+
 `;
 
 const gridValues = [...new Array(12)].map((_, i) => i + 1)

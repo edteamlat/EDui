@@ -2362,7 +2362,7 @@ Modal.defaultProps = {
 };
 
 function _templateObject$6() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\tmax-width         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
 
   _templateObject$6 = function _templateObject() {
     return data;
@@ -2535,6 +2535,16 @@ var gridGap = function gridGap(gap) {
   return styled.css(_templateObject$f(), styles);
 };
 
+function _templateObject3$1() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject3$1 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject2$2() {
   var data = _taggedTemplateLiteral(["\n\t\tgrid-template-columns: repeat(", ", 1fr);\n\t"]);
 
@@ -2555,15 +2565,29 @@ function _templateObject$g() {
   return data;
 }
 
+var AMOUNT_COLUMNS = 12;
+var SMALL_BREAKPOINT_STRING = 's';
+var MEDIUM_BREAKPOINT_STRING = 'm';
+var EXTRA_LARGE_BREAKPOINT_STRING = 'lg'; // Grid
+
 var GridFullContainer = styled.css(_templateObject$g());
 var getGridColumnWidth = function getGridColumnWidth(columns) {
-  // const amountOfGaps = columns - 1;
   var columnWidth = styled.css(_templateObject2$2(), columns);
   return columnWidth;
 };
+var setColumnSpace = function setColumnSpace() {
+  var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
+  var spanColumns = '';
+
+  for (var i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+    spanColumns += "& > .".concat(breakpoint, "-cols-").concat(i, " {\n\t\t\tgrid-column-end : span ").concat(i, ";\n\t\t}\n\t\t");
+  }
+
+  return styled.css(_templateObject3$1(), spanColumns);
+};
 
 function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t}\n\t"]);
+  var data = _taggedTemplateLiteral(["\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\t"]);
 
   _templateObject6 = function _templateObject6() {
     return data;
@@ -2592,10 +2616,10 @@ function _templateObject4$1() {
   return data;
 }
 
-function _templateObject3$1() {
+function _templateObject3$2() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t"]);
 
-  _templateObject3$1 = function _templateObject3() {
+  _templateObject3$2 = function _templateObject3() {
     return data;
   };
 
@@ -2613,7 +2637,7 @@ function _templateObject2$3() {
 }
 
 function _templateObject$h() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\t/* Cols */\n\n\n"]);
 
   _templateObject$h = function _templateObject() {
     return data;
@@ -2628,7 +2652,7 @@ var Grid = styled__default.div(_templateObject$h(), function (props) {
 }, GridFullContainer, function (props) {
   return props.full && GridFullContainer;
 }, function (props) {
-  return props.center && styled.css(_templateObject3$1());
+  return props.center && styled.css(_templateObject3$2());
 }, function (props) {
   return props.right && styled.css(_templateObject4$1());
 }, function (props) {
@@ -2641,7 +2665,7 @@ var Grid = styled__default.div(_templateObject$h(), function (props) {
       l = _ref$l === void 0 ? m : _ref$l,
       _ref$lg = _ref.lg,
       lg = _ref$lg === void 0 ? l : _ref$lg;
-  return styled.css(_templateObject6(), SMALL_BREAKPOINT, getGridColumnWidth(s), MEDIUM_BREAKPOINT, getGridColumnWidth(m), LARGE_BREAKPOINT, getGridColumnWidth(l), EXTRA_LARGE_BREAKPOINT, getGridColumnWidth(lg));
+  return styled.css(_templateObject6(), SMALL_BREAKPOINT, getGridColumnWidth(s), setColumnSpace(SMALL_BREAKPOINT_STRING), MEDIUM_BREAKPOINT, getGridColumnWidth(m), setColumnSpace(MEDIUM_BREAKPOINT_STRING), LARGE_BREAKPOINT, getGridColumnWidth(l), setColumnSpace(LARGE_BREAKPOINT), EXTRA_LARGE_BREAKPOINT, getGridColumnWidth(lg), setColumnSpace(EXTRA_LARGE_BREAKPOINT_STRING));
 });
 
 var gridValues = _toConsumableArray(new Array(12)).map(function (_, i) {

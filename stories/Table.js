@@ -1,7 +1,7 @@
+/* eslint-disable react/jsx-indent */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { Table, TableContainer } from '../src';
-
 
 storiesOf('Table', module)
 	.add('Table', () => (

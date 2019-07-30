@@ -1,16 +1,16 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Grid, DynamicGrid } from '../src';
+import { Grid } from '../src';
+import { Paper } from './components/Paper';
 
 storiesOf('Grid', module)
 	.add('Grid s', () => (
-		<Grid s={1} m={4} gap={2} right>
-			<article>1</article>
-			<article>2</article>
-			<article>3</article>
-			<article>4</article>
-			<article>5</article>
+		<Grid s={2} m={4} gap={2} rowGap>
+			<Paper>1</Paper>
+			<Paper>2</Paper>
+			<Paper className="s-cols-2 m-cols-1">3</Paper>
+			<Paper>4</Paper>
 		</Grid>
 	))
 	.add('Complex grid', () => (
