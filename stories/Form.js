@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Input, Select, TextArea, Label, Grid } from '../src';
+import { Input, Select, TextArea, Label, Grid, Button } from '../src';
 
 storiesOf('Form elements', module)
 	.add('Input', () => <Input type='text' placeholder='Fill your name' />)
@@ -38,7 +38,8 @@ storiesOf('Form elements', module)
 					<option>Peru</option>
 					<option>Mexico</option>
 				</Select>
-				<Input type="submit" value="Register" className="m-cols-2'"/>
+				<Button type="submit" className="m-cols-2">Register</Button>
+				{/* <Input type="submit" value="Register" className="m-cols-2'"/> */}
 			</Grid>
 		</form>
 	))

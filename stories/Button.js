@@ -9,7 +9,7 @@ storiesOf('Button', module)
 		<>
 			<Grid s={4} gap={2}>
 				<article>
-					<Button color="first-color" onClick={action('click')}>Normal button</Button>
+					<Button color="accent-color" onClick={action('click')}>Normal button</Button>
 				</article>
 				<article>
 					<Button color="first-color" tiny onClick={action('click')}>Tiny button</Button>

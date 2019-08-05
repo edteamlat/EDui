@@ -2432,7 +2432,7 @@ var tableStyle = function tableStyle(color) {
 };
 
 function _templateObject$c() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\ttable-layout    : fixed;\n  border-collapse : collapse;\n  font-size       : var(--small-font-size);\n  background      : #FFF;\n  min-width       : 100%;\n\tth {\n    font-family  : 'Open Sans', sans-serif;\n    text-align   : left;\n    color        : #FFF;\n    font-weight  : 700;\n    border-right : 1px solid ", ";\n  }\n\n\ttd {\n    min-width     : 100px;\n  }\n\ttd:nth-child(even) {\n      background : ", ";\n    }\n\n\ttd, th {\n    padding : 1em 1.5em;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\ttable-layout    : fixed;\n  border-collapse : collapse;\n  font-size       : var(--small-font-size);\n  background      : #FFF;\n  min-width       : 100%;\n\tth {\n    font-family  : var(--heading-font);\n    text-align   : left;\n    color        : #FFF;\n    font-weight  : 700;\n    border-right : 1px solid ", ";\n  }\n\n\ttd {\n    min-width     : 100px;\n  }\n\ttd:nth-child(even) {\n      background : ", ";\n    }\n\n\ttd, th {\n    padding : 1em 1.5em;\n  }\n"]);
 
   _templateObject$c = function _templateObject() {
     return data;
@@ -2535,6 +2535,36 @@ var gridGap = function gridGap(gap) {
   return styled.css(_templateObject$f(), styles);
 };
 
+function _templateObject6() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject6 = function _templateObject6() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject5$1() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject5$1 = function _templateObject5() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject4$1() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject4$1 = function _templateObject4() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject3$1() {
   var data = _taggedTemplateLiteral(["", ""]);
 
@@ -2585,31 +2615,61 @@ var setColumnSpace = function setColumnSpace() {
 
   return styled.css(_templateObject3$1(), spanColumns);
 };
+var setInitialItemColumn = function setInitialItemColumn() {
+  var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
+  var columnsPositionsStyles = '';
 
-function _templateObject6() {
-  var data = _taggedTemplateLiteral(["\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\t"]);
+  for (var i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+    columnsPositionsStyles += "& > .".concat(breakpoint, "-x-").concat(i, " {\n\t\t\tgrid-column-start : ").concat(i, ";\n\t\t}\n\t\t");
+  }
 
-  _templateObject6 = function _templateObject6() {
+  return styled.css(_templateObject4$1(), columnsPositionsStyles);
+};
+var setAmountRowsAnItemFill = function setAmountRowsAnItemFill() {
+  var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
+  var rowsStyles = '';
+
+  for (var i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+    rowsStyles += "& > .".concat(breakpoint, "-rows-").concat(i, " {\n\t\t\tgrid-row-end : span ").concat(i, ";\n\t\t}\n\t\t");
+  }
+
+  return styled.css(_templateObject5$1(), rowsStyles);
+};
+var setInitialRowOfAnItem = function setInitialRowOfAnItem() {
+  var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
+  var itemInitialRowStyles = '';
+
+  for (var i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+    itemInitialRowStyles += "& > .".concat(breakpoint, "-y-").concat(i, " {\n\t\t\tgrid-row-start : ").concat(i, ";\n\t\t}\n\t\t");
+  }
+
+  return styled.css(_templateObject6(), itemInitialRowStyles);
+};
+
+function _templateObject6$1() {
+  var data = _taggedTemplateLiteral(["\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t\t", "\n\t\t}\n\t"]);
+
+  _templateObject6$1 = function _templateObject6() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject5$1() {
+function _templateObject5$2() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: 0;\n\t\tmargin-right: auto;\n\t"]);
 
-  _templateObject5$1 = function _templateObject5() {
+  _templateObject5$2 = function _templateObject5() {
     return data;
   };
 
   return data;
 }
 
-function _templateObject4$1() {
+function _templateObject4$2() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n    margin-right: 0;\n\t"]);
 
-  _templateObject4$1 = function _templateObject4() {
+  _templateObject4$2 = function _templateObject4() {
     return data;
   };
 
@@ -2637,7 +2697,7 @@ function _templateObject2$3() {
 }
 
 function _templateObject$h() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\t/* Cols */\n\n\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\t/* Cols */\n"]);
 
   _templateObject$h = function _templateObject() {
     return data;
@@ -2654,9 +2714,9 @@ var Grid = styled__default.div(_templateObject$h(), function (props) {
 }, function (props) {
   return props.center && styled.css(_templateObject3$2());
 }, function (props) {
-  return props.right && styled.css(_templateObject4$1());
+  return props.right && styled.css(_templateObject4$2());
 }, function (props) {
-  return props.left && styled.css(_templateObject5$1());
+  return props.left && styled.css(_templateObject5$2());
 }, function (_ref) {
   var s = _ref.s,
       _ref$m = _ref.m,
@@ -2665,7 +2725,7 @@ var Grid = styled__default.div(_templateObject$h(), function (props) {
       l = _ref$l === void 0 ? m : _ref$l,
       _ref$lg = _ref.lg,
       lg = _ref$lg === void 0 ? l : _ref$lg;
-  return styled.css(_templateObject6(), SMALL_BREAKPOINT, getGridColumnWidth(s), setColumnSpace(SMALL_BREAKPOINT_STRING), MEDIUM_BREAKPOINT, getGridColumnWidth(m), setColumnSpace(MEDIUM_BREAKPOINT_STRING), LARGE_BREAKPOINT, getGridColumnWidth(l), setColumnSpace(LARGE_BREAKPOINT), EXTRA_LARGE_BREAKPOINT, getGridColumnWidth(lg), setColumnSpace(EXTRA_LARGE_BREAKPOINT_STRING));
+  return styled.css(_templateObject6$1(), SMALL_BREAKPOINT, getGridColumnWidth(s), setColumnSpace(SMALL_BREAKPOINT_STRING), setInitialItemColumn(SMALL_BREAKPOINT_STRING), setAmountRowsAnItemFill(SMALL_BREAKPOINT_STRING), setInitialRowOfAnItem(SMALL_BREAKPOINT_STRING), MEDIUM_BREAKPOINT, getGridColumnWidth(m), setColumnSpace(MEDIUM_BREAKPOINT_STRING), setInitialItemColumn(MEDIUM_BREAKPOINT_STRING), setAmountRowsAnItemFill(MEDIUM_BREAKPOINT_STRING), setInitialRowOfAnItem(MEDIUM_BREAKPOINT_STRING), LARGE_BREAKPOINT, getGridColumnWidth(l), setColumnSpace(LARGE_BREAKPOINT), setInitialItemColumn(LARGE_BREAKPOINT), setAmountRowsAnItemFill(LARGE_BREAKPOINT), setInitialRowOfAnItem(LARGE_BREAKPOINT), EXTRA_LARGE_BREAKPOINT, getGridColumnWidth(lg), setColumnSpace(EXTRA_LARGE_BREAKPOINT_STRING), setInitialItemColumn(EXTRA_LARGE_BREAKPOINT_STRING), setAmountRowsAnItemFill(EXTRA_LARGE_BREAKPOINT_STRING), setInitialRowOfAnItem(EXTRA_LARGE_BREAKPOINT_STRING));
 });
 
 var gridValues = _toConsumableArray(new Array(12)).map(function (_, i) {

@@ -15,7 +15,10 @@ import {
 	setColumnSpace,
 	SMALL_BREAKPOINT_STRING,
 	MEDIUM_BREAKPOINT_STRING,
-	EXTRA_LARGE_BREAKPOINT_STRING
+	EXTRA_LARGE_BREAKPOINT_STRING,
+	setInitialItemColumn,
+	setAmountRowsAnItemFill,
+	setInitialRowOfAnItem
 } from '../../utils/mixins/grid';
 
 export const Grid = styled.div`
@@ -70,27 +73,37 @@ export const Grid = styled.div`
 		@media (min-width: ${SMALL_BREAKPOINT}) {
 			${getGridColumnWidth(s)}
 			${setColumnSpace(SMALL_BREAKPOINT_STRING)}
+			${setInitialItemColumn(SMALL_BREAKPOINT_STRING)}
+			${setAmountRowsAnItemFill(SMALL_BREAKPOINT_STRING)}
+			${setInitialRowOfAnItem(SMALL_BREAKPOINT_STRING)}
 		}
 
 		@media (min-width: ${MEDIUM_BREAKPOINT}) {
 			${getGridColumnWidth(m)}
 			${setColumnSpace(MEDIUM_BREAKPOINT_STRING)}
+			${setInitialItemColumn(MEDIUM_BREAKPOINT_STRING)}
+			${setAmountRowsAnItemFill(MEDIUM_BREAKPOINT_STRING)}
+			${setInitialRowOfAnItem(MEDIUM_BREAKPOINT_STRING)}
 		}
 
 		@media (min-width: ${LARGE_BREAKPOINT}) {
 			${getGridColumnWidth(l)}
 			${setColumnSpace(LARGE_BREAKPOINT)}
+			${setInitialItemColumn(LARGE_BREAKPOINT)}
+			${setAmountRowsAnItemFill(LARGE_BREAKPOINT)}
+			${setInitialRowOfAnItem(LARGE_BREAKPOINT)}
 		}
 
 		@media (min-width: ${EXTRA_LARGE_BREAKPOINT}) {
 			${getGridColumnWidth(lg)}
 			${setColumnSpace(EXTRA_LARGE_BREAKPOINT_STRING)}
+			${setInitialItemColumn(EXTRA_LARGE_BREAKPOINT_STRING)}
+			${setAmountRowsAnItemFill(EXTRA_LARGE_BREAKPOINT_STRING)}
+			${setInitialRowOfAnItem(EXTRA_LARGE_BREAKPOINT_STRING)}
 		}
 	`
 	}
 	/* Cols */
-
-
 `;
 
 const gridValues = [...new Array(12)].map((_, i) => i + 1)

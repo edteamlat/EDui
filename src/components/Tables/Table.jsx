@@ -27,7 +27,7 @@ export const Table = styled.table`
   background      : #FFF;
   min-width       : 100%;
 	th {
-    font-family  : 'Open Sans', sans-serif;
+    font-family  : var(--heading-font);
     text-align   : left;
     color        : #FFF;
     font-weight  : 700;

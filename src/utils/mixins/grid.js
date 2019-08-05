@@ -32,3 +32,39 @@ export const setColumnSpace = (breakpoint = SMALL_BREAKPOINT_STRING) => {
 
 	return css`${spanColumns}`;
 };
+
+export const setInitialItemColumn = (breakpoint = SMALL_BREAKPOINT_STRING) => {
+	let columnsPositionsStyles = '';
+	for (let i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+		columnsPositionsStyles += `& > .${breakpoint}-x-${i} {
+			grid-column-start : ${i};
+		}
+		`;
+	}
+
+	return css`${columnsPositionsStyles}`;
+};
+
+export const setAmountRowsAnItemFill = (breakpoint = SMALL_BREAKPOINT_STRING) => {
+	let rowsStyles = '';
+	for (let i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+		rowsStyles += `& > .${breakpoint}-rows-${i} {
+			grid-row-end : span ${i};
+		}
+		`;
+	}
+
+	return css`${rowsStyles}`;
+};
+
+export const setInitialRowOfAnItem = (breakpoint = SMALL_BREAKPOINT_STRING) => {
+	let itemInitialRowStyles = '';
+	for (let i = 1; i < AMOUNT_COLUMNS + 1; i += 1) {
+		itemInitialRowStyles += `& > .${breakpoint}-y-${i} {
+			grid-row-start : ${i};
+		}
+		`;
+	}
+
+	return css`${itemInitialRowStyles}`;
+};
