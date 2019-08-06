@@ -1,27 +1,30 @@
 const commonjs = require('rollup-plugin-commonjs');
 const babel = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
-const uglify = require('rollup-plugin-uglify');
+const svg = require('rollup-plugin-svg');
+const { uglify } = require('rollup-plugin-uglify');
 const { minify } = require('uglify-es');
 
 module.exports = {
-	entry: 'src/index.js',
-	moduleName: 'edui',
+	input: 'src/index.js',
+	output: {
+		file: 'dist/index.js',
+		format: 'cjs'
+	},
 	external: [
 		'react',
 		'styled-components'
 	],
-	globals: {
-		react: 'React',
-		'styled-components': 'styled-components',
-	},
 	plugins: [
-		resolve(),
+		resolve({
+			extensions: ['.js', '.json', '.jsx']
+		}),
 		babel(({
 			exclude: 'node_modules/**',
-			plugins: ['external-helpers']
+			plugins: ['@babel/plugin-external-helpers']
 		})),
 		commonjs(),
+		svg(),
 		uglify({}, minify)
 	]
 };
