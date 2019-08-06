@@ -2,9 +2,22 @@
 	"name": "edui",
 	"version": "1.0.0",
 	"description": "Libreria de componentes React siguiendo la guia de estilos de EDteam",
-	"main": "dist/index.umd.js",
-	"module": "dist/index.js",
+	"main": "dist/index.js",
 	"license": "MIT",
+	"author": "EDteam <contacto@ed.team>",
+	"repository": {
+    "type": "git",
+    "url": "git+https://github.com/edteamlat/EDui.git"
+	},
+	"keywords": [
+    "React",
+    "Styled components",
+    "EDteam"
+	],
+	"bugs": {
+    "url": "https://github.com/edteamlat/EDui/issues"
+  },
+  "homepage": "https://github.com/edteamlat/EDui#edui",
 	"scripts": {
 		"dev": "rollup --config rollup.dev.js --watch",
 		"test": "jest --watch",
