@@ -1,5 +1,5 @@
 {
-	"name": "EDui",
+	"name": "edui",
 	"version": "1.0.0",
 	"description": "Libreria de componentes React siguiendo la guia de estilos de EDteam",
 	"main": "dist/index.umd.js",
@@ -16,7 +16,6 @@
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.0",
-		"@babel/plugin-external-helpers": "^7.2.0",
 		"@babel/preset-env": "^7.4.5",
 		"@babel/preset-react": "^7.0.0",
 		"@storybook/addon-actions": "^5.1.9",

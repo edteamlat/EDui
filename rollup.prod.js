@@ -20,8 +20,7 @@ module.exports = {
 			extensions: ['.js', '.json', '.jsx']
 		}),
 		babel(({
-			exclude: 'node_modules/**',
-			plugins: ['@babel/plugin-external-helpers']
+			exclude: 'node_modules/**'
 		})),
 		commonjs(),
 		svg(),
