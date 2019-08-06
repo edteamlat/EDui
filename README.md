@@ -5,15 +5,15 @@ Libreria de componentes para React siguiendo la [Guia de estilos de EDteam](http
 ## Instalación
 Para poder usar EDui primero se deben de tener instaladas las librerías [React](https://github.com/facebook/react) y [Styled Components](https://github.com/styled-components/styled-components), una vez instaladas estas librerías se puede instalar EDui
 ```bash
-npm install edui --save
+npm install @edteam/edui --save
 or
-yarn add edui
+yarn add @edteam/edui
 ```
 
 ## Uso
 Para que la librería funcione de manera normal en el componente principal del proyecto se debe incluir el componente `GlobalStyles`
 ```javascript
-import { GlobalStyles } from 'edui';
+import { GlobalStyles } from '@edteam/edui';
 
 function App() {
 	return (
@@ -69,7 +69,7 @@ Algunos componentes reciben como propiedad el color del que será su fondo, esos
 
 **Ejemplo**
 ```javascript
-	import { EDgrid } from 'edui'
+	import { EDgrid } from '@edteam/edui'
 	//...
 	const MyComponent = () => (
 		<EDgrid s={1} m={4} gap={2} rowGap>
@@ -85,7 +85,7 @@ Algunos componentes reciben como propiedad el color del que será su fondo, esos
 ### [EDcontainer](https://ed-grid.com/documentacion/layout-flexbox.html#ed-container-y-ed-item)
 **Ejemplo:**
 ```javascript
-	import { EDcontainer } from 'edui'
+	import { EDcontainer } from '@edteam/edui'
 	//...
 	const MyComponent = () => (
 		<EDcontainer>
@@ -105,7 +105,7 @@ Algunos componentes reciben como propiedad el color del que será su fondo, esos
 | lg      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas extra grandes, recibe los multiplos de 5 del 0 al 100 |
 **Ejemplo:**
 ```javascript
-	import { EDcontainer, EDitem } from 'edui'
+	import { EDcontainer, EDitem } from '@edteam/edui'
 	//...
 	const MyComponent = () => (
 		<EDcontainer>
@@ -143,7 +143,7 @@ adarga antigua, rocín flaco y galgo corredor.
 
 **Ejemplo:**
 ```javascript
-import { Banner, EDgrid } from 'edui';
+import { Banner, EDgrid } from '@edteam/edui';
 
 const MyComponent = () => (
 	<Banner diagonal imageContainer>
@@ -171,7 +171,7 @@ const MyComponent = () => (
 **Ejemplo:**
 ```javascript
 import React,{ useState } from 'react';
-import { Topbar, Button } from 'edui';
+import { Topbar, Button } from '@edteam/edui';
 
 function MyComponent() {
 	const [visible, setVisible] = useState(true)
@@ -217,7 +217,7 @@ function MyComponent() {
 - default (`first-color`)
 **Ejemplo:**
 ```javascript
-import { Table, TableContainer } from 'edui';
+import { Table, TableContainer } from '@edteam/edui';
 
 const MyComponent = () => (
 	<TableContainer>
@@ -270,7 +270,7 @@ const MyComponent = () => (
 
 ```javascript
 import React,{ useState } from 'React';
-import { Modal, Button } from 'edui';
+import { Modal, Button } from '@edteam/edui';
 
 function MyComponent() {
 	const [open, setOpen] = useState(false);

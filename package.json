@@ -1,6 +1,6 @@
 {
-	"name": "edui",
-	"version": "1.0.0",
+	"name": "@edteam/edui",
+	"version": "1.0.1-beta",
 	"description": "Libreria de componentes React siguiendo la guia de estilos de EDteam",
 	"main": "dist/index.js",
 	"license": "MIT",
@@ -25,7 +25,8 @@
 		"lint": "eslint src --cache",
 		"quality": "npm run lint && npm run test",
 		"storybook": "start-storybook",
-		"publish-library": "npm run build && npm publish"
+		"publish-library": "npm run build && npm publish",
+		"edteam": "npm publish --access public"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.0",
