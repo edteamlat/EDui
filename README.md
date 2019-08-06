@@ -3,7 +3,7 @@
 Libreria de componentes para React siguiendo la [Guia de estilos de EDteam](https://ux.ed.team/)
 
 ## Instalación
-Para poder usar EDui primero se deben de tener instaladas las librerias [React](https://github.com/facebook/react) y [Styled Components](https://github.com/styled-components/styled-components), una vez instaladas estas librerias se puede instalar EDui
+Para poder usar EDui primero se deben de tener instaladas las librerías [React](https://github.com/facebook/react) y [Styled Components](https://github.com/styled-components/styled-components), una vez instaladas estas librerías se puede instalar EDui
 ```bash
 npm install edui --save
 or
@@ -11,6 +11,20 @@ yarn add edui
 ```
 
 ## Uso
+Para que la librería funcione de manera normal en el componente principal del proyecto se debe incluir el componente `GlobalStyles`
+```javascript
+import { GlobalStyles } from 'edui';
+
+function App() {
+	return (
+		<>
+			<GlobalStyles />
+			{/**Contenido de la aplicación**/}
+		</>
+	)
+}
+```
+## Componentes
 Actualmente se tienen construidos los siguientes componentes
 - EDgrid
 - EDcontainer
@@ -25,21 +39,24 @@ Actualmente se tienen construidos los siguientes componentes
 - Select
 - Label
 
+Y en proceso están los componentes de:
+- Tabs
+
 ## [Colores](https://ux.ed.team/colores.html)
-Algunos componentes reciben como propiedad el color del que sera su fondo, esos posibles colores son:
+Algunos componentes reciben como propiedad el color del que será su fondo, esos posibles colores son:
 - first-color
 - second-color
 - third-color
 - accent-color
 - dark-color
 
-`Nota`: En caso de recibir un valor incorrecto o no recibir ningun valor se tomara como valor por defecto `first-color`. Para más información visitar la [Guia de estilos](https://ux.ed.team/colores.html)
+`Nota`: En caso de recibir un valor incorrecto o no recibir ningún valor se tomara como valor por defecto `first-color`. Para más información visitar la [Guía de estilos](https://ux.ed.team/colores.html)
 
 ### [EDgrid](https://ed-grid.com/)
 #### Props
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
-| gap      			| Number 				| Valor del gap que tendra el grid, acepta valores entre 0 y 4
+| gap      			| Number 				| Valor del gap que tendrá el grid, acepta valores entre 0 y 4
 | rowGap      | bool      |   Indica si las filas del grid van a tener un gap entre ellas |
 | full | bool      | Indica si el contenedor del grid va a ocupar todo el ancho disponible     |
 | center | bool      | Indica si el contenedor del grid va a estar centrado|
@@ -81,10 +98,10 @@ Algunos componentes reciben como propiedad el color del que sera su fondo, esos 
 #### Props
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
-| formItem      			| bool 				| Indica si el elemento sera un item del formulario, esto agrega separación vertical entre los elementos
-| s      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas pequeñas, recibe los multiplos de 5 del 0 al 100 |
-| m      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas mediana, recibe los multiplos de 5 del 0 al 100 |
-| l      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas grandes, recibe los multiplos de 5 del 0 al 100 |
+| formItem      			| bool 				| Indica si el elemento será un item del formulario, esto agrega separación vertical entre los elementos
+| s      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas pequeñas, recibe los múltiplos de 5 del 0 al 100 |
+| m      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas mediana, recibe los múltiplos de 5 del 0 al 100 |
+| l      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas grandes, recibe los múltiplos de 5 del 0 al 100 |
 | lg      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas extra grandes, recibe los multiplos de 5 del 0 al 100 |
 **Ejemplo:**
 ```javascript
@@ -122,7 +139,7 @@ adarga antigua, rocín flaco y galgo corredor.
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
 | diagonal      			| bool 				| Indica  si se le agregara diagonal al final del contenedor |
-| imageContainer      			| bool 				| Indica  si se le agregara foto de fondo al contenedor, esta foto sera agregada en el marcado del componente |
+| imageContainer      			| bool 				| Indica  si se le agregara foto de fondo al contenedor, esta foto será agregada en el marcado del componente |
 
 **Ejemplo:**
 ```javascript
@@ -149,7 +166,7 @@ const MyComponent = () => (
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
 | color      			| string 				| Indica color del topbar, recibe valores siguiendo los [colores de EDteam](https://ux.ed.team/colores.html)|
-| visible      			| bool 				| Indica  si el topbar estara visible o no |
+| visible      			| bool 				| Indica  si el topbar estará visible o no |
 
 **Ejemplo:**
 ```javascript
@@ -181,8 +198,8 @@ function MyComponent() {
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
 | color      			| string 				| Indica color del botón, recibe valores siguiendo los [colores de EDteam](https://ux.ed.team/colores.html)|
-| tiny      			| bool 				| Indica  si el botón sera de tipo tiny |
-| micro      			| bool 				| Indica  si el botón sera de tipo micro |
+| tiny      			| bool 				| Indica  si el botón será de tipo tiny |
+| micro      			| bool 				| Indica  si el botón será de tipo micro |
 | full      			| bool 				| Indica  si el botón ocupara todo el ancho disponible |
 | ghost      			| bool 				| Indica  si el botón será de fondo transparente, y solo consta de borde y texto. |
 
