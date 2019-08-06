@@ -9,6 +9,6 @@ export { Label } from './components/Forms/Label';
 export { Table } from './components/Tables/Table';
 export { TableContainer } from './components/Tables/TableContainer';
 export { Banner } from './components/Banner/Banner';
-export { Grid } from './components/Grid/Grid';
+export { EDgrid } from './components/Grid/EDgrid';
 export { EDcontainer } from './components/Flexbox/EDcontainer';
 export { EDitem } from './components/Flexbox/EDitem';

@@ -33,4 +33,4 @@ module.exports = {
 		'react',
 		'styled-components'
 	]
-}
+};

@@ -8,9 +8,11 @@
 	"scripts": {
 		"dev": "rollup --config rollup.dev.js --watch",
 		"test": "jest --watch",
+		"build": "rollup --config rollup.prod.js",
 		"lint": "eslint src --cache",
 		"quality": "npm run lint && npm run test",
-		"storybook": "start-storybook"
+		"storybook": "start-storybook",
+		"publish-library": "npm run build && npm publish"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.5.0",
@@ -44,18 +46,20 @@
 		"rollup-plugin-replace": "^2.2.0",
 		"rollup-plugin-svg": "^2.0.0",
 		"rollup-plugin-uglify": "^6.0.2",
-		"rollup-watch": "^4.3.1"
+		"rollup-watch": "^4.3.1",
+		"styled-components": "^4.3.1",
+		"uglify-es": "^3.3.9"
 	},
 	"publishConfig": {
 		"access": "public"
 	},
 	"peerDependencies": {
-		"react": "^16.6.3"
+		"react": "^16.6.3",
+		"styled-components": ">= 4"
 	},
 	"dependencies": {
 		"polished": "^3.4.1",
-		"prop-types": "^15.7.2",
-		"styled-components": "^4.3.1"
+		"prop-types": "^15.7.2"
 	},
 	"jest": {
 		"setupFilesAfterEnv": [

@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
-import { withDynamicTag } from '../../utils/withDynamicTag';
 import { gridGap } from '../../utils/grid';
 import {
 	MAX_WIDTH,
@@ -21,7 +20,7 @@ import {
 	setInitialRowOfAnItem
 } from '../../utils/mixins/grid';
 
-export const Grid = styled.div`
+export const EDgrid = styled.div`
 	display: grid;
 	grid-template-columns: 100%;
 	${props => gridGap(props.gap)};
@@ -106,25 +105,25 @@ export const Grid = styled.div`
 
 const gridValues = [...new Array(12)].map((_, i) => i + 1)
 
-Grid.propTypes = {
+EDgrid.propTypes = {
 	gap: PropTypes.oneOf([0, 1, 2, 3, 4]),
 	rowGap: PropTypes.bool,
 	full: PropTypes.bool,
 	center: PropTypes.bool,
 	right: PropTypes.bool,
+	left: PropTypes.bool,
 	s: PropTypes.oneOf(gridValues),
 	m: PropTypes.oneOf(gridValues),
 	l: PropTypes.oneOf(gridValues),
 	lg: PropTypes.oneOf(gridValues)
 };
 
-Grid.defaultProps = {
+EDgrid.defaultProps = {
 	gap: 0,
 	rowGap: false,
 	full: false,
 	center: false,
 	right: false,
+	left: false,
 	s: 1,
 };
-
-export const DynamicGrid = withDynamicTag(Grid);

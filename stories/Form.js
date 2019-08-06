@@ -1,7 +1,16 @@
 /* eslint-disable react/jsx-indent */
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Input, Select, TextArea, Label, Grid, Button, EDcontainer, EDitem } from '../src';
+import {
+	Input,
+	Select,
+	TextArea,
+	Label,
+	EDgrid,
+	Button,
+	EDcontainer,
+	EDitem
+} from '../src';
 
 storiesOf('Form elements', module)
 	.add('Input', () => <Input type="text" placeholder="Fill your name" />)
@@ -26,7 +35,7 @@ storiesOf('Form elements', module)
 	))
 	.add('Form with grid', () => (
 		<form>
-			<Grid s={1} m={2} gap={2} rowGap>
+			<EDgrid s={1} m={2} gap={2} rowGap>
 				<Input placeholder="Name" />
 				<Input placeholder="Email" type="email" />
 				<Input placeholder="Password" type="password" />
@@ -40,7 +49,7 @@ storiesOf('Form elements', module)
 				</Select>
 				<TextArea placeholder="Biography" className="m-cols-2" />
 				<Button type="submit" className="m-cols-2">Register</Button>
-			</Grid>
+			</EDgrid>
 		</form>
 	))
 	.add('Form with EDcontainer', () => (
@@ -53,13 +62,13 @@ storiesOf('Form elements', module)
 					<Input placeholder="Email" type="email" />
 				</EDitem>
 				<EDitem s={100} m={50} formItem>
-					<Input placeholder="Password" type="password" className="ed-item form__item" />
+					<Input placeholder="Password" type="password" />
 				</EDitem>
 				<EDitem s={100} m={50} formItem>
-					<Input placeholder="Repeat Password" type="password" className="ed-item form__item" />
+					<Input placeholder="Repeat Password" type="password" />
 				</EDitem>
 				<EDitem formItem>
-					<Select className="ed-item form__item">
+					<Select>
 						<option>Colombia</option>
 						<option>Bolivia</option>
 						<option>Argentina</option>
@@ -68,11 +77,11 @@ storiesOf('Form elements', module)
 					</Select>
 				</EDitem>
 				<EDitem formItem>
-					<TextArea placeholder="Biography" className="ed-item form__item" />
+					<TextArea placeholder="Biography" />
 				</EDitem>
 				<EDitem formItem>
 					<Button type="submit" full>Register</Button>
 				</EDitem>
 			</EDcontainer>
 		</form>
-	))
+	));

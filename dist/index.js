@@ -2508,32 +2508,6 @@ Banner.defaultProps = {
   imageContainer: false
 };
 
-var withDynamicTag = function withDynamicTag(Component) {
-  var bucket = Object.create(null);
-
-  var DynamicTag = function DynamicTag(props) {
-    var tag = props.tag;
-
-    if (typeof tag !== 'string' || !styled__default.tag) {
-      return React.createElement(Component, props);
-    }
-
-    if (bucket[tag] === undefined) {
-      bucket[tag] = Component.withComponent(tag);
-    }
-
-    return React.createElement(bucket[tag], props);
-  };
-
-  var name = Component.displayName || Component.constructor.name;
-
-  if (name) {
-    DynamicTag.displayName = "DynamicTag(".concat(name, ")");
-  }
-
-  return DynamicTag;
-};
-
 function _templateObject$f() {
   var data = _taggedTemplateLiteral(["", ""]);
 
@@ -2731,7 +2705,7 @@ function _templateObject$h() {
 
   return data;
 }
-var Grid = styled__default.div(_templateObject$h(), function (props) {
+var EDgrid = styled__default.div(_templateObject$h(), function (props) {
   return gridGap(props.gap);
 }, MAX_WIDTH, function (props) {
   return props.rowGap && styled.css(_templateObject2$3());
@@ -2758,26 +2732,27 @@ var gridValues = _toConsumableArray(new Array(12)).map(function (_, i) {
   return i + 1;
 });
 
-Grid.propTypes = {
+EDgrid.propTypes = {
   gap: propTypes.oneOf([0, 1, 2, 3, 4]),
   rowGap: propTypes.bool,
   full: propTypes.bool,
   center: propTypes.bool,
   right: propTypes.bool,
+  left: propTypes.bool,
   s: propTypes.oneOf(gridValues),
   m: propTypes.oneOf(gridValues),
   l: propTypes.oneOf(gridValues),
   lg: propTypes.oneOf(gridValues)
 };
-Grid.defaultProps = {
+EDgrid.defaultProps = {
   gap: 0,
   rowGap: false,
   full: false,
   center: false,
   right: false,
+  left: false,
   s: 1
 };
-var DynamicGrid = withDynamicTag(Grid);
 
 function _templateObject$i() {
   var data = _taggedTemplateLiteral(["\n\tdisplay      : flex;\n  flex-wrap    : wrap;\n  max-width    : var(--max-width);\n  width        : 100%;\n  margin-left  : auto;\n  margin-right : auto;\n"]);
@@ -2851,9 +2826,9 @@ EDitem.defaultProps = {
 exports.Banner = Banner;
 exports.Button = Button;
 exports.EDcontainer = EDcontainer;
+exports.EDgrid = EDgrid;
 exports.EDitem = EDitem;
 exports.GlobalStyles = GlobalStyles;
-exports.Grid = Grid;
 exports.Input = Input;
 exports.Label = Label;
 exports.Modal = Modal;

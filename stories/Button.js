@@ -2,12 +2,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { Button, Grid } from '../src';
+import { Button, EDgrid } from '../src';
 
 storiesOf('Button', module)
 	.add('First buttons', () => (
 		<>
-			<Grid s={4} gap={2}>
+			<EDgrid s={4} gap={2}>
 				<article>
 					<Button color="accent-color" onClick={action('click')}>Normal button</Button>
 				</article>
@@ -20,7 +20,7 @@ storiesOf('Button', module)
 				<article>
 					<Button color="first-color" ghost onClick={action('click')}>Ghost button</Button>
 				</article>
-			</Grid>
+			</EDgrid>
 			{/* <Button color="first-color" full onClick={action('click')}>Full button</Button> */}
 		</>
 	))
