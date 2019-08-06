@@ -1008,7 +1008,7 @@ var L_UNIT = '.5rem';
 var MAX_WIDTH = '1200px';
 
 function _templateObject() {
-  var data = _taggedTemplateLiteral(["\n\t/* Colors */\n\t@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap');\n\t:root {\n\t\t--first-color: ", ";\n\t\t--second-color: ", ";\n\t\t--third-color: ", ";\n\t\t--accent-color: ", ";\n\t\t--dark-color: ", ";\n\t\t--border-color: ", ";\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: 'Lato', 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0;\n  \t--m : 640px;\n  \t--l : 1024px;\n  \t--lg : ", ";\n  \t--xl : 1440px;\n\t}\n\t/* Grid */\n\t:root {\n\t\t--l-unit: ", ";\n\t\t--max-width: ", ";\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: ", ") {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n\t:root {\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t\t/* --table-color-01: rgba() */\n\t}\n\n\tbody {\n\t\tfont-family: var(--body-font);\n\t}\n"]);
+  var data = _taggedTemplateLiteral(["\n\t* {\n\t\tmargin: 0;\n\t}\n\t@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap');\n\t/* Colors */\n\t:root {\n\t\t--first-color: ", ";\n\t\t--second-color: ", ";\n\t\t--third-color: ", ";\n\t\t--accent-color: ", ";\n\t\t--dark-color: ", ";\n\t\t--border-color: ", ";\n\t\t--text-color: #53575A;\n\t\t--body-bg: #FAFDFF;\n\t\t/* Alt colors */\n\t\t--first-color-alt: #006DC6;\n\t\t--second-color-alt: #00BFF0;\n\t\t--third-color-alt: #FF2419;\n\t\t--accent-color-alt: #F1A000;\n\t\t--dark-color-alt: #141618;\n\t}\n\t/* Fonts */\n\t:root {\n\t\t--body-font: 'Lato', 'sans-serif';\n\t\t--heading-font: 'Open Sans', 'sans-serif';\n\t\t--title1: ", ";\n\t\t--h2-font-size: ", ";\n  \t--h3-font-size: ", ";\n  \t--normal-font-size: ", ";\n  \t--small-font-size: ", ";\n  \t--smaller-font-size: ", ";\n  \t--heading-line-height: 1.3;\n  \t--body-line-height: 1.6;\n\t}\n\t/* Media query */\n\t:root {\n\t\t--s : 0;\n  \t--m : 640px;\n  \t--l : 1024px;\n  \t--lg : ", ";\n  \t--xl : 1440px;\n\t}\n\t/* Grid */\n\t:root {\n\t\t--l-unit: ", ";\n\t\t--max-width: ", ";\n\t}\n\t/* z index */\n\t:root {\n\t\t--z-index-modal: 1000;\n\t}\n\n\t@media (min-width: ", ") {\n\t\t:root {\n\t\t\t--h1-font-size: ", ";\n    \t--h2-font-size: ", ";\n    \t--h3-font-size: ", ";\n    \t--normal-font-size: ", ";\n    \t--small-font-size: ", ";\n    \t--smaller-font-siz: ", ";\n\t\t}\n\t}\n\t:root {\n\t\t/* Hacks */\n\t\t--body-bg-modal: rgba(250, 253, 255, .9);\n\t\t--text-color-75: rgba(83,87,90, .75);\n\t\t/* --table-color-01: rgba() */\n\t}\n\n\tbody {\n\t\tfont-family: var(--body-font);\n\t}\n"]);
 
   _templateObject = function _templateObject() {
     return data;
@@ -2362,7 +2362,7 @@ Modal.defaultProps = {
 };
 
 function _templateObject$6() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\tmax-width         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay       : block;\n\tborder        : 1px solid var(--border-color);\n\tbackground    : #fff;\n\twidth         : 100%;\n\tline-height   : 1.6;\n\tfont-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */\n\tfont-size     : var(--small-font-size);\n\tcolor         : var(--text-color);\n\tborder-radius : .25rem;\n\tpadding       : .5rem 1rem;\n\tbox-sizing: border-box;\n\n\t&::placeholder {\n    color : var(--text-color-75);\n  }\n\n  &:disabled {\n    background : var(--border-color);\n    cursor: default;\n  }\n"]);
 
   _templateObject$6 = function _templateObject() {
     return data;
@@ -2397,7 +2397,7 @@ function _templateObject$8() {
 var Select = styled__default.select(_templateObject$8(), InputForm, arrows);
 
 function _templateObject$9() {
-  var data = _taggedTemplateLiteral(["\n\t", ";\n\tmin-height : 6em;\n  max-height : 6em;\n  min-width  : 100%;\n  max-width  : 100%;\n"]);
+  var data = _taggedTemplateLiteral(["\n\t", ";\n\tmin-height : 6em;\n  max-height : 6em;\n  max-width  : 100%;\n\tmin-width  : 100%;\n"]);
 
   _templateObject$9 = function _templateObject() {
     return data;
@@ -2465,6 +2465,16 @@ function _templateObject$d() {
 }
 var TableContainer = styled__default.div(_templateObject$d());
 
+function _templateObject3$1() {
+  var data = _taggedTemplateLiteral(["\n\t\t& img {\n\t\twidth: 100%;\n\t\theight: 100%;\n\t\tposition: absolute;\n\t\ttop: 0;\n\t\tleft: 0;\n\t\t}\n\t"]);
+
+  _templateObject3$1 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject2$1() {
   var data = _taggedTemplateLiteral(["\n\t\tclip-path : polygon(0 0, 100% 0, 100% 100%, 0 94%);\n\t"]);
 
@@ -2476,7 +2486,7 @@ function _templateObject2$1() {
 }
 
 function _templateObject$e() {
-  var data = _taggedTemplateLiteral(["\n\t--color: var(--first-color);\n\t--color-alt: var(--accent-color);\n\t--padding: 2rem;\n\tbackground: var(--color);\n\tcolor: #fff;\n\n\t", "\n\t/* Content space */\n\tpadding-top    : var(--padding);\n  padding-bottom : calc(var(--padding) * 1.25);\n\t@media (min-width: ", ") {\n\t\t--padding: 4rem;\n\t}\n\n\t& .main-banner__img {\n  \topacity : .1;\n\t}\n\t& .main-banner__data {\n  \tposition : relative;\n\t}\n"]);
+  var data = _taggedTemplateLiteral(["\n\t--color: var(--first-color);\n\t--color-alt: var(--accent-color);\n\t--padding: 2rem;\n\tbackground: var(--color);\n\tcolor: #fff;\n\n\t", "\n\t/* Content space */\n\tpadding-top    : var(--padding);\n  padding-bottom : calc(var(--padding) * 1.25);\n\t@media (min-width: ", ") {\n\t\t--padding: 4rem;\n\t}\n\n\t& .main-banner__img {\n  \topacity : .1;\n\t}\n\t& .main-banner__data {\n  \tposition : relative;\n\t}\n\t/* Images */\n\t", "\n"]);
 
   _templateObject$e = function _templateObject() {
     return data;
@@ -2486,12 +2496,16 @@ function _templateObject$e() {
 }
 var Banner = styled__default.div(_templateObject$e(), function (props) {
   return props.diagonal && styled.css(_templateObject2$1());
-}, LARGE_BREAKPOINT);
+}, LARGE_BREAKPOINT, function (props) {
+  return props.imageContainer && styled.css(_templateObject3$1());
+});
 Banner.propTypes = {
-  diagonal: propTypes.bool
+  diagonal: propTypes.bool,
+  imageContainer: propTypes.bool
 };
 Banner.defaultProps = {
-  diagonal: false
+  diagonal: false,
+  imageContainer: false
 };
 
 var withDynamicTag = function withDynamicTag(Component) {
@@ -2535,6 +2549,16 @@ var gridGap = function gridGap(gap) {
   return styled.css(_templateObject$f(), styles);
 };
 
+function _templateObject7() {
+  var data = _taggedTemplateLiteral(["", ""]);
+
+  _templateObject7 = function _templateObject7() {
+    return data;
+  };
+
+  return data;
+}
+
 function _templateObject6() {
   var data = _taggedTemplateLiteral(["", ""]);
 
@@ -2565,10 +2589,10 @@ function _templateObject4$1() {
   return data;
 }
 
-function _templateObject3$1() {
-  var data = _taggedTemplateLiteral(["", ""]);
+function _templateObject3$2() {
+  var data = _taggedTemplateLiteral(["\n\t\tgrid-template-columns: repeat(", ", ", ");\n\t"]);
 
-  _templateObject3$1 = function _templateObject3() {
+  _templateObject3$2 = function _templateObject3() {
     return data;
   };
 
@@ -2576,7 +2600,7 @@ function _templateObject3$1() {
 }
 
 function _templateObject2$2() {
-  var data = _taggedTemplateLiteral(["\n\t\tgrid-template-columns: repeat(", ", 1fr);\n\t"]);
+  var data = _taggedTemplateLiteral(["", ""]);
 
   _templateObject2$2 = function _templateObject2() {
     return data;
@@ -2602,7 +2626,9 @@ var EXTRA_LARGE_BREAKPOINT_STRING = 'lg'; // Grid
 
 var GridFullContainer = styled.css(_templateObject$g());
 var getGridColumnWidth = function getGridColumnWidth(columns) {
-  var columnWidth = styled.css(_templateObject2$2(), columns);
+  var columnWidthCalc = "calc((100% - var(--gap) * ".concat(columns - 1, ") / ").concat(columns, ")");
+  var columnsWidthCalcStyles = styled.css(_templateObject2$2(), columnWidthCalc);
+  var columnWidth = styled.css(_templateObject3$2(), columns, columnsWidthCalcStyles);
   return columnWidth;
 };
 var setColumnSpace = function setColumnSpace() {
@@ -2613,7 +2639,7 @@ var setColumnSpace = function setColumnSpace() {
     spanColumns += "& > .".concat(breakpoint, "-cols-").concat(i, " {\n\t\t\tgrid-column-end : span ").concat(i, ";\n\t\t}\n\t\t");
   }
 
-  return styled.css(_templateObject3$1(), spanColumns);
+  return styled.css(_templateObject4$1(), spanColumns);
 };
 var setInitialItemColumn = function setInitialItemColumn() {
   var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
@@ -2623,7 +2649,7 @@ var setInitialItemColumn = function setInitialItemColumn() {
     columnsPositionsStyles += "& > .".concat(breakpoint, "-x-").concat(i, " {\n\t\t\tgrid-column-start : ").concat(i, ";\n\t\t}\n\t\t");
   }
 
-  return styled.css(_templateObject4$1(), columnsPositionsStyles);
+  return styled.css(_templateObject5$1(), columnsPositionsStyles);
 };
 var setAmountRowsAnItemFill = function setAmountRowsAnItemFill() {
   var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
@@ -2633,7 +2659,7 @@ var setAmountRowsAnItemFill = function setAmountRowsAnItemFill() {
     rowsStyles += "& > .".concat(breakpoint, "-rows-").concat(i, " {\n\t\t\tgrid-row-end : span ").concat(i, ";\n\t\t}\n\t\t");
   }
 
-  return styled.css(_templateObject5$1(), rowsStyles);
+  return styled.css(_templateObject6(), rowsStyles);
 };
 var setInitialRowOfAnItem = function setInitialRowOfAnItem() {
   var breakpoint = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : SMALL_BREAKPOINT_STRING;
@@ -2643,7 +2669,7 @@ var setInitialRowOfAnItem = function setInitialRowOfAnItem() {
     itemInitialRowStyles += "& > .".concat(breakpoint, "-y-").concat(i, " {\n\t\t\tgrid-row-start : ").concat(i, ";\n\t\t}\n\t\t");
   }
 
-  return styled.css(_templateObject6(), itemInitialRowStyles);
+  return styled.css(_templateObject7(), itemInitialRowStyles);
 };
 
 function _templateObject6$1() {
@@ -2676,10 +2702,10 @@ function _templateObject4$2() {
   return data;
 }
 
-function _templateObject3$2() {
+function _templateObject3$3() {
   var data = _taggedTemplateLiteral(["\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t"]);
 
-  _templateObject3$2 = function _templateObject3() {
+  _templateObject3$3 = function _templateObject3() {
     return data;
   };
 
@@ -2697,7 +2723,7 @@ function _templateObject2$3() {
 }
 
 function _templateObject$h() {
-  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\tgrid-column-gap: var(--gap);\n\n\t", ";\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\t/* Cols */\n"]);
+  var data = _taggedTemplateLiteral(["\n\tdisplay: grid;\n\tgrid-template-columns: 100%;\n\t", ";\n\tgrid-column-gap: var(--gap);\n\t/* Avoid that in mobile devices items be among the sides */\n\twidth: calc(100% - 2rem);\n  margin-left: 1rem;\n  margin-right: 1rem;\n\tmax-width: var(--max-width);\n\n\t@media (min-width: ", ") {\n\t\twidth: 100%;\n\t\tmargin-left: auto;\n\t\tmargin-right: auto;\n\t}\n\n\t", "\n\n\t& & {\n\t\t", "\n\t}\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n\n\t", "\n"]);
 
   _templateObject$h = function _templateObject() {
     return data;
@@ -2712,7 +2738,7 @@ var Grid = styled__default.div(_templateObject$h(), function (props) {
 }, GridFullContainer, function (props) {
   return props.full && GridFullContainer;
 }, function (props) {
-  return props.center && styled.css(_templateObject3$2());
+  return props.center && styled.css(_templateObject3$3());
 }, function (props) {
   return props.right && styled.css(_templateObject4$2());
 }, function (props) {
@@ -2749,16 +2775,83 @@ Grid.defaultProps = {
   full: false,
   center: false,
   right: false,
-  s: 1,
-  m: null,
-  l: null,
-  lg: null
+  s: 1
 };
 var DynamicGrid = withDynamicTag(Grid);
 
+function _templateObject$i() {
+  var data = _taggedTemplateLiteral(["\n\tdisplay      : flex;\n  flex-wrap    : wrap;\n  max-width    : var(--max-width);\n  width        : 100%;\n  margin-left  : auto;\n  margin-right : auto;\n"]);
+
+  _templateObject$i = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var EDcontainer = styled__default.div(_templateObject$i());
+
+function _templateObject3$4() {
+  var data = _taggedTemplateLiteral(["\n\t\tmargin-bottom : 2rem;\n\t\t&:last-child {\n\t\t\tmargin-bottom : 0;\n\t\t}\n\t"]);
+
+  _templateObject3$4 = function _templateObject3() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject2$4() {
+  var data = _taggedTemplateLiteral(["\n\t\t@media (min-width: ", ") {\n\t\t\twidth : ", "%;\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\twidth: ", "%;\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\twidth: ", "%;\n\t\t}\n\n\t\t@media (min-width: ", ") {\n\t\t\twidth: ", "%;\n\t\t}\n\t"]);
+
+  _templateObject2$4 = function _templateObject2() {
+    return data;
+  };
+
+  return data;
+}
+
+function _templateObject$j() {
+  var data = _taggedTemplateLiteral(["\n\tmargin        : 0;\n  padding-left  : 1rem;\n  padding-right : 1rem;\n\tbox-sizing: border-box;\n\t/* Percentages */\n\t", "\n\n\t", "\n"]);
+
+  _templateObject$j = function _templateObject() {
+    return data;
+  };
+
+  return data;
+}
+var EDitem = styled__default.div(_templateObject$j(), function (_ref) {
+  var s = _ref.s,
+      _ref$m = _ref.m,
+      m = _ref$m === void 0 ? s : _ref$m,
+      _ref$l = _ref.l,
+      l = _ref$l === void 0 ? m : _ref$l,
+      _ref$lg = _ref.lg,
+      lg = _ref$lg === void 0 ? l : _ref$lg;
+  return styled.css(_templateObject2$4(), SMALL_BREAKPOINT, s, MEDIUM_BREAKPOINT, m, LARGE_BREAKPOINT, l, EXTRA_LARGE_BREAKPOINT, lg);
+}, function (props) {
+  return props.formItem && styled.css(_templateObject3$4());
+});
+
+var percentages = _toConsumableArray(new Array(20)).map(function (_, index) {
+  return (index + 1) * 5;
+});
+
+EDitem.PropTypes = {
+  formItem: propTypes.bool,
+  s: propTypes.oneOf(percentages),
+  m: propTypes.oneOf(percentages),
+  l: propTypes.oneOf(percentages),
+  lg: propTypes.oneOf(percentages)
+};
+EDitem.defaultProps = {
+  formItem: false,
+  s: 100
+};
+
 exports.Banner = Banner;
 exports.Button = Button;
-exports.DynamicGrid = DynamicGrid;
+exports.EDcontainer = EDcontainer;
+exports.EDitem = EDitem;
 exports.GlobalStyles = GlobalStyles;
 exports.Grid = Grid;
 exports.Input = Input;

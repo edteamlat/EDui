@@ -6,7 +6,7 @@ import { Paper } from './components/Paper';
 
 storiesOf('Grid', module)
 	.add('Grid Example', () => (
-		<Grid s={4} gap={1} rowGap>
+		<Grid s={1} m={4} gap={1} rowGap>
 			<Paper>1</Paper>
 			<Paper>2</Paper>
 			<Paper>3</Paper>

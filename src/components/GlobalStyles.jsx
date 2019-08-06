@@ -13,8 +13,11 @@ import {
 } from '../utils/constants';
 
 export const GlobalStyles = createGlobalStyle`
-	/* Colors */
+	* {
+		margin: 0;
+	}
 	@import url('https://fonts.googleapis.com/css?family=Lato|Open+Sans&display=swap');
+	/* Colors */
 	:root {
 		--first-color: ${FIRST_COLOR};
 		--second-color: ${SECONDARY_COLOR};

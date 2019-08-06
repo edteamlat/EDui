@@ -4,13 +4,14 @@ export const InputForm = css`
 	display       : block;
 	border        : 1px solid var(--border-color);
 	background    : #fff;
-	max-width         : 100%;
+	width         : 100%;
 	line-height   : 1.6;
 	font-family   : var(--body-font);/* Fuerza a tomar la fuente por defecto */
 	font-size     : var(--small-font-size);
 	color         : var(--text-color);
 	border-radius : .25rem;
 	padding       : .5rem 1rem;
+	box-sizing: border-box;
 
 	&::placeholder {
     color : var(--text-color-75);

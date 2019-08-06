@@ -24,9 +24,8 @@ import {
 export const Grid = styled.div`
 	display: grid;
 	grid-template-columns: 100%;
-	grid-column-gap: var(--gap);
-
 	${props => gridGap(props.gap)};
+	grid-column-gap: var(--gap);
 	/* Avoid that in mobile devices items be among the sides */
 	width: calc(100% - 2rem);
   margin-left: 1rem;
@@ -103,7 +102,6 @@ export const Grid = styled.div`
 		}
 	`
 	}
-	/* Cols */
 `;
 
 const gridValues = [...new Array(12)].map((_, i) => i + 1)
@@ -127,9 +125,6 @@ Grid.defaultProps = {
 	center: false,
 	right: false,
 	s: 1,
-	m: null,
-	l: null,
-	lg: null
 };
 
 export const DynamicGrid = withDynamicTag(Grid);

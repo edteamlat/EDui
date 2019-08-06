@@ -25,12 +25,24 @@ export const Banner = styled.div`
 	& .main-banner__data {
   	position : relative;
 	}
+	/* Images */
+	${props => props.imageContainer && css`
+		& img {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		}
+	`}
 `;
 
 Banner.propTypes = {
-	diagonal: PropTypes.bool
+	diagonal: PropTypes.bool,
+	imageContainer: PropTypes.bool
 };
 
 Banner.defaultProps = {
-	diagonal: false
+	diagonal: false,
+	imageContainer: false
 };

@@ -14,8 +14,11 @@ export const GridFullContainer = css`
 `;
 
 export const getGridColumnWidth = (columns) => {
+	const columnWidthCalc = `calc((100% - var(--gap) * ${columns - 1}) / ${columns})`;
+	const columnsWidthCalcStyles = css`${columnWidthCalc}`;
+
 	const columnWidth = css`
-		grid-template-columns: repeat(${columns}, 1fr);
+		grid-template-columns: repeat(${columns}, ${columnsWidthCalcStyles});
 	`;
 	return columnWidth;
 };
