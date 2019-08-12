@@ -16,6 +16,7 @@
 		"import/no-extraneous-dependencies": "off",
 		"indent": [2, "tab"],
 		"react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-		"no-tabs": ["error", { "allowIndentationTabs": true }]
+		"no-tabs": ["error", { "allowIndentationTabs": true }],
+		"react/jsx-indent-props": [true, 0]
   }
 }
