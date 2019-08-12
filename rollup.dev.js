@@ -15,7 +15,17 @@ module.exports = {
 			extensions: ['.js', '.json', '.jsx']
 		}),
 		babel({
-			exclude: 'node_modules/**'
+			babelrc: false,
+			exclude: 'node_modules/**',
+			presets: [
+				"@babel/react",
+				"@babel/preset-env",
+			],
+			plugins: [
+				'@babel/plugin-transform-react-jsx',
+				'@babel/plugin-proposal-class-properties',
+				'@babel/plugin-proposal-object-rest-spread'
+			]
 		}),
 		commonjs({
 			include: 'node_modules/**',
