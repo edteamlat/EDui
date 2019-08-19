@@ -2,6 +2,7 @@ const resolve = require('rollup-plugin-node-resolve');
 const babel = require('rollup-plugin-babel');
 const commonjs = require('rollup-plugin-commonjs');
 const svg = require('rollup-plugin-svg');
+const babelSetup = require('./babelSetup');
 
 module.exports = {
 	input: 'src/index.js',
@@ -14,19 +15,7 @@ module.exports = {
 		resolve({
 			extensions: ['.js', '.json', '.jsx']
 		}),
-		babel({
-			babelrc: false,
-			exclude: 'node_modules/**',
-			presets: [
-				"@babel/react",
-				"@babel/preset-env",
-			],
-			plugins: [
-				'@babel/plugin-transform-react-jsx',
-				'@babel/plugin-proposal-class-properties',
-				'@babel/plugin-proposal-object-rest-spread'
-			]
-		}),
+		babel(babelSetup),
 		commonjs({
 			include: 'node_modules/**',
 			namedExports: {
