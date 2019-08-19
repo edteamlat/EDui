@@ -12,5 +12,6 @@ export const EXTRA_LARGE_BREAKPOINT = '1440px';
 // Grid
 export const L_UNIT = '.5rem';
 export const MAX_WIDTH = '1200px';
-
-
+// Library colors
+export const ALLOWED_COLORS = ['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color'];
+export const DEFUALT_COLOR = 'first-color';

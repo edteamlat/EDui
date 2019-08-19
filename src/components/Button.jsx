@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { ALLOWED_COLORS, DEFUALT_COLOR } from '../utils/constants';
 
 const Button = styled.button`
   display          : inline-block;
@@ -58,14 +59,14 @@ const Button = styled.button`
 `;
 
 Button.propTypes = {
-	color: PropTypes.oneOf(['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color']),
+	color: PropTypes.oneOf(ALLOWED_COLORS),
 	tiny: PropTypes.bool,
 	micro: PropTypes.bool,
 	full: PropTypes.bool
 };
 
 Button.defaultProps = {
-	color: 'first-color',
+	color: DEFUALT_COLOR,
 	tiny: false,
 	micro: false,
 	full: false

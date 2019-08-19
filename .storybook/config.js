@@ -12,6 +12,7 @@ function loadStories() {
 	require('../stories/Table.js');
 	require('../stories/Banner.js');
 	require('../stories/Grid.js');
+	require('../stories/Tabs.js');
 }
 
 
