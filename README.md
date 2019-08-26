@@ -38,9 +38,10 @@ Actualmente se tienen construidos los siguientes componentes
 - TextArea
 - Select
 - Label
-
-Y en proceso están los componentes de:
 - Tabs
+
+En Progreso
+- Card
 
 ## [Colores](https://ux.ed.team/colores.html)
 Algunos componentes reciben como propiedad el color del que será su fondo, esos posibles colores son:
@@ -334,3 +335,30 @@ const Form = () => (
 );
 ```
 `Nota:` El mismo ejemplo puede ser desarrollado usando el componente `EDgrid`
+
+### Tabs
+#### Props
+| Nombre        | Tipo           | Descripción  |
+| ------------- |:-------------:| -----:|
+| reference      			| Number 				| Numero que va a identificar al tab y a su respectivo panel|
+
+**Ejemplo:**
+```javascript
+import React from 'React';
+import { TabsWrapper } from '@edteam/edui';
+
+const Tabs = () => (
+	<TabsWrapper>
+		<TabsWrapper.Tabs>
+			<TabsWrapper.Tab reference={0}>Tab 1</TabsWrapper.Tab>
+			<TabsWrapper.Tab reference={1}>Tab 2</TabsWrapper.Tab>
+			<TabsWrapper.Tab reference={2}>Tab 3</TabsWrapper.Tab>
+		</TabsWrapper.Tabs>
+		<TabsWrapper.Panels>
+			<TabsWrapper.Panel reference={0}>Content 1</TabsWrapper.Panel>
+			<TabsWrapper.Panel reference={1}>Content 2</TabsWrapper.Panel>
+			<TabsWrapper.Panel reference={2}>Content 3</TabsWrapper.Panel>
+		</TabsWrapper.Panels>
+	</TabsWrapper>
+)
+```
