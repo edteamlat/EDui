@@ -1,6 +1,6 @@
 {
 	"name": "@edteam/edui",
-	"version": "1.1.2-beta",
+	"version": "1.1.3-beta",
 	"description": "Libreria de componentes React siguiendo la guia de estilos de EDteam",
 	"main": "dist/index.js",
 	"license": "MIT",
