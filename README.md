@@ -39,6 +39,7 @@ Actualmente se tienen construidos los siguientes componentes
 - Select
 - Label
 - Tabs
+- Carousel
 
 En Progreso
 - Card
@@ -362,3 +363,37 @@ const Tabs = () => (
 	</TabsWrapper>
 )
 ```
+
+### Carousel
+#### Props 
+
+| Nombre        | Tipo           | Descripción  |
+| ------------- |:-------------:| -----:|
+| gap      			| Number 				| Valor del gap que tendrá el grid en unidad `rem` |
+| s | Number      | Indica el numero de items que se muestran en el carousel en pantallas pequeñas |
+| m | Number      | Indica el numero de items que se muestran en el carousel en pantallas medianas |
+| lg | Number      | Indica el numero de items que se muestran en el carousel en pantallas grandes |
+| buttonsTop | String | Altura que tendrán los botones del carousel. Por defecto se muestran en `50%`. Reciben cualquier unidad de medida|
+
+**Ejemplo:**
+
+```javascript
+import { Carousel } from '@edteam/edui';
+
+const MyComponent = () => (
+	<Carousel lg={4} m={3} s={2} gap={1} buttonsTop="2rem">
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+		<div>4</div>
+		<div>5</div>
+		<div>6</div>
+		<div>7</div>
+		<div>8</div>
+		<div>9</div>
+		<div>10</div>
+	</Carousel>
+);
+```
+
+`Nota`: los botones del carousel se encuentran dentro del mismo componente, por lo que se muestran en automático al usarlo.

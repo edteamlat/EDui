@@ -13,3 +13,4 @@ export { TabsWrapper } from './components/Tabs';
 export { EDgrid } from './components/Grid/EDgrid';
 export { EDcontainer } from './components/Flexbox/EDcontainer';
 export { EDitem } from './components/Flexbox/EDitem';
+export { Carousel } from './components/Carousel/Carousel';

@@ -13,6 +13,7 @@ function loadStories() {
 	require('../stories/Banner.js');
 	require('../stories/Grid.js');
 	require('../stories/Tabs.js');
+	require('../stories/Carousel.js');
 }
 
 
