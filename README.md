@@ -3,26 +3,64 @@
 Libreria de componentes para React siguiendo la [Guia de estilos de EDteam](https://ux.ed.team/)
 
 ## Instalación
-Para poder usar EDui primero se deben de tener instaladas las librerías [React](https://github.com/facebook/react) y [Styled Components](https://github.com/styled-components/styled-components), una vez instaladas estas librerías se puede instalar EDui
+Para poder usar EDui primero se deben de tener instaladas las librerías [node-sass](https://www.npmjs.com/package/node-sass?activeTab=versions), [ed-grid](https://www.npmjs.com/package/ed-grid) y [edteam-style-guides](https://www.npmjs.com/package/edteam-style-guides), una vez instaladas estas librerías se puede instalar EDui
 ```bash
-npm install @edteam/edui --save
+npm install node-sass ed-grid edteam-style-guides @edteam/edui --save
 or
-yarn add @edteam/edui
+yarn add node-sass ed-grid edteam-style-guides @edteam/edui
 ```
+Se instalan ed-grid y edteam-style-guides para que la libreria se independiente de la versión actual de la guia de estilos y de EDgrid, es decir que la libreria en su bundle no incluye ninguna hoja css.
 
-## Uso
-Para que la librería funcione de manera normal en el componente principal del proyecto se debe incluir el componente `GlobalStyles`
+## Uso en proyectos React
+Primero se debe de crear un archivo sass donde se importen la guia de estilos y EDgrid
+```css
+  // styles.scss
+  //----- Importación de EDgrid y guía de estilos -----//
+  @import '~ed-grid/ed-grid';
+  @import '~edteam-style-guides/edteam-style-guides';
+```
+Y ahora se importa esta hoja de estilos en el archivo principal de la aplicación.
 ```javascript
-import { GlobalStyles } from '@edteam/edui';
+import React from "react"
+import "./styles.scss" // La ruta donde esta la hoja de estilos
 
 function App() {
 	return (
 		<>
-			<GlobalStyles />
 			{/**Contenido de la aplicación**/}
 		</>
 	)
 }
+```
+
+## Uso en proyectos Nextjs
+Se debe de instalar [@zeit/next-sass](https://www.npmjs.com/package/@zeit/next-sass) para configurar sass en proyectos de Nextjs y configurar este plugin en el `next.config.js`
+```javascript
+  // next.config.js
+  const withSass = require('@zeit/next-sass')
+  module.exports = withSass()
+```
+En el archivo `styles.scss` se pone el mismo contenido que en el ejemplo pasado
+```css
+  // styles.scss
+  //----- Importación de EDgrid y guía de estilos -----//
+  @import '~ed-grid/ed-grid';
+  @import '~edteam-style-guides/edteam-style-guides';
+```
+Y se puede importar esta hoja de estilos normalmente en nuestras paginas de Nextjs
+```javascript
+  import React, {Component} from 'react'
+  import "../styles/styles.scss"
+
+  export default class extends Component {
+    render() {
+      return(
+        <div className="ed-container">
+          <h1>My fisrt page with Next.js and EDgrid</h1>
+        </div>
+      )
+    }
+  }
 ```
 ## Componentes
 Actualmente se tienen construidos los siguientes componentes
@@ -37,43 +75,54 @@ Actualmente se tienen construidos los siguientes componentes
 - Input
 - TextArea
 - Select
-- Label
-- Tabs
-
+- FormItem
 En Progreso
 - Card
+- Tabs
+- Carousel
+
+## Generalidades
+Todos los componentes reciben todas las propiedades válidas que se le puedan dar a los elementos HTML que renderizan, por ejemplo al componente `Button` se le puede pasar de manera normal propiedades como `id`, `onClick`, entre otras.
+Además que a todos se les puede pasar la propiedad `ref` para dar valor a alguna referencia de React.
+**Ejemplo**
+```javascript
+const SampleComponent = () => (
+  <>
+    <Button onClick={/**Funcion*/} id="my-button" ref={myRef} className="content"></Button>
+    <Form onSubmit={/*Funcion*/} ref={formRef}></Form>
+    <Modal id="my-modal" ></Modal>
+  </>
+)
+```
+Y de esta manera con todos los componentes.
 
 ## [Colores](https://ux.ed.team/colores.html)
 Algunos componentes reciben como propiedad el color del que será su fondo, esos posibles colores son:
-- first-color
-- second-color
-- third-color
-- accent-color
-- dark-color
+- first
+- second
+- third
+- accent
+- dark
 
-`Nota`: En caso de recibir un valor incorrecto o no recibir ningún valor se tomara como valor por defecto `first-color`. Para más información visitar la [Guía de estilos](https://ux.ed.team/colores.html)
+`Nota`: En caso de recibir un valor incorrecto o no recibir ningún valor se tomara como valor por defecto `first`. Para más información visitar la [Guía de estilos](https://ux.ed.team/colores.html)
 
 ### [EDgrid](https://ed-grid.com/)
 #### Props
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
 | gap      			| Number 				| Valor del gap que tendrá el grid, acepta valores entre 0 y 4
-| rowGap      | bool      |   Indica si las filas del grid van a tener un gap entre ellas |
-| full | bool      | Indica si el contenedor del grid va a ocupar todo el ancho disponible     |
-| center | bool      | Indica si el contenedor del grid va a estar centrado|
-| right | bool      | Indica si el contenedor del grid va a estar alineado a la derecha     |
-| left | bool      | Indica si el contenedor del grid va a estar alineado a la izquierda     |
-| s | Number      | Indica el numero de columnas que va tener el grid en pantallas pequeñas |
-| m | Number      | Indica el numero de columnas que va tener el grid en pantallas medianas |
-| l | Number      | Indica el numero de columnas que va tener el grid en pantallas grandes |
-| lg | Number      | Indica el numero de columnas que va tener el grid en pantallas extra grandes|
+| rowsGap      | bool      |   Indica si las filas del grid van a tener un gap entre ellas |
+| as      | string      |   Indica que etiqueta HTML va a renderizar el EDgrid, por defecto es un `div` |
+| small | Number      | Indica el numero de columnas que va tener el grid en pantallas pequeñas |
+| medium | Number      | Indica el numero de columnas que va tener el grid en pantallas medianas |
+| large | Number      | Indica el numero de columnas que va tener el grid en pantallas grandes |
 
 **Ejemplo**
 ```javascript
 	import { EDgrid } from '@edteam/edui'
 	//...
 	const MyComponent = () => (
-		<EDgrid s={1} m={4} gap={2} rowGap>
+		<EDgrid small={1} medium={4} gap={2} rowsGap as="article">
 			<div>1</div>
 			<div>2</div>
 			<div>3</div>
@@ -99,36 +148,39 @@ Algunos componentes reciben como propiedad el color del que será su fondo, esos
 #### Props
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
-| formItem      			| bool 				| Indica si el elemento será un item del formulario, esto agrega separación vertical entre los elementos
-| s      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas pequeñas, recibe los múltiplos de 5 del 0 al 100 |
-| m      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas mediana, recibe los múltiplos de 5 del 0 al 100 |
-| l      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas grandes, recibe los múltiplos de 5 del 0 al 100 |
-| lg      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas extra grandes, recibe los multiplos de 5 del 0 al 100 |
+| small      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas pequeñas, recibe los múltiplos de 5 del 0 al 100 |
+| medium      | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas mediana, recibe los múltiplos de 5 del 0 al 100 |
+| large     | Number      | Indica el porcentaje del contenedor que ocupara el elemento en pantallas grandes, recibe los múltiplos de 5 del 0 al 100 |
+
+`Nota: ` Las propiedades `small`, `medium` y `large` tambien soportan definiciones por fracciones recibiendo el objeto de la forma { numerator: number, denominator: number } y además por defecto `small` tiene valor de `100` y tanto `medium` como `large` reciben el valor del último breakpoint declarado, por defecto `medium` tendrá el valor de `small` y `large` el valor que tenga `medium`.
+
 **Ejemplo:**
 ```javascript
 	import { EDcontainer, EDitem } from '@edteam/edui'
 	//...
 	const MyComponent = () => (
 		<EDcontainer>
-			<EDitem s={100} m={50}>
+			<EDitem small={100} medium={50}>
 				<p>
 					En un lugar de la Mancha, de cuyo nombre no quiero acordarme,
-no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
-adarga antigua, rocín flaco y galgo corredor.
+          no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
+          adarga antigua, rocín flaco y galgo corredor.
 				</p>
 			</EDitem>
-			<EDitem s={100} m={50}>
+			<EDitem small={100} medium={25}>
 				<p>
 					En un lugar de la Mancha, de cuyo nombre no quiero acordarme,
-no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
-adarga antigua, rocín flaco y galgo corredor.
+          no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
+          adarga antigua, rocín flaco y galgo corredor.
 				</p>
 			</EDitem>
-			<EDitem s={100} m={50}>
+      <EDitem small={100}
+        medium={{ numerator: 1, denominator: 4 }}
+      >
 				<p>
 					En un lugar de la Mancha, de cuyo nombre no quiero acordarme,
-no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
-adarga antigua, rocín flaco y galgo corredor.
+          no ha mucho tiempo que vivía un hidalgo de los de lanza en astillero,
+          adarga antigua, rocín flaco y galgo corredor.
 				</p>
 			</EDitem>
 		</EDcontainer>
@@ -139,26 +191,24 @@ adarga antigua, rocín flaco y galgo corredor.
 #### Props
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
+| color      			| string 				| Indica  el color del banner, por defecto es `first` |
 | diagonal      			| bool 				| Indica  si se le agregara diagonal al final del contenedor |
-| imageContainer      			| bool 				| Indica  si se le agregara foto de fondo al contenedor, esta foto será agregada en el marcado del componente |
+| image      			| string 				| Url de imagen de fondo del banner |
+| imageAlt      			| string 				| Propiedad alt de la imagen de fondo |
 
 **Ejemplo:**
 ```javascript
-import { Banner, EDgrid } from '@edteam/edui';
+import { Banner } from '@edteam/edui';
 
 const MyComponent = () => (
-	<Banner diagonal imageContainer>
-		<EDgrid m={6}>
-			<div className="s-cols-4 s-x-2">
-				<img src="https://images.pexels.com/photos/265614/pexels-photo-265614.jpeg?w=1260&h=750&auto=compress&cs=tinysrgb"
-					className="main-banner__img"
-					alt="banner picture" />
-				<div class="main-banner__data">
-					<h2>Contenido</h2>
-				</div>
-			</div>
-		</EDgrid>
-		</Banner>
+	<Banner
+    color="dark"
+    image="https://images.pexels.com/photos/1981043/pexels-photo-1981043.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+    imageAlt="Test picture"
+    diagonal
+  >
+    <h1>Banner</h1>
+  </Banner>
 );
 ```
 
@@ -167,32 +217,17 @@ const MyComponent = () => (
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
 | color      			| string 				| Indica color del topbar, recibe valores siguiendo los [colores de EDteam](https://ux.ed.team/colores.html)|
-| visible      			| bool 				| Indica  si el topbar estará visible o no |
 
 **Ejemplo:**
 ```javascript
-import React,{ useState } from 'react';
-import { Topbar, Button } from '@edteam/edui';
+import React from 'react';
+import { Topbar } from '@edteam/edui';
 
-function MyComponent() {
-	const [visible, setVisible] = useState(true)
-
-	function toggleTopbar() {
-		setVisible(!visible)
-	}
-
-	return (
-		<div>
-			<Topbar visible={visible}>
-				Contenido
-			</Topbar>
-			{/**Definicion de este componente más abajo en el README **/}
-			<Button onClick={toggleTopbar}>
-				{visible ? 'Ocultar' : 'Mostrar'}
-			</Button>
-		</div>
-	)
-}
+const MyComponent = () => (
+  <Topbar color="dark">
+		Contenido
+	</Topbar>
+)
 ```
 ### [Button](https://ux.ed.team/botones.html)
 #### Props
@@ -209,56 +244,53 @@ function MyComponent() {
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
 | type      			| string 				| Indica color principal de la tabla|
+| responsive      			| bool 				| Indica si la tabla va a ser responsive, por defecto el valor es `true`|
 
 **Colores:**
 - secondary
 - tertiary
 - accent
 - dark
-- default (`first-color`)
+- default (`first`)
 **Ejemplo:**
 ```javascript
-import { Table, TableContainer } from '@edteam/edui';
+import { Table } from '@edteam/edui';
 
 const MyComponent = () => (
-	<TableContainer>
-		<Table type='tertiary'>
-			<tr>
-				<th>ID</th>
-				<th>Name</th>
-				<th>Email</th>
-				<th>Acciones</th>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>Alejandro</td>
-				<td>alejogs4@gmail.com</td>
-				<td>Aqui las acciones</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>Alejandro</td>
-				<td>alejogs4@gmail.com</td>
-				<td>Aqui las acciones</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>Alejandro</td>
-				<td>alejogs4@gmail.com</td>
-				<td>Aqui las acciones</td>
-			</tr>
-			<tr>
-				<td>1</td>
-				<td>Alejandro</td>
-				<td>alejogs4@gmail.com</td>
-				<td>Aqui las acciones</td>
-			</tr>
-		</Table>
-	</TableContainer>
+	<Table type='tertiary'>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Email</th>
+			<th>Acciones</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Alejandro</td>
+			<td>alejogs4@gmail.com</td>
+			<td>Aqui las acciones</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Alejandro</td>
+			<td>alejogs4@gmail.com</td>
+			<td>Aqui las acciones</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Alejandro</td>
+			<td>alejogs4@gmail.com</td>
+			<td>Aqui las acciones</td>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>Alejandro</td>
+			<td>alejogs4@gmail.com</td>
+			<td>Aqui las acciones</td>
+		</tr>
+	</Table>
 );
 ```
-
-`Nota`: TableContainer es indispensable para que la tabla sea responsive.
 
 ### [Modal](https://ux.ed.team/modal.html)
 #### Props
@@ -300,65 +332,45 @@ Tanto Select, los inputs, el textarea funcionan de manera normal como cualquier 
 **Ejemplo:**
 ```javascript
 
-const Form = () => (
-		<form>
-			<EDcontainer>
-				<EDitem s={100} m={50} formItem>
-					<Input placeholder="Name" />
-				</EDitem>
-				<EDitem s={100} m={50} formItem>
-					<Input placeholder="Email" type="email" />
-				</EDitem>
-				<EDitem s={100} m={50} formItem>
-					<Input placeholder="Password" type="password" />
-				</EDitem>
-				<EDitem s={100} m={50} formItem>
-					<Input placeholder="Repeat Password" type="password" />
-				</EDitem>
-			<EDitem formItem>
-					<Select>
-						<option>Colombia</option>
-						<option>Bolivia</option>
-						<option>Argentina</option>
-						<option>Peru</option>
-						<option>Mexico</option>
-					</Select>
-				</EDitem>
-				<EDitem formItem>
-					<TextArea placeholder="Biography" />
-				</EDitem>
-				<EDitem formItem>
-					<Button type="submit" full>Register</Button>
-				</EDitem>
-			</EDcontainer>
-		</form>
+const FormSample = () => (
+  <Form>
+    <Form.FormItem>
+      <Form.Input type="text" placeholder="Input your name" id="name" />
+    </Form.FormItem>
+    <Form.FormItem as="article">
+      <Form.Input type="email" placeholder="Input your email" />
+    </Form.FormItem>
+    <Form.FormItem>
+      <Form.Input type="password" placeholder="Input your password" />
+    </Form.FormItem>
+    <Button full type="submit">
+      Submit
+    </Button>
+  </Form>
 );
 ```
-`Nota:` El mismo ejemplo puede ser desarrollado usando el componente `EDgrid`
+`Nota:` El mismo ejemplo puede ser desarrollado usando el componente `EDgrid` y al igual que el EDgrid `FormItem`, puede recibir la props `as` para indicar la etiqueta HTML que va a representar, la cual sera por defecto `div`.
 
-### Tabs
-#### Props
-| Nombre        | Tipo           | Descripción  |
-| ------------- |:-------------:| -----:|
-| reference      			| Number 				| Numero que va a identificar al tab y a su respectivo panel|
-
-**Ejemplo:**
 ```javascript
-import React from 'React';
-import { TabsWrapper } from '@edteam/edui';
-
-const Tabs = () => (
-	<TabsWrapper>
-		<TabsWrapper.Tabs>
-			<TabsWrapper.Tab reference={0}>Tab 1</TabsWrapper.Tab>
-			<TabsWrapper.Tab reference={1}>Tab 2</TabsWrapper.Tab>
-			<TabsWrapper.Tab reference={2}>Tab 3</TabsWrapper.Tab>
-		</TabsWrapper.Tabs>
-		<TabsWrapper.Panels>
-			<TabsWrapper.Panel reference={0}>Content 1</TabsWrapper.Panel>
-			<TabsWrapper.Panel reference={1}>Content 2</TabsWrapper.Panel>
-			<TabsWrapper.Panel reference={2}>Content 3</TabsWrapper.Panel>
-		</TabsWrapper.Panels>
-	</TabsWrapper>
-)
+const FormSample = () => (
+  <Form>
+    <EDgrid small={1} medium={2} gap={2} rowsGap>
+      <Form.Input type="text" placeholder="Input your name" id="name" />
+      <Form.Input type="text" placeholder="Input your lastname" id="lastname" />
+      <Form.Input type="text" placeholder="Input your city" id="city" />
+      <Form.Input type="text" placeholder="Input your country" id="country" />
+      <Form.Select>
+        <option>America</option>
+        <option>Europe</option>
+      </Form.Select>
+      <Form.TextArea
+        placeholder="Input your biography"
+        className="s-cols-1 m-cols-2"
+      />
+      <Button full type="submit" className="s-cols-1 m-cols-2">
+        Submit
+      </Button>
+    </EDgrid>
+  </Form>
+);
 ```

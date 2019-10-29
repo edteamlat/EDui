@@ -1,35 +1,26 @@
-const resolve = require('rollup-plugin-node-resolve');
-const babel = require('rollup-plugin-babel');
-const commonjs = require('rollup-plugin-commonjs');
-const svg = require('rollup-plugin-svg');
-const babelSetup = require('./babelSetup');
+const resolve = require("rollup-plugin-node-resolve");
+const babel = require("rollup-plugin-babel");
+const commonjs = require("rollup-plugin-commonjs");
+
+const pkg = require("./package.json");
+const babelSetup = require("./babel");
 
 module.exports = {
-	input: 'src/index.js',
-	moduleName: 'EDui',
-	output: {
-		file: 'dist/index.js',
-		format: 'cjs'
-	},
-	plugins: [
-		resolve({
-			extensions: ['.js', '.json', '.jsx']
-		}),
-		babel(babelSetup),
-		commonjs({
-			include: 'node_modules/**',
-			namedExports: {
-				'node_modules/react-is/index.js': ['isElement']
-			}
-		}),
-		svg()
-	],
-	external: [
-		'react',
-		'styled-components'
-	],
-	global: [
-		'react',
-		'styled-components'
-	]
+  input: "src/index.js",
+  output: {
+    file: "dist/index.js",
+    format: "esm",
+    sourcemap: true
+  },
+  plugins: [
+    resolve({
+      extensions: [".js", ".json", ".jsx", ".scss"]
+    }),
+    babel(babelSetup),
+    commonjs()
+  ],
+  external: [
+    ...Object.keys(pkg.dependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {})
+  ]
 };

@@ -1,29 +1,31 @@
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import { COLORS, CHILDREN_PROPTYPES } from "../constants";
 
-export const Topbar = styled.div`
-	background: var(--${props => props.color});
-	color: #fff;
-	padding: .5rem 0;
-	display: ${props => (props.visible ? 'block' : 'none')};
+const Topbar = React.forwardRef((props, ref) => {
+  const { children, color, className, ...restProps } = props;
 
-	.ed-grid {
-    height      : 100%;
-    align-items : center;
-  }
-
-	input {
-		border: none;
-	}
-`;
-
+  return (
+    <div
+      className={classnames("topbar", className, `${color}-color`)}
+      ref={ref}
+      {...restProps}
+    >
+      {children}
+    </div>
+  );
+});
 
 Topbar.propTypes = {
-	color: PropTypes.oneOf(['first-color', 'second-color', 'third-color', 'accent-color', 'dark-color']),
-	visible: PropTypes.bool
+  children: PropTypes.oneOfType(CHILDREN_PROPTYPES).isRequired,
+  color: PropTypes.oneOf(COLORS),
+  className: PropTypes.string
 };
 
 Topbar.defaultProps = {
-	color: 'first-color',
-	visible: true
+  color: "first",
+  className: ""
 };
+
+export { Topbar };
