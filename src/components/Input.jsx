@@ -47,8 +47,8 @@ Input.defaultProps = {
   required: "",
   className: "",
   placeholder: "",
-  value: "",
-  onChange: "",
+  value: null,
+  onChange: Function.prototype,
   defaultValue: ""
 };
 
