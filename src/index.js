@@ -7,3 +7,4 @@ export { EDitem } from "./components/EDitem";
 export { Topbar } from "./components/Topbar";
 export { Banner } from "./components/Banner";
 export { Modal } from "./components/Modal";
+export { Card } from "./components/Card";
