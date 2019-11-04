@@ -4,11 +4,12 @@ import { shallow } from "enzyme";
 const SampleComponent = () => <h1>Sample</h1>;
 
 test("Health function", () => {
-  expect(true).toBe(true);
+	expect(true).toBe(true);
 });
 
 test("SampleComponent", () => {
-  const wrapper = shallow(<SampleComponent />);
-  console.log(wrapper.debug());
-  expect(wrapper.find("h1")).toHaveLength(1);
+	const wrapper = shallow(<SampleComponent />);
+	// eslint-disable-next-line no-console
+	console.log(wrapper.debug());
+	expect(wrapper.find("h1")).toHaveLength(1);
 });

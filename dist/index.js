@@ -547,7 +547,7 @@ Modal.defaultProps = {
 
 var CardContext = createContext();
 
-var CardHeader = React.forwardRef(function (props) {
+var CardHeader = React.forwardRef(function (props, ref) {
   var image = props.image,
       className = props.className,
       imageClasses = props.imageClasses,
@@ -556,14 +556,14 @@ var CardHeader = React.forwardRef(function (props) {
 
   return React.createElement(CardContext.Consumer, null, function (_ref) {
     var horizontal = _ref.horizontal;
-    return React.createElement("div", {
-      className: classnames(className, "img-container s-ratio-16-9", horizontal && "m-cols-2")
-    }, React.createElement("img", _extends({
-      className: classnames(imageClasses, horizontal && "s-radius-tl-1 s-radius-tr-1 m-radius", !horizontal && "s-radius-tl-1 s-radius-tr-1")
-    }, restProps, {
+    return React.createElement("div", _extends({
+      className: classnames(className, "img-container s-ratio-16-9", horizontal && "m-cols-2"),
+      ref: ref
+    }, restProps), React.createElement("img", {
+      className: classnames(imageClasses, horizontal && "s-radius-tl-1 s-radius-tr-1 m-radius", !horizontal && "s-radius-tl-1 s-radius-tr-1"),
       src: image,
       alt: alt
-    })));
+    }));
   });
 });
 CardHeader.propTypes = {
@@ -579,7 +579,7 @@ CardHeader.defaultProps = {
   alt: ""
 };
 
-var CardTitle = React.forwardRef(function (props) {
+var CardTitle = React.forwardRef(function (props, ref) {
   var _props$as = props.as,
       Component = _props$as === void 0 ? "h3" : _props$as,
       className = props.className,
@@ -588,7 +588,9 @@ var CardTitle = React.forwardRef(function (props) {
 
   return React.createElement(Component, _extends({
     className: classnames(className, "t4 s-mb-1")
-  }, restPros), children);
+  }, restPros, {
+    ref: ref
+  }), children);
 });
 CardTitle.propTypes = {
   as: PropTypes.elementType,
@@ -620,13 +622,14 @@ CardContent.defaultProps = {
   className: ""
 };
 
-var CardFooter = React.forwardRef(function (props) {
+var CardFooter = React.forwardRef(function (props, ref) {
   var children = props.children,
       className = props.className,
       restProps = _objectWithoutProperties(props, ["children", "className"]);
 
   return React.createElement("footer", _extends({
-    className: classnames("background grey-color-lighter s-px-2 s-py-1 s-radius-bl-1 s-radius-br-1 flex nowrap", className)
+    className: classnames("background grey-color-lighter s-px-2 s-py-1 s-radius-bl-1 s-radius-br-1 flex nowrap", className),
+    ref: ref
   }, restProps), children);
 });
 CardFooter.propTypes = {
@@ -637,7 +640,7 @@ CardFooter.defaultProps = {
   className: ""
 };
 
-var CardBody = React.forwardRef(function (props) {
+var CardBody = React.forwardRef(function (props, ref) {
   var children = props.children,
       className = props.className,
       restProps = _objectWithoutProperties(props, ["children", "className"]);
@@ -645,7 +648,8 @@ var CardBody = React.forwardRef(function (props) {
   return React.createElement(CardContext.Consumer, null, function (_ref) {
     var horizontal = _ref.horizontal;
     return React.createElement("div", _extends({
-      className: classnames(horizontal && "ed-grid m-grid-5 gap-2 m-pxy-2", className)
+      className: classnames(horizontal && "ed-grid m-grid-5 gap-2 m-pxy-2", className),
+      ref: ref
     }, restProps), children);
   });
 });

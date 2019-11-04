@@ -76,8 +76,8 @@ Actualmente se tienen construidos los siguientes componentes
 - TextArea
 - Select
 - FormItem
-En Progreso
 - Card
+En Progreso
 - Tabs
 - Carousel
 
@@ -373,4 +373,65 @@ const FormSample = () => (
     </EDgrid>
   </Form>
 );
+```
+
+### Card
+Los elementos del card al igual que los elementos de formulario estan construidos utilizando el patrón de [Compound Components](https://blog.logrocket.com/guide-to-react-compound-components-9c4b3eb482e9/) asi que el marcado que al final se elija es totalmente a elección del usuario de la librería
+## Card Props
+| Nombre        | Tipo           | Descripción  |
+| ------------- |:-------------:| -----:|
+| as      | string      |   Indica que etiqueta HTML va a renderizar el contenedor del card, por defecto es un `article` |
+| horizontal      			| bool 				| Indica si el card va a estar en modo vertical, por defecto es false |
+## Card.Header Props
+| Nombre        | Tipo           | Descripción  |
+| ------------- |:-------------:| -----:|
+| className      | string      |   Indica las clases css del contenedor |
+| image      			| string 				| Indica la imagen que va a ser renderizada |
+| imageClass      			| string 				| Indica las clases css de la imagen |
+| alt      			| string 				| Indica la propiedad alt de la etiqueta img |
+## Card.Title Props
+| Nombre        | Tipo           | Descripción  |
+| ------------- |:-------------:| -----:|
+| as      | string      |   Indica que etiqueta HTML va a renderizar el título, por defecto es un `h3` |
+
+**Ejemplo:**
+**Card normal***
+```javascript
+	<Card>
+		<Card.Body>
+			<Card.Header image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png" />
+			<Card.Content>
+				<Card.Title>Figma Desde Cero</Card.Title>
+				<p className="small s-mb-0">
+					Aprende a diseñar interfaces de usuario interactivas e impactantes
+				</p>
+			</Card.Content>
+		</Card.Body>
+		<Card.Footer>
+			<p className="s-mb-0">Álvaro Felipe</p>
+			<div className="s-to-right color first-color s-cross-center">
+				<b>$ 20 USD</b>
+			</div>
+		</Card.Footer>
+	</Card>
+```
+**Card horizontal**
+```javascript
+	<Card horizontal>
+		<Card.Body>
+			<Card.Header image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png" />
+			<Card.Content>
+				<Card.Title>Figma Desde Cero</Card.Title>
+				<p className="small s-mb-0">
+					Aprende a diseñar interfaces de usuario interactivas
+				</p>
+			</Card.Content>
+		</Card.Body>
+		<Card.Footer>
+			<p className="s-mb-0">Álvaro Felipe</p>
+			<div className="s-to-right color first-color s-cross-center">
+				<b>$ 20 USD</b>
+			</div>
+		</Card.Footer>
+	</Card>
 ```
