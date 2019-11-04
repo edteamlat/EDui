@@ -7,37 +7,41 @@ import { CardTitle } from "./CardTitle";
 import { CardContent } from "./CardContent";
 import { CardFooter } from "./CardFooter";
 import { CardBody } from "./CardBody";
+import { CardContext } from "../utils/contexts";
 
 const Card = React.forwardRef((props, ref) => {
 	const {
 		as: Component = "article",
 		className,
-		url,
 		children,
 		horizontal,
 		...restProps
 	} = props;
 
 	return (
-		<Component
-			ref={ref}
-			className={classnames("s-radius-1 s-shadow-bottom s-border", className)}
-			{...restProps}
-		>
-			{children}
-		</Component>
+		<CardContext.Provider value={{ horizontal }}>
+			<Component
+				ref={ref}
+				className={classnames("s-radius-1 s-shadow-bottom s-border", className)}
+				{...restProps}
+			>
+				{children}
+			</Component>
+		</CardContext.Provider>
 	);
 });
 
 Card.propTypes = {
 	as: PropTypes.elementType,
 	className: PropTypes.string,
+	horizontal: PropTypes.bool,
 	children: PropTypes.oneOfType(CHILDREN_PROPTYPES).isRequired
 };
 
 Card.defaultProps = {
 	as: "article",
-	className: ""
+	className: "",
+	horizontal: false
 };
 
 Card.Header = CardHeader;

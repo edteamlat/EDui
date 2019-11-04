@@ -45,15 +45,12 @@ export const DefaultCard = () => (
 	</EDgrid>
 );
 
-export const HorizontaltCard = () => (
+export const HorizontalCard = () => (
 	<EDgrid medium={2} gap={2} rowsGap>
-		<Card>
-			<Card.Body horizontal>
-				<Card.Header
-					horizontal
-					image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png"
-				/>
-				<Card.Content horizontal>
+		<Card horizontal>
+			<Card.Body>
+				<Card.Header image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png" />
+				<Card.Content>
 					<Card.Title>Figma Desde Cero</Card.Title>
 					<p className="small s-mb-0">
 						Aprende a diseñar interfaces de usuario interactivas
@@ -67,16 +64,13 @@ export const HorizontaltCard = () => (
 				</div>
 			</Card.Footer>
 		</Card>
-		<Card>
-			<Card.Body horizontal>
-				<Card.Header
-					horizontal
-					image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-09/adobe-xd.png"
-				/>
-				<Card.Content horizontal>
+		<Card horizontal>
+			<Card.Body>
+				<Card.Header image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-09/adobe-xd.png" />
+				<Card.Content>
 					<Card.Title>Adobe Xd Desde Cero</Card.Title>
 					<p className="small s-mb-0">
-					Sé el flowmaster de los prototipos en la nube
+						Sé el flowmaster de los prototipos en la nube
 					</p>
 				</Card.Content>
 			</Card.Body>

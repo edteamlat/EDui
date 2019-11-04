@@ -8,24 +8,24 @@ import { TextArea } from "./TextArea";
 import { CHILDREN_PROPTYPES } from "../constants";
 
 const Form = React.forwardRef((props, ref) => {
-  const { className, children, onSubmit, ...restProps } = props;
+	const { className, children, onSubmit, ...restProps } = props;
 
-  return (
-    <form className={className} ref={ref} onSubmit={onSubmit} {...restProps}>
-      {children}
-    </form>
-  );
+	return (
+		<form className={className} ref={ref} onSubmit={onSubmit} {...restProps}>
+			{children}
+		</form>
+	);
 });
 
 Form.propTypes = {
-  className: PropTypes.string,
-  children: PropTypes.oneOfType(CHILDREN_PROPTYPES).isRequired,
-  onSubmit: PropTypes.func
+	className: PropTypes.string,
+	children: PropTypes.oneOfType(CHILDREN_PROPTYPES).isRequired,
+	onSubmit: PropTypes.func
 };
 
 Form.defaultProps = {
-  className: "",
-  onSubmit: Function.prototype
+	className: "",
+	onSubmit: Function.prototype
 };
 
 Form.Input = Input;
