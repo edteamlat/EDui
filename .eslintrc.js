@@ -5,6 +5,7 @@ module.exports = {
 			"import/prefer-default-export": "off",
 			"no-shadow": "off",
 			"react/jsx-filename-extension": "off",
-			"no-prototype-builtins": "off"
+			"no-prototype-builtins": "off",
+			"no-undef": "off"
 		}
 };
