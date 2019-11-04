@@ -3,7 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { CHILDREN_PROPTYPES } from "../constants";
 
-const CardFooter = React.forwardRef(props => {
+const CardFooter = React.forwardRef((props, ref) => {
 	const { children, className, ...restProps } = props;
 
 	return (
@@ -12,6 +12,7 @@ const CardFooter = React.forwardRef(props => {
 				"background grey-color-lighter s-px-2 s-py-1 s-radius-bl-1 s-radius-br-1 flex nowrap",
 				className
 			)}
+			ref={ref}
 			{...restProps}
 		>
 			{children}

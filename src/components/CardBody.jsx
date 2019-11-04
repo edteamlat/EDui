@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { CHILDREN_PROPTYPES } from "../constants";
 import { CardContext } from "../utils/contexts";
 
-const CardBody = React.forwardRef(props => {
+const CardBody = React.forwardRef((props, ref) => {
 	const { children, className, ...restProps } = props;
 
 	return (
@@ -15,6 +15,7 @@ const CardBody = React.forwardRef(props => {
 						horizontal && "ed-grid m-grid-5 gap-2 m-pxy-2",
 						className
 					)}
+					ref={ref}
 					{...restProps}
 				>
 					{children}

@@ -3,7 +3,7 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import { CardContext } from "../utils/contexts";
 
-const CardHeader = React.forwardRef(props => {
+const CardHeader = React.forwardRef((props, ref) => {
 	const { image, className, imageClasses, alt, ...restProps } = props;
 
 	return (
@@ -15,6 +15,8 @@ const CardHeader = React.forwardRef(props => {
 						"img-container s-ratio-16-9",
 						horizontal && "m-cols-2"
 					)}
+					ref={ref}
+					{...restProps}
 				>
 					<img
 						className={classnames(
@@ -22,7 +24,6 @@ const CardHeader = React.forwardRef(props => {
 							horizontal && "s-radius-tl-1 s-radius-tr-1 m-radius",
 							!horizontal && "s-radius-tl-1 s-radius-tr-1"
 						)}
-						{...restProps}
 						src={image}
 						alt={alt}
 					/>
