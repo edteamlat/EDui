@@ -6,6 +6,7 @@ module.exports = {
 			"no-shadow": "off",
 			"react/jsx-filename-extension": "off",
 			"no-prototype-builtins": "off",
-			"no-undef": "off"
+			"no-undef": "off",
+			"import/no-extraneous-dependencies": "off"
 		}
 };
