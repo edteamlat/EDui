@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import { CardContext } from "../utils/contexts";
+import { CHILDREN_PROPTYPES } from "../constants";
 
 const CardHeader = React.forwardRef((props, ref) => {
 	const { image, className, imageClasses, children, alt, ...restProps } = props;
@@ -41,7 +42,9 @@ CardHeader.propTypes = {
 	image: PropTypes.string,
 	className: PropTypes.string,
 	imageClasses: PropTypes.string,
-	alt: PropTypes.string
+	alt: PropTypes.string,
+	// eslint-disable-next-line react/require-default-props
+	children: PropTypes.oneOfType(CHILDREN_PROPTYPES)
 };
 
 CardHeader.defaultProps = {

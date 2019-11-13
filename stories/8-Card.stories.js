@@ -32,6 +32,7 @@ export const DefaultCard = () => (
 						<img
 							src="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-09/adobe-xd.png"
 							className="s-radius-tl-1 s-radius-tr-1"
+							alt="Adobe XD"
 						/>
 					</div>
 				</Card.Header>

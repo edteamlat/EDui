@@ -389,6 +389,8 @@ Los elementos del card al igual que los elementos de formulario estan construido
 | image      			| string 				| Indica la imagen que va a ser renderizada |
 | imageClass      			| string 				| Indica las clases css de la imagen |
 | alt      			| string 				| Indica la propiedad alt de la etiqueta img |
+
+Opcionalmente el card puede recibir hijos
 ## Card.Title Props
 | Nombre        | Tipo           | Descripción  |
 | ------------- |:-------------:| -----:|
@@ -400,6 +402,16 @@ Los elementos del card al igual que los elementos de formulario estan construido
 	<Card>
 		<Card.Body>
 			<Card.Header image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-10/figma-desde-cero-poster.png" />
+			{ /* O tambien en lugar de pasar la imagen y para más control sobre el marcado se puede pasar como hijo */ }
+			<Card.Header>
+				<div className="img-container s-ratio-16-9">
+					<img
+						src="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-09/adobe-xd.png"
+						className="s-radius-tl-1 s-radius-tr-1"
+						alt="Adobe XD"
+					/>
+				</div>
+			</Card.Header>
 			<Card.Content>
 				<Card.Title>Figma Desde Cero</Card.Title>
 				<p className="small s-mb-0">
