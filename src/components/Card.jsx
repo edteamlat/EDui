@@ -22,7 +22,7 @@ const Card = React.forwardRef((props, ref) => {
 		<CardContext.Provider value={{ horizontal }}>
 			<Component
 				ref={ref}
-				className={classnames("s-radius-1 s-shadow-bottom s-border", className)}
+				className={classnames("s-radius-1 s-shadow-bottom", className)}
 				{...restProps}
 			>
 				{children}
