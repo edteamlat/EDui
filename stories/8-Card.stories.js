@@ -27,7 +27,14 @@ export const DefaultCard = () => (
 
 		<Card>
 			<Card.Body>
-				<Card.Header image="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-09/adobe-xd.png" />
+				<Card.Header>
+					<div className="img-container s-ratio-16-9">
+						<img
+							src="https://drupal.ed.team/sites/default/files/styles/16_9_medium/public/imagenes-cdn-edteam/2019-09/adobe-xd.png"
+							className="s-radius-tl-1 s-radius-tr-1"
+						/>
+					</div>
+				</Card.Header>
 				<Card.Content>
 					<Card.Title>Adobe Xd Desde Cero</Card.Title>
 					<p className="small s-mb-0">
