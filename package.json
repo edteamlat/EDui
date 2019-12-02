@@ -1,6 +1,6 @@
 {
   "name": "@edteam/edui",
-  "version": "1.4.5-beta",
+  "version": "1.4.6-beta",
   "main": "dist/index.js",
   "description": "Libreria de componentes para React siguiendo la Guia de estilos de EDteam",
   "scripts": {
