@@ -31,7 +31,7 @@ const EDgrid = React.forwardRef((props, ref) => {
 				`m-grid-${medium}`,
 				`lg-grid-${large}`,
 				rowsGap && "rows-gap",
-				`gap-${gap}`
+				typeof gap === "number" && `gap-${gap}`
 			)}
 			{...restProps}
 		>
@@ -56,7 +56,7 @@ EDgrid.defaultProps = {
 	className: "",
 	small: 1,
 	rowsGap: false,
-	gap: 0
+	gap: null
 };
 
 export { EDgrid };
