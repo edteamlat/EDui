@@ -1,11 +1,15 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 import { EDitem, EDcontainer } from "../src";
 
 test("Should render <EDitem /> and <EDcontainer /> without errors", () => {
-	const containerWrapper = shallow(<EDcontainer>content</EDcontainer>);
-	const itemWrapper = shallow(<EDitem>content</EDitem>);
+	const containerWrapper = render(
+		<EDcontainer>
+			content
+			<EDitem>Item</EDitem>
+		</EDcontainer>
+	);
 
-	expect(containerWrapper.find("div")).toHaveLength(1);
-	expect(itemWrapper.find("div")).toHaveLength(1);
+	expect(containerWrapper.getByText("content")).toBeInTheDocument();
+	expect(containerWrapper.getByText("Item")).toBeInTheDocument();
 });

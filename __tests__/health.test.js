@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render } from "@testing-library/react";
 
 const SampleComponent = () => <h1>Sample</h1>;
 
@@ -8,8 +8,7 @@ test("Health function", () => {
 });
 
 test("SampleComponent", () => {
-	const wrapper = shallow(<SampleComponent />);
+	const wrapper = render(<SampleComponent />);
 	// eslint-disable-next-line no-console
-	console.log(wrapper.debug());
-	expect(wrapper.find("h1")).toHaveLength(1);
+	expect(wrapper.getByText("Sample")).toBeInTheDocument();
 });
