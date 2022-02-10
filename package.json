@@ -58,7 +58,7 @@
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^1.7.0",
     "jest": "^24.9.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "prettier": "^1.18.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
@@ -76,7 +76,7 @@
   },
   "peerDependencies": {
     "react": "^16.7.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "ed-grid": "^2.9.0",
     "edteam-style-guides": "0.0.59"
   },
